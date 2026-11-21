@@ -1,0 +1,81 @@
+# Configuración de la prueba de factibilidad de VibeMatch.
+# Todo lo que es "opinable" (prompts, umbrales, listas de tags) vive acá
+# para que el equipo lo pueda discutir y cambiar sin tocar código.
+
+[run]
+candidates_per_prompt = 30
+# Mercado para resolver en Spotify (solo se usa si hay credenciales).
+spotify_market = "AR"
+
+# --- Prompts de prueba -------------------------------------------------------
+# Los 5 del documento + 1 de estrés para música argentina/latina reciente.
+[[prompts]]
+id = "preboliche"
+text = "Preboliche con amigos: reguetón divertido y conocido para cantar todos"
+
+[[prompts]]
+id = "lluvia"
+text = "Domingo de lluvia, tranqui, mirando por la ventana"
+
+[[prompts]]
+id = "estudio"
+text = "Música para estudiar concentrada para un parcial, que no me distraiga"
+
+[[prompts]]
+id = "entrenamiento"
+text = "Entrenamiento de fuerza en el gimnasio, algo que me dé mucha energía"
+
+[[prompts]]
+id = "nostalgia"
+text = "Nostalgia de la secundaria: temas que escuchábamos en los 2000"
+
+[[prompts]]
+id = "previa_local"
+text = "Previa en Buenos Aires con cumbia, cuarteto y RKT"
+
+# --- Matching (artista, título) contra cada fuente ---------------------------
+[matching]
+title_min_similarity = 0.85
+artist_min_similarity = 0.85
+musicbrainz_search_limit = 25
+
+# --- Umbrales de "vale la pena" ---------------------------------------------
+# Fracción de candidatos (0-1). Son una propuesta: discútanlos antes de correr,
+# no después de ver los resultados.
+[thresholds]
+exists_in_musicbrainz = 0.80     # la canción existe (no es alucinación)
+resolved_in_spotify = 0.70       # se puede exportar
+has_3_useful_tags = 0.50         # hay señal textual para mood/escena
+recognizable = 0.60              # "música reconocible" (ver [popularity])
+
+[popularity]
+# Una canción cuenta como "reconocible" si supera cualquiera de estos cortes.
+lastfm_min_listeners = 50000
+listenbrainz_min_users = 100
+# Corte más exigente, solo informativo.
+lastfm_hit_listeners = 500000
+
+[tags]
+min_count_lastfm = 5             # Last.fm normaliza counts a 0-100
+# Tags que no describen la canción.
+junk = [
+  "seen live", "favorite", "favorites", "favourite", "favourites",
+  "my favorite", "favorite songs", "favourite songs", "albums i own",
+  "love", "loved", "awesome", "amazing", "beautiful", "best", "good",
+  "cool", "great", "spotify", "youtube", "check out", "<3", "fav", "favs",
+  "under 2000 listeners", "all", "music", "song", "songs", "tracks",
+]
+# Vocabulario de mood/escena/actividad (es + en). Se compara por palabra
+# completa ('rain' no matchea 'training'); con '*' al final, por raíz
+# ('nostalg*' matchea 'nostalgia' y 'nostalgic'). Sin tildes da igual.
+mood_lexicon = [
+  "party", "fiesta", "dance", "danceable", "dancing", "bailable", "bailar",
+  "upbeat", "happy", "feel good", "feelgood", "fun", "energetic", "energy",
+  "workout", "gym", "running", "training", "motivation*", "pump up", "hype",
+  "aggressive", "chill*", "relax*", "calm", "mellow", "soft", "study*",
+  "focus", "concentra*", "ambient", "background", "rain", "rainy", "lluvia",
+  "sad", "melanchol*", "nostalg*", "romantic*", "sensual", "sexy", "perreo",
+  "summer", "verano", "night", "noche", "emotional", "dreamy", "atmospheric",
+  "uplifting", "epic", "peaceful", "sleep", "morning", "sing along",
+  "singalong", "catchy", "previa", "joda", "tranqui",
+]
