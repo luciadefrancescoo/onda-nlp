@@ -138,3 +138,42 @@ def results_rows(records: list[dict]) -> list[dict[str, Any]]:
             "recognizable": d["recognizable"], "found_anywhere": d["found_anywhere"],
         })
     return rows
+
+
+COMPARE_ROWS = [
+    ("exists_in_musicbrainz", "Existe en MusicBrainz", "pct"),
+    ("not_found_anywhere", "No encontrada en ninguna fuente", "pct"),
+    ("recognizable", "Reconocible", "pct"),
+    ("hit", "Hit (corte alto Last.fm)", "pct"),
+    ("has_3_useful_tags_song", "≥3 tags a nivel canción", "pct"),
+    ("has_mood_tag_song", "Con tag de mood (canción)", "pct"),
+    ("released_2024_or_later", "Lanzadas en 2024+", "pct"),
+    ("median_year", "Año mediano", "year"),
+    ("unique_artist_ratio", "Artistas distintos / canciones", "pct"),
+    ("duplicates", "Duplicados", "num"),
+    ("n", "Candidatos", "num"),
+]
+
+
+def compare_runs(runs: list[tuple[str, dict]]) -> str:
+    """Tabla Markdown lado a lado. `runs` = [(nombre_carpeta, summary.json), ...]."""
+    fmt = {"pct": pct, "year": year, "num": lambda x: "—" if x is None else str(x)}
+    labels = []
+    for folder, s in runs:
+        model = (s.get("generator") or {}).get("model")
+        labels.append(f"{model} ({folder[:13]})" if model else folder)
+    L = ["## Comparación de corridas", "", "| Métrica | " + " | ".join(labels) + " |",
+         "|---|" + "---|" * len(runs)]
+    for key, label, kind in COMPARE_ROWS:
+        L.append(f"| {label} | " + " | ".join(fmt[kind](s["overall"].get(key)) for _, s in runs) + " |")
+    L += ["", "**Veredicto:** " + " · ".join(f"{lab}: {s['verdict']}" for lab, (_, s) in zip(labels, runs)), ""]
+    prompts = list(dict.fromkeys(p for _, s in runs for p in s["per_prompt"]))
+    L += ["### Por prompt (existe en MB / reconocible)", "",
+          "| Prompt | " + " | ".join(labels) + " |", "|---|" + "---|" * len(runs)]
+    for pid in prompts:
+        cells = []
+        for _, s in runs:
+            m = s["per_prompt"].get(pid)
+            cells.append("—" if not m else f"{pct(m['exists_in_musicbrainz'])} / {pct(m['recognizable'])}")
+        L.append(f"| {pid} | " + " | ".join(cells) + " |")
+    return "\n".join(L) + "\n"

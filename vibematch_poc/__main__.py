@@ -4,6 +4,7 @@
     python -m vibematch_poc run --candidates data/candidates/claude-opus-5-5.json
     python -m vibematch_poc generate --out data/candidates/mi-modelo.json
     python -m vibematch_poc export --candidates data/candidates/claude-opus-5-5.json --prompt preboliche
+    python -m vibematch_poc compare results/<corrida-1> results/<corrida-2>
 """
 
 from __future__ import annotations
@@ -12,6 +13,7 @@ import argparse
 import csv
 import json
 import os
+import re
 import sys
 from datetime import datetime
 from pathlib import Path
@@ -50,10 +52,11 @@ def load_config(path: Path) -> dict:
         return tomllib.load(f)
 
 
-def make_http(cache: bool = True) -> HttpClient:
+def make_http(cache: bool = True, timeout: float = 20.0) -> HttpClient:
     return HttpClient(
         cache_path=ROOT / "cache" / "http_cache.sqlite" if cache else None,
         user_agent=build_user_agent(os.environ.get("CONTACT_EMAIL")),
+        timeout=timeout,
     )
 
 
@@ -105,19 +108,30 @@ def cmd_generate(args, cfg) -> int:
     if not base_url or not model:
         print("Definí LLM_BASE_URL y LLM_MODEL (y LLM_API_KEY si hace falta) en .env", file=sys.stderr)
         return 2
-    http = make_http()
+    # Los modelos locales pueden tardar minutos en responder: timeout largo.
+    http = make_http(timeout=600)
     n = args.n or cfg["run"]["candidates_per_prompt"]
     out = {"generator": {"model": model, "method": f"API compatible OpenAI ({base_url})",
-                         "date": datetime.now().strftime("%Y-%m-%d"), "notes": ""},
+                         "date": datetime.now().strftime("%Y-%m-%d"),
+                         "notes": "Modelo elegido por el equipo, misma consigna y temperatura 0.3.",
+                         "errors": {}},
            "prompts": {}}
     for p in cfg["prompts"]:
-        print(f"Generando {n} para {p['id']}...", file=sys.stderr)
-        out["prompts"][p["id"]] = llm.generate(http, p["text"], n, base_url, model,
-                                               os.environ.get("LLM_API_KEY"))
+        t0 = datetime.now()
+        print(f"Generando {n} para {p['id']}...", file=sys.stderr, flush=True)
+        try:
+            songs = llm.generate(http, p["text"], n, base_url, model, os.environ.get("LLM_API_KEY"))
+        except Exception as e:  # seguimos con los demás prompts
+            print(f"  ERROR en {p['id']}: {e}", file=sys.stderr)
+            out["generator"]["errors"][p["id"]] = str(e)[:500]
+            songs = []
+        secs = (datetime.now() - t0).total_seconds()
+        print(f"  {len(songs)} canciones en {secs:.0f} s", file=sys.stderr, flush=True)
+        out["prompts"][p["id"]] = songs
     Path(args.out).parent.mkdir(parents=True, exist_ok=True)
     Path(args.out).write_text(json.dumps(out, ensure_ascii=False, indent=2))
     print(f"Guardado en {args.out}")
-    return 0
+    return 0 if any(out["prompts"].values()) else 1
 
 
 def cmd_run(args, cfg) -> int:
@@ -138,17 +152,33 @@ def cmd_run(args, cfg) -> int:
         for r in records:
             f.write(json.dumps(r, ensure_ascii=False) + "\n")
     rows = results_rows(records)
-    with open(out / "results.csv", "w", newline="") as f:
-        w = csv.DictWriter(f, fieldnames=list(rows[0].keys()))
-        w.writeheader()
-        w.writerows(rows)
-    (out / "summary.json").write_text(json.dumps({**summary, "sources": info}, ensure_ascii=False, indent=2))
+    if rows:
+        with open(out / "results.csv", "w", newline="") as f:
+            w = csv.DictWriter(f, fieldnames=list(rows[0].keys()))
+            w.writeheader()
+            w.writerows(rows)
+    (out / "summary.json").write_text(json.dumps(
+        {**summary, "sources": info, "generator": data.get("generator", {})}, ensure_ascii=False, indent=2))
     (out / "report.md").write_text(render(summary, records, info, data.get("generator", {}),
                                           {k: prompts[k] for k in candidates}))
     print(f"\nVeredicto: {summary['verdict']}")
     print(f"Reporte: {out / 'report.md'}")
     print(f"HTTP: {http.stats}", file=sys.stderr)
     return 0
+
+
+def make_qr(url: str, path: Path) -> str | None:
+    """QR del link de la playlist: PNG para proyectar y versión en la terminal."""
+    try:
+        import segno
+    except ModuleNotFoundError:
+        print("Para el QR falta segno: pip install -r requirements.txt", file=sys.stderr)
+        return None
+    qr = segno.make(url, error="m")
+    qr.save(str(path), scale=12, border=2)
+    qr.terminal(compact=True)
+    print(f"QR guardado en {path}")
+    return str(path)
 
 
 def cmd_export(args, cfg) -> int:
@@ -166,8 +196,16 @@ def cmd_export(args, cfg) -> int:
         return 2
     cands = data["prompts"][args.prompt][: args.limit or None]
 
+    if not re.fullmatch(r"[A-Za-z0-9_-]{1,40}", args.account):
+        print("--account solo admite letras, números, '-' y '_'.", file=sys.stderr)
+        return 2
     http = make_http(cache=False)
-    token = su.authorize(http, client_id, redirect, ROOT / "cache" / "spotify_token.json")
+    token_path = ROOT / "cache" / f"spotify_token_{args.account}.json"
+    legacy = ROOT / "cache" / "spotify_token.json"  # versión anterior: una sola cuenta
+    if args.account == "personal" and legacy.exists() and not token_path.exists():
+        legacy.rename(token_path)
+    print(f"Cuenta de Spotify: '{args.account}' (la primera vez se abre el navegador para iniciar sesión)")
+    token = su.authorize(http, client_id, redirect, token_path)
     m = cfg["matching"]
     exp = su.SpotifyExporter(http, token, market=cfg["run"]["spotify_market"],
                              title_min=m["title_min_similarity"], artist_min=m["artist_min_similarity"])
@@ -205,12 +243,33 @@ def cmd_export(args, cfg) -> int:
     elif uris:
         name = args.name or f"VibeMatch PoC · {args.prompt}"
         desc = f"{prompts.get(args.prompt, args.prompt)} (prueba de exportación VibeMatch)"
-        pid, url = exp.create_playlist(name, desc, public=False)
+        pid, url = exp.create_playlist(name, desc, public=args.public)
         summary["add_endpoint"] = exp.add_items(pid, uris)
         summary["playlist_url"] = url
-        print(f"\nPlaylist privada creada con {len(uris)} canciones: {url}")
+        kind = "pública" if args.public else "privada"
+        print(f"\nPlaylist {kind} creada con {len(uris)} canciones: {url}")
+        if args.qr:
+            summary["qr"] = make_qr(url, out / "playlist_qr.png")
     (out / "export_summary.json").write_text(json.dumps(summary, ensure_ascii=False, indent=2))
     print(f"Detalle: {out / 'export.csv'}")
+    return 0
+
+
+def cmd_compare(args, cfg) -> int:
+    from .report import compare_runs
+
+    runs = []
+    for d in args.runs:
+        path = Path(d) / "summary.json"
+        if not path.exists():
+            print(f"No encuentro {path}", file=sys.stderr)
+            return 2
+        runs.append((Path(d).name, json.loads(path.read_text())))
+    md = compare_runs(runs)
+    print(md)
+    if args.out:
+        Path(args.out).write_text(md)
+        print(f"Guardado en {args.out}", file=sys.stderr)
     return 0
 
 
@@ -241,10 +300,19 @@ def main(argv: list[str] | None = None) -> int:
     e.add_argument("--limit", type=int)
     e.add_argument("--name", help="nombre de la playlist")
     e.add_argument("--dry-run", action="store_true", help="solo buscar, no crear la playlist")
+    e.add_argument("--account", default="personal",
+                   help="nombre para recordar la sesión (p. ej. equipo); cada cuenta guarda su propio permiso")
+    e.add_argument("--public", action="store_true", help="crear la playlist pública (para compartir por QR)")
+    e.add_argument("--qr", action="store_true", help="generar un QR con el link de la playlist")
+
+    c = sub.add_parser("compare", help="compara dos o más corridas de run")
+    c.add_argument("runs", nargs="+", help="carpetas dentro de results/")
+    c.add_argument("--out", help="guardar la tabla en un .md")
 
     args = ap.parse_args(argv)
     cfg = load_config(Path(args.config))
-    cmds = {"check": cmd_check, "generate": cmd_generate, "run": cmd_run, "export": cmd_export}
+    cmds = {"check": cmd_check, "generate": cmd_generate, "run": cmd_run,
+            "export": cmd_export, "compare": cmd_compare}
     return cmds[args.cmd](args, cfg)
 
 

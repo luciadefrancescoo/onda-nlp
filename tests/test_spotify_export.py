@@ -120,7 +120,7 @@ def test_cli_export_creates_private_playlist(tmp_path, monkeypatch):
         ("POST", "/me/playlists", create),
         ("POST", "/playlists/pl1/items", lambda p, b: Response(201, {"snapshot_id": "s"})),
     ])
-    monkeypatch.setattr(cli, "make_http", lambda cache=True: http)
+    monkeypatch.setattr(cli, "make_http", lambda cache=True, timeout=20: http)
     cands = tmp_path / "c.json"
     cands.write_text(json.dumps({"prompts": {"preboliche": [
         {"artist": "Daddy Yankee", "title": "Gasolina"}, {"artist": "Nadie", "title": "Inventada"}]}}))
@@ -138,10 +138,70 @@ def test_cli_export_dry_run_creates_nothing(tmp_path, monkeypatch):
     monkeypatch.setattr(su, "authorize", lambda *a, **k: "tok")
     http = FakeHttp([("GET", "/v1/search", lambda p, b: Response(200, {"tracks": {"items": [
         track("Gasolina", ["Daddy Yankee"], "spotify:track:g")]}}))])
-    monkeypatch.setattr(cli, "make_http", lambda cache=True: http)
+    monkeypatch.setattr(cli, "make_http", lambda cache=True, timeout=20: http)
     cands = tmp_path / "c.json"
     cands.write_text(json.dumps({"prompts": {"preboliche": [{"artist": "Daddy Yankee", "title": "Gasolina"}]}}))
     cfg_path = str(cli.Path(__file__).parent.parent / "config.toml")
     assert cli.main(["--config", cfg_path, "export", "--candidates", str(cands),
                      "--prompt", "preboliche", "--dry-run"]) == 0
     assert all(c[0] == "GET" for c in http.calls)
+
+
+def test_auth_url_forces_account_dialog():
+    assert "show_dialog=true" in su.build_auth_url("cid", su.DEFAULT_REDIRECT, "v" * 50, "st")
+
+
+def _export_setup(tmp_path, monkeypatch, created, seen_paths):
+    monkeypatch.setattr(cli, "load_dotenv", lambda p: None)
+    monkeypatch.setenv("SPOTIFY_CLIENT_ID", "cid")
+    monkeypatch.setattr(cli, "ROOT", tmp_path)
+
+    def fake_authorize(http, client_id, redirect, token_path, **kw):
+        seen_paths.append(token_path)
+        return "tok"
+
+    monkeypatch.setattr(su, "authorize", fake_authorize)
+
+    def create(p, b):
+        created.update(b)
+        return Response(201, {"id": "pl1", "external_urls": {"spotify": "https://open.spotify.com/playlist/pl1"}})
+
+    http = FakeHttp([
+        ("GET", "/v1/search", lambda p, b: Response(200, {"tracks": {"items": [
+            track("Gasolina", ["Daddy Yankee"], "spotify:track:g")]}})),
+        ("POST", "/me/playlists", create),
+        ("POST", "/playlists/pl1/items", lambda p, b: Response(201, {"snapshot_id": "s"})),
+    ])
+    monkeypatch.setattr(cli, "make_http", lambda cache=True, timeout=20: http)
+    cands = tmp_path / "c.json"
+    cands.write_text(json.dumps({"prompts": {"preboliche": [{"artist": "Daddy Yankee", "title": "Gasolina"}]}}))
+    return cands, str(cli.Path(__file__).parent.parent / "config.toml")
+
+
+def test_export_team_account_public_with_qr(tmp_path, monkeypatch):
+    created, paths = {}, []
+    cands, cfg = _export_setup(tmp_path, monkeypatch, created, paths)
+    assert cli.main(["--config", cfg, "export", "--candidates", str(cands), "--prompt", "preboliche",
+                     "--account", "equipo", "--public", "--qr"]) == 0
+    assert created["public"] is True
+    assert paths[0].name == "spotify_token_equipo.json"
+    png = next(tmp_path.glob("results/*/playlist_qr.png"))
+    assert png.read_bytes()[:8] == b"\x89PNG\r\n\x1a\n"
+
+
+def test_export_migrates_legacy_token_for_personal(tmp_path, monkeypatch):
+    created, paths = {}, []
+    cands, cfg = _export_setup(tmp_path, monkeypatch, created, paths)
+    (tmp_path / "cache").mkdir()
+    (tmp_path / "cache" / "spotify_token.json").write_text("{}")
+    assert cli.main(["--config", cfg, "export", "--candidates", str(cands), "--prompt", "preboliche"]) == 0
+    assert paths[0].name == "spotify_token_personal.json" and paths[0].exists()
+    assert created["public"] is False
+
+
+def test_export_rejects_weird_account_names(tmp_path, monkeypatch):
+    created, paths = {}, []
+    cands, cfg = _export_setup(tmp_path, monkeypatch, created, paths)
+    assert cli.main(["--config", cfg, "export", "--candidates", str(cands), "--prompt", "preboliche",
+                     "--account", "../x"]) == 2
+    assert not paths

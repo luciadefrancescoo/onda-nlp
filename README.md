@@ -88,6 +88,40 @@ La primera vez se abre el navegador para autorizar. El permiso queda guardado en
 
 En la terminal, `✓` es la versión original, `~` es otra versión (en vivo, remix, karaoke…) porque no había original, y `✗` es que no la encontró. El detalle queda en `results/<fecha>-export-<prompt>/export.csv`: es para revisarlo a mano, no para alimentar modelos.
 
+### Para el AI Fest: cuenta del equipo + QR
+
+En modo desarrollo solo 5 cuentas pueden usar la app, así que los visitantes no van a poder exportar a la suya. La alternativa: exportar siempre a una cuenta del equipo, como playlist pública, y mostrar un QR.
+
+1. Creen una cuenta de Spotify del equipo. Premium se le pide al dueño de la app, no a los usuarios agregados.
+2. Agreguen ese mail en *User Management* de la app.
+3. Corran:
+
+```bash
+python -m vibematch_poc export --candidates data/candidates/claude-opus-5-5.json --prompt preboliche \
+  --account equipo --public --qr
+```
+
+`--account equipo` guarda ese permiso aparte del personal. En la pantalla de Spotify usen "¿No sos vos?" para entrar con la cuenta del equipo. El QR se muestra en la terminal y queda como PNG en `results/<fecha>-export-<prompt>/playlist_qr.png`.
+
+## Probar con un modelo chico (Ollama)
+
+Los candidatos incluidos los generó un modelo grande. Para saber si el proyecto funciona con el modelo que van a usar:
+
+1. Instalen [Ollama](https://ollama.com/download) y bajen un modelo según la memoria de la compu ( → Acerca de esta Mac). Si un nombre no existe, busquen el actual en [ollama.com/library](https://ollama.com/library).
+   ```bash
+   ollama pull gemma4:12b     # 16 GB o más
+   ollama pull qwen3.5:4b     # 8 GB
+   ```
+2. En `.env`: `LLM_BASE_URL=http://localhost:11434/v1` (sin API key).
+3. Generar, verificar y comparar:
+   ```bash
+   LLM_MODEL=gemma4:12b python -m vibematch_poc generate --out data/candidates/gemma4-12b.json
+   python -m vibematch_poc run --candidates data/candidates/gemma4-12b.json
+   python -m vibematch_poc compare results/<corrida-claude> results/<corrida-nueva> --out results/comparacion.md
+   ```
+
+`generate` intenta modo JSON, ignora bloques de razonamiento (`<think>`) y reintenta si la respuesta no se puede leer. Un modelo local puede tardar varios minutos por prompt.
+
 ## Candidatos
 
 `data/candidates/claude-opus-5-5.json` tiene 30 canciones por prompt, propuestas por Claude Opus 5.5 con la misma consigna que usa `generate`. **Es un modelo grande: tómenlo como cota optimista.** La comparación que importa es con el modelo chico que piensen usar:
@@ -125,7 +159,7 @@ Además de los 5 prompts del documento hay uno de estrés (`previa_local`: cumbi
 config.toml                 prompts, umbrales, listas de tags
 data/candidates/            candidatos por modelo (JSON)
 vibematch_poc/
-  __main__.py               CLI: check / generate / run / export
+  __main__.py               CLI: check / generate / run / export / compare
   llm.py                    consigna y parser de la respuesta del LLM
   http.py                   caché SQLite, rate limit por host, reintentos
   matching.py               normalización y similitud artista/título

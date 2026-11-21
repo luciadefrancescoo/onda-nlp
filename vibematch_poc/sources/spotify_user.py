@@ -53,6 +53,8 @@ def build_auth_url(client_id: str, redirect_uri: str, verifier: str, state: str)
         "client_id": client_id, "response_type": "code", "redirect_uri": redirect_uri,
         "code_challenge_method": "S256", "code_challenge": code_challenge(verifier),
         "scope": SCOPES, "state": state,
+        # Siempre muestra la pantalla de Spotify, con "¿No sos vos?" para cambiar de cuenta.
+        "show_dialog": "true",
     })
 
 
