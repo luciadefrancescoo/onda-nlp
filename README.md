@@ -65,6 +65,29 @@ Sin una fuente opcional, los criterios que dependen de ella salen como `N/A` y e
 
 > **Last.fm y uso académico.** Sus términos piden escribir a partners@last.fm *antes* de usar la API con fines de investigación o académicos. Manden ese mail cuanto antes.
 
+## Exportar a Spotify
+
+Prueba el camino real de la app: iniciás sesión con tu cuenta, el script busca cada canción y crea una **playlist privada** en tu cuenta. Usa OAuth con PKCE, así que solo hace falta el Client ID (no el secret).
+
+**Una sola vez, en [developer.spotify.com/dashboard](https://developer.spotify.com/dashboard)** (el dueño de la app necesita Premium):
+
+1. *Create app*. Nombre y descripción a gusto. En **Redirect URIs** poné exactamente `http://127.0.0.1:8888/callback` (Spotify ya no acepta `localhost`). En las APIs, marcá **Web API**.
+2. En *Settings*, copiá el **Client ID** a `.env` como `SPOTIFY_CLIENT_ID=...`.
+3. En *User Management*, agregá tu nombre y el mail de tu cuenta de Spotify. En modo desarrollo solo pueden usar la app hasta 5 usuarios agregados ahí.
+
+**Correrlo:**
+
+```bash
+# Primero solo buscar, sin crear nada:
+python -m vibematch_poc export --candidates data/candidates/claude-opus-5-5.json --prompt preboliche --dry-run
+# Después crear la playlist privada:
+python -m vibematch_poc export --candidates data/candidates/claude-opus-5-5.json --prompt preboliche
+```
+
+La primera vez se abre el navegador para autorizar. El permiso queda guardado en `cache/spotify_token.json` (ignorado por git). Para revocarlo: [spotify.com/account/apps](https://www.spotify.com/account/apps/).
+
+En la terminal, `✓` es la versión original, `~` es otra versión (en vivo, remix, karaoke…) porque no había original, y `✗` es que no la encontró. El detalle queda en `results/<fecha>-export-<prompt>/export.csv`: es para revisarlo a mano, no para alimentar modelos.
+
 ## Candidatos
 
 `data/candidates/claude-opus-5-5.json` tiene 30 canciones por prompt, propuestas por Claude Opus 5.5 con la misma consigna que usa `generate`. **Es un modelo grande: tómenlo como cota optimista.** La comparación que importa es con el modelo chico que piensen usar:
@@ -102,14 +125,14 @@ Además de los 5 prompts del documento hay uno de estrés (`previa_local`: cumbi
 config.toml                 prompts, umbrales, listas de tags
 data/candidates/            candidatos por modelo (JSON)
 vibematch_poc/
-  __main__.py               CLI: check / generate / run
+  __main__.py               CLI: check / generate / run / export
   llm.py                    consigna y parser de la respuesta del LLM
   http.py                   caché SQLite, rate limit por host, reintentos
   matching.py               normalización y similitud artista/título
   tags.py                   filtro de tags basura, detección de mood
   pipeline.py               verificación de cada candidato
   metrics.py, report.py     agregación, umbrales, reporte
-  sources/                  musicbrainz, listenbrainz, lastfm, spotify
+  sources/                  musicbrainz, listenbrainz, lastfm, spotify, spotify_user (export)
 tests/                      pytest, todo con HTTP falso (no usa red)
 ```
 

@@ -3,6 +3,7 @@
     python -m vibematch_poc check                      # ¿llegan las APIs?
     python -m vibematch_poc run --candidates data/candidates/claude-opus-5-5.json
     python -m vibematch_poc generate --out data/candidates/mi-modelo.json
+    python -m vibematch_poc export --candidates data/candidates/claude-opus-5-5.json --prompt preboliche
 """
 
 from __future__ import annotations
@@ -150,6 +151,69 @@ def cmd_run(args, cfg) -> int:
     return 0
 
 
+def cmd_export(args, cfg) -> int:
+    from .sources import spotify_user as su
+
+    client_id = os.environ.get("SPOTIFY_CLIENT_ID")
+    if not client_id:
+        print("Falta SPOTIFY_CLIENT_ID en .env (ver README, sección Exportar a Spotify).", file=sys.stderr)
+        return 2
+    redirect = os.environ.get("SPOTIFY_REDIRECT_URI") or su.DEFAULT_REDIRECT
+    data = json.loads(Path(args.candidates).read_text())
+    prompts = {p["id"]: p["text"] for p in cfg["prompts"]}
+    if args.prompt not in data["prompts"]:
+        print(f"No hay candidatos para '{args.prompt}'. Opciones: {', '.join(data['prompts'])}", file=sys.stderr)
+        return 2
+    cands = data["prompts"][args.prompt][: args.limit or None]
+
+    http = make_http(cache=False)
+    token = su.authorize(http, client_id, redirect, ROOT / "cache" / "spotify_token.json")
+    m = cfg["matching"]
+    exp = su.SpotifyExporter(http, token, market=cfg["run"]["spotify_market"],
+                             title_min=m["title_min_similarity"], artist_min=m["artist_min_similarity"])
+
+    rows, uris = [], []
+    print(f"\nBuscando {len(cands)} canciones de '{args.prompt}' en Spotify...\n")
+    for i, c in enumerate(cands, 1):
+        res = exp.resolve(c["artist"], c["title"])
+        mark = "✗" if not res["found"] else ("~" if res["flags"] else "✓")
+        detail = "no encontrada" if not res["found"] else f"{res['spotify_artists']} — {res['spotify_name']}"
+        if res["flags"]:
+            detail += f"  [{', '.join(res['flags'])}]"
+        print(f"{mark} {i:2}. {c['artist']} — {c['title']}  →  {detail}")
+        rows.append({"rank": i, "artist": c["artist"], "title": c["title"], **res,
+                     "flags": "|".join(res["flags"])})
+        if res["found"] and res["uri"] not in uris:
+            uris.append(res["uri"])
+
+    found = sum(r["found"] for r in rows)
+    clean = sum(r["found"] and not r["flags"] for r in rows)
+    print(f"\nEncontradas: {found}/{len(rows)} ({100 * found / len(rows):.0f}%), "
+          f"versión original: {clean}, otra versión: {found - clean}")
+
+    out = ROOT / "results" / f"{datetime.now():%Y%m%d-%H%M}-export-{args.prompt}"
+    out.mkdir(parents=True, exist_ok=True)
+    with open(out / "export.csv", "w", newline="") as f:
+        w = csv.DictWriter(f, fieldnames=list(rows[0].keys()))
+        w.writeheader()
+        w.writerows(rows)
+
+    summary = {"prompt": args.prompt, "n": len(rows), "found": found, "clean_version": clean,
+               "dry_run": args.dry_run, "playlist_url": None, "add_endpoint": None}
+    if args.dry_run:
+        print("Modo --dry-run: no se creó ninguna playlist.")
+    elif uris:
+        name = args.name or f"VibeMatch PoC · {args.prompt}"
+        desc = f"{prompts.get(args.prompt, args.prompt)} (prueba de exportación VibeMatch)"
+        pid, url = exp.create_playlist(name, desc, public=False)
+        summary["add_endpoint"] = exp.add_items(pid, uris)
+        summary["playlist_url"] = url
+        print(f"\nPlaylist privada creada con {len(uris)} canciones: {url}")
+    (out / "export_summary.json").write_text(json.dumps(summary, ensure_ascii=False, indent=2))
+    print(f"Detalle: {out / 'export.csv'}")
+    return 0
+
+
 def main(argv: list[str] | None = None) -> int:
     load_dotenv(ROOT / ".env")
     ap = argparse.ArgumentParser(prog="vibematch_poc")
@@ -171,9 +235,17 @@ def main(argv: list[str] | None = None) -> int:
     r.add_argument("--no-cache", action="store_true")
     r.add_argument("--quiet", action="store_true")
 
+    e = sub.add_parser("export", help="crea una playlist privada en tu cuenta de Spotify")
+    e.add_argument("--candidates", required=True)
+    e.add_argument("--prompt", required=True, help="id del prompt (p. ej. preboliche)")
+    e.add_argument("--limit", type=int)
+    e.add_argument("--name", help="nombre de la playlist")
+    e.add_argument("--dry-run", action="store_true", help="solo buscar, no crear la playlist")
+
     args = ap.parse_args(argv)
     cfg = load_config(Path(args.config))
-    return {"check": cmd_check, "generate": cmd_generate, "run": cmd_run}[args.cmd](args, cfg)
+    cmds = {"check": cmd_check, "generate": cmd_generate, "run": cmd_run, "export": cmd_export}
+    return cmds[args.cmd](args, cfg)
 
 
 if __name__ == "__main__":
