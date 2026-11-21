@@ -16,6 +16,10 @@ def num(x: float | None) -> str:
     return f"{x:,.0f}".replace(",", ".")
 
 
+def year(x: float | None) -> str:
+    return "—" if x is None else str(int(x))
+
+
 def _check(ok: bool, extra: str = "") -> str:
     return ("✅" if ok else "❌") + (f" {extra}" if extra else "")
 
@@ -56,7 +60,7 @@ def render(summary: dict, records: list[dict], info: dict, generator: dict,
     L.append(f"- Con al menos un tag de mood/escena: {pct(o['has_mood_tag_song'])} a nivel canción, "
              f"{pct(o['has_mood_tag_any'])} contando artista")
     L.append(f"- Hits (≥ corte alto de oyentes en Last.fm): {pct(o['hit'])}")
-    L.append(f"- Lanzadas en 2024 o después: {pct(o['released_2024_or_later'])} (año mediano: {num(o['median_year'])})")
+    L.append(f"- Lanzadas en 2024 o después: {pct(o['released_2024_or_later'])} (año mediano: {year(o['median_year'])})")
     L.append(f"- Duplicados: {o['duplicates']}; artistas distintos / canciones: {pct(o['unique_artist_ratio'])}")
     L.append("")
 
@@ -68,7 +72,7 @@ def render(summary: dict, records: list[dict], info: dict, generator: dict,
         L.append(f"| {pid} | {pct(m['exists_in_musicbrainz'])} | {pct(m['not_found_anywhere'])} | "
                  f"{pct(m['resolved_in_spotify'])} | {pct(m['recognizable'])} | "
                  f"{pct(m['has_3_useful_tags_song'])} | {pct(m['has_3_useful_tags_any'])} | "
-                 f"{pct(m['has_mood_tag_song'])} | {num(m['median_year'])} | {num(m['median_lastfm_listeners'])} |")
+                 f"{pct(m['has_mood_tag_song'])} | {year(m['median_year'])} | {num(m['median_lastfm_listeners'])} |")
     L.append("")
     for pid, text in prompts.items():
         L.append(f"- **{pid}**: {text}")

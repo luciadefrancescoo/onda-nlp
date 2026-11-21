@@ -65,17 +65,20 @@ junk = [
   "cool", "great", "spotify", "youtube", "check out", "<3", "fav", "favs",
   "under 2000 listeners", "all", "music", "song", "songs", "tracks",
 ]
-# Vocabulario de mood/escena/actividad (es + en). Se compara por palabra
-# completa ('rain' no matchea 'training'); con '*' al final, por raíz
-# ('nostalg*' matchea 'nostalgia' y 'nostalgic'). Sin tildes da igual.
+# Vocabulario de mood/escena/actividad (es + en). El tag tiene que SER la
+# entrada (sacando relleno como 'music' o 'day'), no contenerla: así
+# 'soft rock' o 'indie dance' no cuentan. Con '*' al final es una raíz de
+# una palabra ('nostalg*' -> 'nostalgic'). Sin tildes da igual.
+# Quedan afuera a propósito palabras que en los tags son géneros:
+# 'dance', 'ambient', 'soft'.
 mood_lexicon = [
-  "party", "fiesta", "dance", "danceable", "dancing", "bailable", "bailar",
+  "party", "fiesta", "danceable", "dancing", "bailable", "bailar",
   "upbeat", "happy", "feel good", "feelgood", "fun", "energetic", "energy",
   "workout", "gym", "running", "training", "motivation*", "pump up", "hype",
-  "aggressive", "chill*", "relax*", "calm", "mellow", "soft", "study*",
-  "focus", "concentra*", "ambient", "background", "rain", "rainy", "lluvia",
-  "sad", "melanchol*", "nostalg*", "romantic*", "sensual", "sexy", "perreo",
-  "summer", "verano", "night", "noche", "emotional", "dreamy", "atmospheric",
-  "uplifting", "epic", "peaceful", "sleep", "morning", "sing along",
-  "singalong", "catchy", "previa", "joda", "tranqui",
+  "aggressive", "angry", "anthemic", "chill", "chillout", "chill out", "relax*", "calm", "mellow",
+  "study*", "focus", "concentra*", "rain", "rainy", "lluvia", "sad",
+  "melanchol*", "nostalg*", "romantic*", "love songs", "sensual", "sexy",
+  "perreo", "summer", "verano", "night", "noche", "emotional", "dreamy",
+  "atmospheric", "uplifting", "epic", "peaceful", "sleep", "morning",
+  "sing along", "singalong", "catchy", "previa", "joda", "tranqui", "dark",
 ]

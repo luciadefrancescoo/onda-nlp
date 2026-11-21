@@ -52,9 +52,15 @@ def test_useful_tags_filters_junk_years_and_artist():
 def test_mood_tags_word_boundaries_and_stems():
     lex = ["rain", "fun", "nostalg*", "feel good"]
     tags = ["training", "funk", "rain", "nostalgic", "feel good", "rainy day"]
-    # 'rain' es palabra completa: no matchea 'training' ni 'rainy' (por eso config tiene 'rainy').
+    # El tag entero tiene que ser la entrada: 'rain' no matchea 'training' ni 'rainy day'.
     assert mood_tags(tags, lex) == ["rain", "nostalgic", "feel good"]
-    assert mood_tags(["rainy day"], ["rainy"]) == ["rainy day"]
+    # Relleno al final se ignora.
+    assert mood_tags(["rainy day", "party music"], ["rainy", "party"]) == ["rainy day", "party music"]
+    # Géneros que contienen una palabra de mood no cuentan.
+    assert mood_tags(["soft rock", "indie dance", "hip hop rnb and dance hall", "ambient pop"],
+                     ["soft", "dance", "ambient"]) == []
+    # Las raíces matchean una sola palabra.
+    assert mood_tags(["melancholic", "melancholic rock"], ["melanchol*"]) == ["melancholic"]
 
 
 def test_parse_candidates_tolerates_fences_and_spanish_keys():

@@ -34,17 +34,35 @@ def useful_tags(tags: list[str], artist: str, junk: list[str]) -> list[str]:
     return out
 
 
-def _lexicon_patterns(lexicon: list[str]) -> list[re.Pattern]:
-    pats = []
-    for entry in lexicon:
-        e = clean_tag(entry)
-        if e.endswith("*"):  # raíz: 'nostalg*' -> nostalgia, nostalgic
-            pats.append(re.compile(r"\b" + re.escape(e[:-1])))
-        else:                # palabra o frase completa: 'rain' no matchea 'training'
-            pats.append(re.compile(r"\b" + re.escape(e) + r"\b"))
-    return pats
+# Palabras de relleno que se sacan del final antes de comparar:
+# 'party music' -> 'party', 'rainy day' -> 'rainy'.
+_GENERIC_SUFFIX = {"music", "songs", "song", "vibes", "vibe", "mood", "day", "days", "time"}
+
+
+def _core(tag: str) -> str:
+    words = tag.split()
+    while len(words) > 1 and words[-1] in _GENERIC_SUFFIX:
+        words.pop()
+    return " ".join(words)
 
 
 def mood_tags(tags: list[str], lexicon: list[str]) -> list[str]:
-    pats = _lexicon_patterns(lexicon)
-    return [t for t in tags if any(p.search(t) for p in pats)]
+    """Un tag es de mood si, sin relleno, ES una entrada del léxico.
+
+    Se compara el tag entero y no una subcadena: así 'soft rock', 'indie dance'
+    o 'ambient pop' (géneros) no cuentan como mood. Las entradas con '*' son
+    raíces y matchean una sola palabra: 'nostalg*' -> 'nostalgic'.
+    """
+    exact, stems = set(), []
+    for entry in lexicon:
+        e = clean_tag(entry)
+        if e.endswith("*"):
+            stems.append(e[:-1])
+        else:
+            exact.add(e)
+    out = []
+    for t in tags:
+        core = _core(t)
+        if core in exact or (" " not in core and any(core.startswith(s) for s in stems)):
+            out.append(t)
+    return out

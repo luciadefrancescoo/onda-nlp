@@ -134,7 +134,8 @@ def test_full_pipeline():
     assert gas["tag_source"] == "listenbrainz"
     # Tags: canción = recording + release_group + Last.fm (count >= 5, sin basura, sin años).
     assert gas["derived"]["useful_tags_song"] == ["reggaeton", "party", "dance"]
-    assert set(gas["derived"]["mood_tags_song"]) == {"party", "dance"}
+    # 'dance' es género, no mood: solo cuenta 'party'.
+    assert gas["derived"]["mood_tags_song"] == ["party"]
     assert gas["derived"]["useful_tags_any"] == ["reggaeton", "party", "dance", "latin", "hip hop"]
     assert gas["derived"]["recognizable"] and gas["derived"]["hit"]
     assert gas["spotify"] == {"enabled": True, "found": True, "uri": "spotify:track:gas", "error": None}
