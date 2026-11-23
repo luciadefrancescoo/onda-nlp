@@ -145,6 +145,7 @@ Necesita `LASTFM_API_KEY` y un modelo de embeddings en Ollama:
 ollama pull embeddinggemma
 LLM_MODEL=gemma4:12b python -m onda_poc build --out data/candidates/onda-gemma4-12b.json
 python -m onda_poc build --prompt lluvia --out /tmp/lluvia.json      # una sola escena
+python -m onda_poc build --scene "volviendo del trabajo, algo cantable tipo Carlos Vives" --out /tmp/mia.json
 python -m onda_poc run --candidates data/candidates/onda-gemma4-12b.json
 ```
 

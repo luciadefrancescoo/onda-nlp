@@ -158,7 +158,10 @@ def cmd_build(args, cfg) -> int:
     weights = scene.RankWeights(**b.get("weights", {}))
     max_per_artist = b.get("max_per_artist", 2)
     n = args.n or cfg["run"]["candidates_per_prompt"]
-    prompts = [p for p in prompt_set(cfg, args.dev) if not args.prompt or p["id"] == args.prompt]
+    if args.scene:  # una escena cualquiera, escrita en el momento
+        prompts = [{"id": args.prompt or "escena", "text": args.scene}]
+    else:
+        prompts = [p for p in prompt_set(cfg, args.dev) if not args.prompt or p["id"] == args.prompt]
     if not prompts:
         print(f"No existe el prompt '{args.prompt}'.", file=sys.stderr)
         return 2
@@ -397,6 +400,7 @@ def main(argv: list[str] | None = None) -> int:
     bd.add_argument("--n", type=int)
     bd.add_argument("--prompt", help="solo este prompt (id)")
     bd.add_argument("--dev", action="store_true", help="usar las escenas de desarrollo ([[dev_prompts]])")
+    bd.add_argument("--scene", help='escena libre, p. ej. "volviendo del trabajo, algo tipo Carlos Vives"')
 
     r = sub.add_parser("run", help="verifica candidatos y genera el reporte")
     r.add_argument("--candidates", required=True)
