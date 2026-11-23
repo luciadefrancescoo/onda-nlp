@@ -29,7 +29,7 @@ def test_generate_drops_json_mode_if_server_rejects_it():
 
     http = FakeHttp([("POST", "/chat/completions", handler)])
     assert llm.generate(http, "x", 1, "http://h/v1", "m") == [{"artist": "Gilda", "title": "Fuiste"}]
-    assert "response_format" in bodies[0] and "response_format" not in bodies[1]
+    assert "response_format" in bodies[0] and "response_format" not in bodies[-1]
 
 
 def test_generate_retries_on_unparseable_output():
@@ -57,3 +57,32 @@ def test_generate_retries_use_distinct_cache_keys():
     with pytest.raises(ValueError):
         llm.generate(http, "x", 1, "http://h/v1", "m")
     assert len(set(seen)) == 3
+
+
+def test_generate_sends_token_cap_and_disables_reasoning():
+    bodies = []
+    http = FakeHttp([("POST", "/chat/completions", lambda p, b: (bodies.append(b), chat(GOOD))[1])])
+    llm.generate(http, "x", 1, "http://h/v1", "m")
+    assert bodies[0]["max_tokens"] == llm.MAX_TOKENS
+    assert bodies[0]["reasoning_effort"] == "none"
+
+
+def test_generate_drops_reasoning_effort_before_json_mode():
+    bodies = []
+
+    def handler(p, body):
+        bodies.append(body)
+        return Response(400, {"error": "unknown param"}) if "reasoning_effort" in body else chat(GOOD)
+
+    http = FakeHttp([("POST", "/chat/completions", handler)])
+    assert llm.generate(http, "x", 1, "http://h/v1", "m")[0]["title"] == "Fuiste"
+    assert "reasoning_effort" not in bodies[1] and "response_format" in bodies[1]
+
+
+def test_generate_retries_when_all_tokens_went_to_reasoning():
+    answers = iter([
+        Response(200, {"choices": [{"message": {"content": ""}, "finish_reason": "length"}]}),
+        chat(GOOD),
+    ])
+    http = FakeHttp([("POST", "/chat/completions", lambda p, b: next(answers))])
+    assert llm.generate(http, "x", 1, "http://h/v1", "m")[0]["title"] == "Fuiste"

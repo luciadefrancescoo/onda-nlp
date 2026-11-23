@@ -63,10 +63,20 @@ def parse_candidates(text: str) -> list[dict]:
     return out
 
 
+# Tope de tokens de salida. 30 canciones en JSON son ~600 tokens; sin tope, un
+# modelo que se queda "pensando" puede generar decenas de miles hasta el timeout.
+MAX_TOKENS = 4096
+
+
 def generate(http: HttpClient, scenario: str, n: int, base_url: str, model: str,
              api_key: str | None = None, temperature: float = 0.3,
-             attempts: int = 3) -> list[dict]:
+             attempts: int = 3, reasoning_effort: str | None = "none",
+             max_tokens: int = MAX_TOKENS) -> list[dict]:
     """Pide n canciones. Intenta modo JSON; si el servidor no lo soporta, sigue sin él.
+
+    reasoning_effort="none" apaga el razonamiento de modelos como gemma4 o qwen3
+    (si no, gastan todos los tokens pensando y la respuesta llega vacía). Si el
+    servidor no acepta el parámetro, se saca. None = no mandarlo.
 
     Si la respuesta no se puede parsear, reintenta (sin usar la caché de ese intento).
     """
@@ -74,18 +84,32 @@ def generate(http: HttpClient, scenario: str, n: int, base_url: str, model: str,
     url = f"{base_url.rstrip('/')}/chat/completions"
     json_mode = True
     last_error = ""
-    for attempt in range(attempts):
-        body = {"model": model, "messages": build_messages(scenario, n), "temperature": temperature}
+    attempt = 0
+    while attempt < attempts:
+        body = {"model": model, "messages": build_messages(scenario, n),
+                "temperature": temperature, "max_tokens": max_tokens}
         if json_mode:
             body["response_format"] = {"type": "json_object"}
+        if reasoning_effort:
+            body["reasoning_effort"] = reasoning_effort
         r = http.post(url, json_body=body, headers=headers,
-                      cache_tag=f"llm:{model}:{attempt}:{json_mode}")
-        if r.status in (400, 422) and json_mode:
-            json_mode = False  # el servidor no acepta response_format
-            continue
+                      cache_tag=f"llm:{model}:{attempt}:{json_mode}:{reasoning_effort}:{max_tokens}")
+        if r.status in (400, 422) and (reasoning_effort or json_mode):
+            # El servidor rechaza un parámetro opcional: primero el razonamiento, después el JSON.
+            if reasoning_effort:
+                reasoning_effort = None
+            else:
+                json_mode = False
+            continue  # no cuenta como intento
+        attempt += 1
         if not r.ok or not r.data:
             raise RuntimeError(f"LLM http {r.status}: {r.data}")
-        content = r.data["choices"][0]["message"].get("content") or ""
+        choice = r.data["choices"][0]
+        content = choice["message"].get("content") or ""
+        if not content.strip() and choice.get("finish_reason") == "length":
+            last_error = (f"respuesta vacía: el modelo usó los {max_tokens} tokens "
+                          "razonando (probá LLM_REASONING_EFFORT=none)")
+            continue
         try:
             out = parse_candidates(content)
             if out:

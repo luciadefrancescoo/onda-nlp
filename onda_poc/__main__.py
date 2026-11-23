@@ -120,7 +120,8 @@ def cmd_generate(args, cfg) -> int:
         t0 = datetime.now()
         print(f"Generando {n} para {p['id']}...", file=sys.stderr, flush=True)
         try:
-            songs = llm.generate(http, p["text"], n, base_url, model, os.environ.get("LLM_API_KEY"))
+            songs = llm.generate(http, p["text"], n, base_url, model, os.environ.get("LLM_API_KEY"),
+                                 reasoning_effort=os.environ.get("LLM_REASONING_EFFORT", "none") or None)
         except Exception as e:  # seguimos con los demás prompts
             print(f"  ERROR en {p['id']}: {e}", file=sys.stderr)
             out["generator"]["errors"][p["id"]] = str(e)[:500]
