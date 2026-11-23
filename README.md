@@ -122,6 +122,16 @@ Los candidatos incluidos los generó un modelo grande. Para saber si el proyecto
 
 `generate` intenta modo JSON, ignora bloques de razonamiento (`<think>`) y reintenta si la respuesta no se puede leer. Un modelo local puede tardar varios minutos por prompt.
 
+## Demo web (AI Fest, 12/12)
+
+```bash
+python -m onda_poc demo          # abrir http://127.0.0.1:8000
+```
+
+El visitante escribe la escena y ve cómo la interpreta el modelo, la playlist con el porqué de cada canción y, si quiere, un botón que la crea en la cuenta de Spotify del equipo y muestra un QR. Al arrancar, la demo chequea Ollama, los modelos y la cuenta de Spotify (antes hay que haber corrido una vez `export --account equipo` para dejar el permiso guardado). Cada escena queda en `results/demo-log.jsonl` (no se sube a git).
+
+Tiempos: una escena ya vista sale al instante; una nueva tarda 50–70 s, casi todo leyendo tags de Last.fm a 4 consultas por segundo.
+
 ## Enfoque de onda.: `build`
 
 > **Atribución a Last.fm.** Las canciones salen de Last.fm. Sus términos (cláusula 2.7) piden mostrar "Powered by AudioScrobbler" con link a last.fm donde se usen sus datos: `build` lo imprime y `export` lo pone en la descripción de la playlist. La demo tiene que mostrarlo en pantalla. Pedimos permiso para uso académico y para la demo a partners@last.fm el 23/11.

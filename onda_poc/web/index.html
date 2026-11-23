@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>onda.</title>
+<style>
+  :root {
+    --bg: #0f0f12; --panel: #18181d; --line: #2a2a31; --ink: #f2f0ea; --quiet: #9b9aa3;
+    --accent: #ff7a45; --accent-soft: rgba(255, 122, 69, .14); --ok: #59c98b; --bad: #e0656a;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink);
+         font: 17px/1.45 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+  main { max-width: 860px; margin: 0 auto; padding: 40px 24px 80px; }
+  h1 { font-size: 64px; letter-spacing: -2px; margin: 0; font-weight: 800; }
+  h1 span { color: var(--accent); }
+  .tagline { color: var(--quiet); font-size: 20px; margin: 4px 0 28px; }
+  form { display: flex; gap: 12px; }
+  textarea { flex: 1; resize: none; height: 84px; padding: 14px 16px; border-radius: 14px;
+             border: 1px solid var(--line); background: var(--panel); color: var(--ink); font: inherit; font-size: 19px; }
+  textarea:focus { outline: 2px solid var(--accent); border-color: transparent; }
+  button { border: 0; border-radius: 14px; padding: 0 22px; font: inherit; font-weight: 700; cursor: pointer;
+           background: var(--accent); color: #1a0d07; }
+  button:disabled { opacity: .45; cursor: default; }
+  button.ghost { background: transparent; color: var(--ink); border: 1px solid var(--line); padding: 10px 16px; }
+  .examples { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0 0; }
+  .examples button { background: var(--panel); color: var(--quiet); border: 1px solid var(--line);
+                     font-weight: 500; font-size: 15px; padding: 7px 12px; border-radius: 999px; }
+  .examples button:hover { color: var(--ink); }
+  section { margin-top: 28px; background: var(--panel); border: 1px solid var(--line); border-radius: 18px; padding: 22px 24px; }
+  section h2 { margin: 0 0 14px; font-size: 14px; letter-spacing: .08em; text-transform: uppercase; color: var(--quiet); }
+  .steps { list-style: none; margin: 0; padding: 0; }
+  .steps li { padding: 5px 0; color: var(--quiet); display: flex; align-items: center; gap: 10px; }
+  .steps li::before { content: ""; width: 10px; height: 10px; border-radius: 50%; background: var(--line); flex: none; }
+  .steps li.active { color: var(--ink); }
+  .steps li.active::before { background: var(--accent); animation: pulse 1s infinite; }
+  .steps li.done::before { background: var(--ok); }
+  @keyframes pulse { 50% { opacity: .3; } }
+  .bar { height: 6px; background: var(--line); border-radius: 3px; margin: 6px 0 0 20px; overflow: hidden; }
+  .bar div { height: 100%; width: 0; background: var(--accent); transition: width .3s; }
+  .row { margin: 6px 0 12px; }
+  .label { color: var(--quiet); font-size: 14px; margin-bottom: 6px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+  .chip { padding: 4px 11px; border-radius: 999px; background: var(--accent-soft); color: var(--ink); font-size: 15px; }
+  .chip.genre { background: rgba(89, 201, 139, .14); }
+  .chip.artist { background: rgba(255, 255, 255, .07); }
+  .chip.dropped { background: transparent; border: 1px dashed var(--bad); color: var(--bad); text-decoration: line-through; }
+  .note { color: var(--quiet); font-size: 14px; margin-top: 4px; }
+  ol.playlist { margin: 0; padding: 0; list-style: none; counter-reset: n; }
+  ol.playlist li { counter-increment: n; display: grid; grid-template-columns: 34px 1fr; padding: 9px 0;
+                   border-top: 1px solid var(--line); }
+  ol.playlist li:first-child { border-top: 0; }
+  ol.playlist li::before { content: counter(n); color: var(--quiet); font-variant-numeric: tabular-nums; padding-top: 1px; }
+  .song { font-weight: 600; }
+  .artist-name { color: var(--quiet); font-weight: 400; }
+  .why { color: var(--quiet); font-size: 14px; }
+  .export { display: flex; gap: 24px; align-items: center; flex-wrap: wrap; }
+  .export img { width: 200px; height: 200px; border-radius: 12px; background: #fff; }
+  .export a { color: var(--accent); }
+  .error { color: var(--bad); }
+  footer { margin-top: 36px; color: var(--quiet); font-size: 14px; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+  footer a { color: var(--quiet); }
+  [hidden] { display: none !important; }
+</style>
+</head>
+<body>
+<main>
+  <h1>onda<span>.</span></h1>
+  <p class="tagline">Contame dónde estás y qué querés escuchar. Te armo la playlist.</p>
+
+  <form id="form">
+    <textarea id="scene" maxlength="280" placeholder="Ej.: volviendo del trabajo en el auto, algo divertido y cantable tipo Carlos Vives" autofocus></textarea>
+    <button id="go" type="submit">Armar</button>
+  </form>
+  <div class="examples" id="examples">
+    <button type="button">Preboliche con amigos, reguetón para cantar todos</button>
+    <button type="button">Domingo de lluvia, tranqui, mirando por la ventana</button>
+    <button type="button">Volviendo del trabajo, algo cantable tipo Carlos Vives</button>
+    <button type="button">Estudiando para un parcial, que no me distraiga</button>
+    <button type="button">Previa en Buenos Aires con cumbia y cuarteto</button>
+    <button type="button">Limpiando la casa con pop de los 80</button>
+  </div>
+
+  <section id="progress" hidden>
+    <h2>Pensando</h2>
+    <ul class="steps" id="steps">
+      <li data-step="interpret">Interpretando la escena</li>
+      <li data-step="artists">Verificando artistas en Last.fm</li>
+      <li data-step="pool">Buscando canciones reales</li>
+      <li data-step="tags">Leyendo los tags de cada canción</li>
+      <li data-step="rank">Ordenando por qué tan bien encajan</li>
+    </ul>
+    <div class="bar" id="bar" hidden><div></div></div>
+    <p class="note" id="queue" hidden></p>
+    <p class="error" id="error" hidden></p>
+  </section>
+
+  <section id="interp" hidden>
+    <h2>Lo que entendí</h2>
+    <div class="row"><div class="label">Ánimo</div><div class="chips" id="moods"></div></div>
+    <div class="row"><div class="label">Géneros</div><div class="chips" id="genres"></div></div>
+    <div class="row"><div class="label">Artistas de referencia</div><div class="chips" id="artists"></div></div>
+    <p class="note" id="droppedNote" hidden>Tachados: artistas que propuso el modelo pero no existen. Los descartamos.</p>
+    <p class="note" id="poolNote" hidden></p>
+  </section>
+
+  <section id="result" hidden>
+    <h2 id="resultTitle">Tu playlist</h2>
+    <ol class="playlist" id="playlist"></ol>
+    <div style="margin-top:18px; display:flex; gap:10px; flex-wrap:wrap">
+      <button id="exportBtn" type="button">Llevármela a Spotify</button>
+      <button id="again" class="ghost" type="button">Otra escena</button>
+    </div>
+    <div class="export" id="export" hidden>
+      <img id="qr" alt="QR de la playlist en Spotify">
+      <div>
+        <div style="font-size:20px; font-weight:700">Escaneá con la cámara</div>
+        <div class="note" id="exportNote"></div>
+        <a id="exportLink" target="_blank" rel="noopener">Abrir en Spotify</a>
+      </div>
+    </div>
+    <p class="error" id="exportError" hidden></p>
+  </section>
+
+  <footer>
+    <span>Un modelo chico (gemma4, local) interpreta la escena. Las canciones salen de Last.fm, así que existen todas.</span>
+    <a href="https://www.last.fm" target="_blank" rel="noopener">Powered by AudioScrobbler</a>
+  </footer>
+</main>
+
+<script>
+const $ = (id) => document.getElementById(id);
+let source = null, playlistId = null;
+
+function chip(text, cls) {
+  const el = document.createElement("span");
+  el.className = "chip " + (cls || "");
+  el.textContent = text;            // siempre texto plano: nada de HTML que venga de afuera
+  return el;
+}
+function fill(id, items, cls) {
+  const box = $(id); box.replaceChildren();
+  items.forEach((t) => box.appendChild(chip(t, cls)));
+  if (!items.length) box.appendChild(chip("—", "artist"));
+}
+function setStep(step) {
+  let reached = false;
+  document.querySelectorAll("#steps li").forEach((li) => {
+    if (li.dataset.step === step) { li.className = "active"; reached = true; }
+    else li.className = reached ? "" : "done";
+  });
+  $("bar").hidden = step !== "tags";
+}
+function reset() {
+  if (source) source.close();
+  ["interp", "result", "export"].forEach((id) => ($(id).hidden = true));
+  ["error", "queue", "exportError", "droppedNote", "poolNote"].forEach((id) => ($(id).hidden = true));
+  document.querySelectorAll("#steps li").forEach((li) => (li.className = ""));
+  $("bar").firstElementChild.style.width = "0";
+  $("exportBtn").disabled = false; $("exportBtn").textContent = "Llevármela a Spotify";
+  playlistId = null;
+}
+
+function start(text) {
+  text = text.trim();
+  if (!text) return;
+  reset();
+  $("go").disabled = true;
+  $("progress").hidden = false;
+  setStep("interpret");
+  const t0 = performance.now();
+  source = new EventSource("/api/build?scene=" + encodeURIComponent(text));
+  source.onmessage = (msg) => {
+    const e = JSON.parse(msg.data);
+    if (e.type === "status") {
+      if (e.step === "queue") { $("queue").textContent = e.msg; $("queue").hidden = false; }
+      else { $("queue").hidden = true; setStep(e.step); }
+    } else if (e.type === "interpretation") {
+      $("interp").hidden = false;
+      fill("moods", e.moods);
+      fill("genres", e.genres.concat(e.era ? [e.era] : []), "genre");
+      const box = $("artists"); box.replaceChildren();
+      e.artists.forEach((a) => box.appendChild(chip(a, "artist")));
+      e.dropped_artists.forEach((a) => box.appendChild(chip(a, "dropped")));
+      $("droppedNote").hidden = !e.dropped_artists.length;
+    } else if (e.type === "pool") {
+      $("poolNote").textContent = `Encontré ${e.size} canciones candidatas en Last.fm.`;
+      $("poolNote").hidden = false;
+    } else if (e.type === "progress") {
+      $("bar").firstElementChild.style.width = (100 * e.done / e.total) + "%";
+    } else if (e.type === "playlist") {
+      const ol = $("playlist"); ol.replaceChildren();
+      e.tracks.forEach((t) => {
+        const li = document.createElement("li");
+        const body = document.createElement("div");
+        const song = document.createElement("div");
+        song.className = "song"; song.textContent = t.title + " ";
+        const art = document.createElement("span");
+        art.className = "artist-name"; art.textContent = "· " + t.artist;
+        song.appendChild(art);
+        const why = document.createElement("div");
+        why.className = "why"; why.textContent = t.why.join(" · ");
+        body.append(song, why); li.appendChild(body); ol.appendChild(li);
+      });
+      $("result").hidden = false;
+    } else if (e.type === "done") {
+      playlistId = e.id;
+      document.querySelectorAll("#steps li").forEach((li) => (li.className = "done"));
+      $("bar").hidden = true;
+      $("resultTitle").textContent = `Tu playlist · ${Math.round((performance.now() - t0) / 1000)} s`;
+      finish();
+    } else if (e.type === "error") {
+      $("error").textContent = e.msg; $("error").hidden = false; finish();
+    }
+  };
+  source.onerror = () => {
+    if (!playlistId && $("error").hidden) {
+      $("error").textContent = "Se cortó la conexión con el servidor de la demo."; $("error").hidden = false;
+    }
+    finish();
+  };
+}
+function finish() { if (source) source.close(); source = null; $("go").disabled = false; }
+
+$("form").addEventListener("submit", (ev) => { ev.preventDefault(); start($("scene").value); });
+$("scene").addEventListener("keydown", (ev) => {
+  if (ev.key === "Enter" && !ev.shiftKey) { ev.preventDefault(); start($("scene").value); }
+});
+document.querySelectorAll("#examples button").forEach((b) =>
+  b.addEventListener("click", () => { $("scene").value = b.textContent; start(b.textContent); }));
+$("again").addEventListener("click", () => {
+  reset(); $("progress").hidden = true; $("scene").value = ""; $("scene").focus(); window.scrollTo(0, 0);
+});
+$("exportBtn").addEventListener("click", async () => {
+  if (!playlistId) return;
+  $("exportBtn").disabled = true; $("exportBtn").textContent = "Creando en Spotify…"; $("exportError").hidden = true;
+  try {
+    const r = await fetch("/api/export", { method: "POST", headers: { "Content-Type": "application/json" },
+                                           body: JSON.stringify({ id: playlistId }) });
+    const d = await r.json();
+    if (!r.ok) throw new Error(d.error || "No se pudo crear la playlist.");
+    if (d.qr) $("qr").src = d.qr; else $("qr").hidden = true;
+    $("exportLink").href = d.url;
+    $("exportNote").textContent = `${d.found} de ${d.n} canciones encontradas en Spotify.`;
+    $("export").hidden = false; $("exportBtn").textContent = "Lista en Spotify";
+  } catch (err) {
+    $("exportError").textContent = err.message; $("exportError").hidden = false;
+    $("exportBtn").disabled = false; $("exportBtn").textContent = "Llevármela a Spotify";
+  }
+});
+</script>
+</body>
+</html>

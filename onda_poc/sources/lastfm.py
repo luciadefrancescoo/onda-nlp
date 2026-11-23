@@ -64,6 +64,20 @@ class Lastfm:
 
     # --- Catálogo: de dónde sale el pool de canciones reales para `build` ---
 
+    def track_tags(self, artist: str, title: str) -> list[tuple[str, int]] | None:
+        """Tags de una canción del catálogo (una sola llamada). None si Last.fm no la conoce.
+
+        Para `build` alcanza: las canciones ya salen de Last.fm, así que no hace falta
+        confirmarlas con track.getInfo (eso duplicaba las llamadas y el tiempo).
+        """
+        r = self._call("track.getTopTags", artist=artist, track=title, autocorrect=1)
+        if not r.ok or not r.data or "error" in r.data or "toptags" not in r.data:
+            return None
+        tags = r.data["toptags"].get("tag", []) or []
+        if isinstance(tags, dict):
+            tags = [tags]
+        return [(x.get("name", ""), _int(x.get("count")) or 0) for x in tags]
+
     def artist_info(self, artist: str) -> tuple[str, int] | None:
         """(nombre canónico, oyentes) si el artista existe; None si no (p. ej. inventado por el LLM)."""
         r = self._call("artist.getInfo", artist=artist, autocorrect=1)

@@ -9,6 +9,7 @@ from __future__ import annotations
 import hashlib
 import json
 import sqlite3
+import threading
 import time
 from dataclasses import dataclass
 from pathlib import Path
@@ -62,9 +63,12 @@ class HttpClient:
         self._sleep = sleep
         self.stats = {"network": 0, "cache_hits": 0, "errors": 0}
         self._db = None
+        self._db_lock = threading.Lock()
+        self._throttle_lock = threading.Lock()
         if cache_path is not None:
             Path(cache_path).parent.mkdir(parents=True, exist_ok=True)
-            self._db = sqlite3.connect(str(cache_path))
+            # La demo web usa el cliente desde varios hilos: conexión compartida + candado.
+            self._db = sqlite3.connect(str(cache_path), check_same_thread=False)
             self._db.execute(
                 "CREATE TABLE IF NOT EXISTS cache "
                 "(key TEXT PRIMARY KEY, status INTEGER, body TEXT, ts REAL)"
@@ -80,7 +84,8 @@ class HttpClient:
     def _cache_get(self, key: str) -> Response | None:
         if self._db is None:
             return None
-        row = self._db.execute("SELECT status, body FROM cache WHERE key=?", (key,)).fetchone()
+        with self._db_lock:
+            row = self._db.execute("SELECT status, body FROM cache WHERE key=?", (key,)).fetchone()
         if row is None:
             return None
         return Response(row[0], json.loads(row[1]) if row[1] else None, from_cache=True)
@@ -88,22 +93,24 @@ class HttpClient:
     def _cache_put(self, key: str, resp: Response) -> None:
         if self._db is None:
             return
-        self._db.execute(
-            "INSERT OR REPLACE INTO cache VALUES (?, ?, ?, ?)",
-            (key, resp.status, json.dumps(resp.data, ensure_ascii=False), time.time()),
-        )
-        self._db.commit()
+        with self._db_lock:
+            self._db.execute(
+                "INSERT OR REPLACE INTO cache VALUES (?, ?, ?, ?)",
+                (key, resp.status, json.dumps(resp.data, ensure_ascii=False), time.time()),
+            )
+            self._db.commit()
 
     # ------------------------------------------------------------- rate limit
     def _throttle(self, url: str) -> None:
         host = urlparse(url).hostname or ""
         interval = self.min_interval.get(host, 0.0)
-        last = self._last_call.get(host)
-        if last is not None:
-            wait = interval - (time.monotonic() - last)
-            if wait > 0:
-                self._sleep(wait)
-        self._last_call[host] = time.monotonic()
+        with self._throttle_lock:  # dos hilos no pueden saltearse el intervalo mínimo por host
+            last = self._last_call.get(host)
+            if last is not None:
+                wait = interval - (time.monotonic() - last)
+                if wait > 0:
+                    self._sleep(wait)
+            self._last_call[host] = time.monotonic()
 
     # ---------------------------------------------------------------- request
     def request(

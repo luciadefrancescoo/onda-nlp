@@ -113,10 +113,10 @@ def test_prefilter_puts_multi_source_first_then_round_robin(lastfm):
 
 
 def test_enrich_cleans_tags_and_keeps_weights(lastfm):
-    t = scene.Track("Norah Jones", "Don't Know Why")
+    t = scene.Track("Norah Jones", "Don't Know Why", listeners=100000)
     [e] = scene.enrich(lastfm, [t], junk=["seen live"])
     assert e.tags == [("lo fi", 30), ("jazz", 100)]
-    assert e.listeners == 100000
+    assert e.listeners == 100000  # viene del pool: enrich ya no llama a track.getInfo
     assert e.artist_tags == ["jazz"]  # "Lo-Fi" con count 3 queda afuera
 
 

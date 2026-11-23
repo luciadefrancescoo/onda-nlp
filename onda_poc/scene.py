@@ -283,22 +283,22 @@ def prefilter(pool: dict[str, Track], k: int) -> list[Track]:
     return out
 
 
-def enrich(lastfm: Lastfm, tracks: list[Track], junk: list[str]) -> list[Track]:
-    """Agrega oyentes, tags de canción y tags del artista. Descarta las que Last.fm no confirma.
+def enrich(lastfm: Lastfm, tracks: list[Track], junk: list[str], on_progress=None) -> list[Track]:
+    """Agrega tags de canción y del artista (los oyentes vienen del pool). Descarta las que Last.fm no conoce.
 
     Los tags del artista importan para el género: en música local las canciones casi
     no tienen tags, pero el artista sí ("L-Gante": cumbia, rkt, argentina).
     """
     out = []
     artist_cache: dict[str, list[str]] = {}
-    for t in tracks:
-        r = lastfm.lookup(t.artist, t.title)
-        if not r.found:
+    for k, t in enumerate(tracks, 1):
+        if on_progress and (k % 10 == 0 or k == len(tracks)):
+            on_progress(k)
+        raw = lastfm.track_tags(t.artist, t.title)
+        if raw is None:
             continue
-        t.artist, t.title = r.artist or t.artist, r.name or t.title
-        t.listeners = r.listeners if r.listeners is not None else t.listeners
-        weights = dict((clean_tag(n), c) for n, c in r.tags)
-        t.tags = [(tag, weights.get(tag, 0)) for tag in useful_tags([n for n, _ in r.tags], t.artist, junk)]
+        weights = dict((clean_tag(n), c) for n, c in raw)
+        t.tags = [(tag, weights.get(tag, 0)) for tag in useful_tags([n for n, _ in raw], t.artist, junk)]
         a = normalize_artist(t.artist)
         if a not in artist_cache:
             artist_cache[a] = useful_tags(lastfm.artist_tags(t.artist), t.artist, junk)[:15]

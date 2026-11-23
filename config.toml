@@ -101,7 +101,7 @@ tag_limit = 50                   # canciones por tag (tag.getTopTracks)
 artist_limit = 10                # canciones por artista de referencia
 similar_artists = 3              # artistas similares por cada artista de referencia
 similar_limit = 5                # canciones por artista similar
-enrich = 120                     # cuántas del pool se enriquecen con tags (3 requests c/u la primera vez)
+enrich = 120                     # cuántas del pool se enriquecen con tags (1 request c/u + 1 por artista nuevo, la primera vez)
 max_per_artist = 2               # diversidad en la playlist final
 
 [build.weights]                  # puntaje = promedio ponderado; ajustar SOLO mirando --dev

@@ -64,6 +64,12 @@ def make_http(cache: bool = True, timeout: float = 20.0) -> HttpClient:
     )
 
 
+def make_lastfm(cfg: dict, http: HttpClient) -> Lastfm:
+    m = cfg["matching"]
+    return Lastfm(http, os.environ["LASTFM_API_KEY"],
+                  title_min=m["title_min_similarity"], artist_min=m["artist_min_similarity"])
+
+
 def make_sources(cfg: dict, http: HttpClient, use_lastfm: bool, use_spotify: bool) -> Sources:
     m = cfg["matching"]
     kw = dict(title_min=m["title_min_similarity"], artist_min=m["artist_min_similarity"])
@@ -141,26 +147,15 @@ def cmd_generate(args, cfg) -> int:
 
 def cmd_build(args, cfg) -> int:
     """Enfoque nuevo: el LLM interpreta la escena y las canciones salen de Last.fm."""
-    from . import scene
+    from . import service
 
-    base_url = os.environ.get("LLM_BASE_URL")
-    model = os.environ.get("LLM_MODEL")
-    if not base_url or not model:
+    if not os.environ.get("LLM_BASE_URL") or not os.environ.get("LLM_MODEL"):
         print("Definí LLM_BASE_URL y LLM_MODEL en .env", file=sys.stderr)
         return 2
     if not os.environ.get("LASTFM_API_KEY"):
         print("build necesita LASTFM_API_KEY: las canciones salen de Last.fm.", file=sys.stderr)
         return 2
-    b = cfg.get("build", {})
-    embed_model = os.environ.get("LLM_EMBED_MODEL") or b.get("embed_model", "embeddinggemma")
-    api_key = os.environ.get("LLM_API_KEY")
-    effort = os.environ.get("LLM_REASONING_EFFORT", "none") or None
-    params = scene.CatalogParams(**{k: b[k] for k in
-                                    ("tag_limit", "artist_limit", "similar_artists", "similar_limit", "enrich")
-                                    if k in b})
-    weights = scene.RankWeights(**b.get("weights", {}))
-    max_per_artist = b.get("max_per_artist", 2)
-    n = args.n or cfg["run"]["candidates_per_prompt"]
+    s = service.Settings.from_config(cfg, args.n)
     if args.scene:  # una escena cualquiera, escrita en el momento
         prompts = [{"id": args.prompt or "escena", "text": args.scene}]
     else:
@@ -170,57 +165,46 @@ def cmd_build(args, cfg) -> int:
         return 2
 
     http = make_http(timeout=600)
-    m = cfg["matching"]
-    lastfm = Lastfm(http, os.environ["LASTFM_API_KEY"],
-                    title_min=m["title_min_similarity"], artist_min=m["artist_min_similarity"])
-    out = {"generator": {"model": f"onda. ({model} + {embed_model})",
+    lastfm = make_lastfm(cfg, http)
+    out = {"generator": {"model": f"onda. ({s.model} + {s.embed_model})",
                          "method": "el LLM interpreta la escena; canciones de Last.fm; ranking por embeddings y tags",
                          "date": datetime.now().strftime("%Y-%m-%d"),
                          "notes": "El LLM no nombra canciones: salen del catálogo de Last.fm.",
                          "errors": {}},
            "interpretations": {}, "prompts": {}}
+
+    def log(e: dict) -> None:
+        if e["type"] == "interpretation":
+            print(f"  moods: {', '.join(e['moods'])} | géneros: {', '.join(e['genres'])}"
+                  + (f" | época: {e['era']}" if e["era"] else "")
+                  + (f" (época '{e['dropped_era']}' descartada: la escena no la menciona)"
+                     if e["dropped_era"] else ""), file=sys.stderr)
+            print(f"  artistas: {', '.join(e['artists']) or '—'}"
+                  + (f" (descartados por no existir: {', '.join(e['dropped_artists'])})"
+                     if e["dropped_artists"] else ""), file=sys.stderr)
+        elif e["type"] == "pool":
+            print(f"  pool: {e['size']} canciones", file=sys.stderr, flush=True)
+
     for p in prompts:
         pid = p["id"]
-        t0 = datetime.now()
         print(f"\n[{pid}] {p['text']}", file=sys.stderr, flush=True)
-        chosen = []
+        tracks = []
+        t0 = datetime.now()
         try:
-            interp = scene.interpret(http, p["text"], base_url, model, api_key, effort)
-            print(f"  moods: {', '.join(interp.moods)} | géneros: {', '.join(interp.genres)}"
-                  + (f" | época: {interp.era}" if interp.era else "")
-                  + (f" (época '{interp.dropped_era}' descartada: la escena no la menciona)"
-                     if interp.dropped_era else ""), file=sys.stderr)
-            artists, dropped = scene.verify_artists(lastfm, interp.artists)
-            print(f"  artistas: {', '.join(artists) or '—'}"
-                  + (f" (descartados por no existir: {', '.join(dropped)})" if dropped else ""), file=sys.stderr)
-            profile = scene.artist_profile(lastfm, artists, cfg["tags"]["junk"])
-            pool = scene.build_pool(lastfm, interp, artists, params)
-            tracks = scene.enrich(lastfm, scene.prefilter(pool, params.enrich), cfg["tags"]["junk"])
-            print(f"  pool: {len(pool)} canciones, {len(tracks)} con tags", file=sys.stderr, flush=True)
-            sims = None
-            if tracks:
-                try:
-                    texts = [scene.scene_text(p["text"], interp)] + [scene.track_text(t) for t in tracks]
-                    vecs = scene.embed(http, texts, base_url, embed_model, api_key)
-                    sims = [scene.cosine(vecs[0], v) for v in vecs[1:]]
-                except Exception as e:  # sin embeddings, rankea igual con tags y popularidad
-                    print(f"  AVISO: sin embeddings ({e}); rankeo sin similitud semántica", file=sys.stderr)
-                    out["generator"]["errors"][f"{pid}:embeddings"] = str(e)[:300]
-            chosen = scene.select(scene.rank(tracks, interp, weights, sims, profile), n, max_per_artist,
-                                  interp.genres)
-            out["interpretations"][pid] = {**interp.to_dict(), "artistas_verificados": artists,
-                                           "artistas_descartados": dropped, "pool": len(pool),
-                                           "con_tags": len(tracks), "embeddings": sims is not None,
-                                           "perfil": dict(sorted(profile.items(), key=lambda kv: -kv[1])[:12])}
+            res = service.build_playlist(p["text"], http, lastfm, s, log)
+            for w in res.warnings:
+                print(f"  AVISO: {w}", file=sys.stderr)
+                out["generator"]["errors"][f"{pid}:aviso"] = w[:300]
+            out["interpretations"][pid] = res.interpretation_dict()
+            tracks = [service.track_dict(t) for t in res.tracks]
         except Exception as e:  # seguimos con los demás prompts
             print(f"  ERROR en {pid}: {e}", file=sys.stderr)
             out["generator"]["errors"][pid] = str(e)[:500]
-        out["prompts"][pid] = [{"artist": t.artist, "title": t.title, "score": round(t.score, 3),
-                                "why": t.why, "parts": t.parts, "listeners": t.listeners} for t in chosen]
+        out["prompts"][pid] = tracks
         secs = (datetime.now() - t0).total_seconds()
-        print(f"  {len(chosen)} canciones en {secs:.0f} s", file=sys.stderr, flush=True)
-        for t in chosen[:5]:
-            print(f"    {t.score:.2f}  {t.artist} — {t.title}  [{'; '.join(t.why)}]", file=sys.stderr)
+        print(f"  {len(tracks)} canciones en {secs:.0f} s", file=sys.stderr, flush=True)
+        for t in tracks[:5]:
+            print(f"    {t['score']:.2f}  {t['artist']} — {t['title']}  [{'; '.join(t['why'])}]", file=sys.stderr)
     Path(args.out).parent.mkdir(parents=True, exist_ok=True)
     Path(args.out).write_text(json.dumps(out, ensure_ascii=False, indent=2))
     print(f"\nGuardado en {args.out}")
@@ -248,6 +232,26 @@ def cmd_relevance(args, cfg) -> int:
     if args.out:
         Path(args.out).write_text(text)
         print(f"Guardado en {args.out}", file=sys.stderr)
+    return 0
+
+
+def cmd_demo(args, cfg) -> int:
+    """Demo web para el AI Fest."""
+    from . import service, web
+
+    missing = [k for k in ("LLM_BASE_URL", "LLM_MODEL", "LASTFM_API_KEY") if not os.environ.get(k)]
+    if missing:
+        print(f"Faltan en .env: {', '.join(missing)}", file=sys.stderr)
+        return 2
+    http = make_http(timeout=600)
+    app = web.DemoApp(cfg, http, make_lastfm(cfg, http), service.Settings.from_config(cfg), ROOT,
+                      account=args.account, credit=LASTFM_CREDIT)
+    h = app.health()
+    for k, ok in (("Ollama", h["ollama"]), (f"modelo {h['model']}", h["model_ready"]),
+                  (f"embeddings {h['embed_model']}", h["embed_ready"]),
+                  (f"cuenta de Spotify '{args.account}'", h["spotify_account"])):
+        print(f"  {'✓' if ok else '✗'} {k}")
+    web.serve(app, args.host, args.port)
     return 0
 
 
@@ -435,13 +439,18 @@ def main(argv: list[str] | None = None) -> int:
     e.add_argument("--public", action="store_true", help="crear la playlist pública (para compartir por QR)")
     e.add_argument("--qr", action="store_true", help="generar un QR con el link de la playlist")
 
+    dm = sub.add_parser("demo", help="demo web para el AI Fest (http://127.0.0.1:8000)")
+    dm.add_argument("--host", default="127.0.0.1", help="0.0.0.0 para abrirla desde otra compu de la red")
+    dm.add_argument("--port", type=int, default=8000)
+    dm.add_argument("--account", default="equipo", help="cuenta de Spotify donde se crean las playlists")
+
     c = sub.add_parser("compare", help="compara dos o más corridas de run")
     c.add_argument("runs", nargs="+", help="carpetas dentro de results/")
     c.add_argument("--out", help="guardar la tabla en un .md")
 
     args = ap.parse_args(argv)
     cfg = load_config(Path(args.config))
-    cmds = {"check": cmd_check, "generate": cmd_generate, "build": cmd_build, "run": cmd_run, "relevance": cmd_relevance,
+    cmds = {"check": cmd_check, "generate": cmd_generate, "build": cmd_build, "run": cmd_run, "relevance": cmd_relevance, "demo": cmd_demo,
             "export": cmd_export, "compare": cmd_compare}
     return cmds[args.cmd](args, cfg)
 

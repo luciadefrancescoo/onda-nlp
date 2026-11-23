@@ -154,6 +154,14 @@ def version_flags(track_name: str, album_name: str, candidate_title: str) -> lis
     return flags
 
 
+class RateLimited(RuntimeError):
+    """Spotify limitó la app por exceso de búsquedas (429). `wait` = segundos que pide esperar."""
+
+    def __init__(self, wait: float):
+        super().__init__(f"Spotify pide esperar {wait / 60:.0f} min")
+        self.wait = wait
+
+
 class SpotifyExporter:
     def __init__(self, http: HttpClient, token: str, market: str = "AR",
                  title_min: float = 0.85, artist_min: float = 0.85):
@@ -171,6 +179,8 @@ class SpotifyExporter:
                               params={"q": q, "type": "track", "limit": 10, "market": self.market})
         if r.status == 401:
             raise PermissionError("Token vencido o inválido (401).")
+        if r.status == 429:
+            raise RateLimited(float((r.data or {}).get("retry_after") or 0))
         if not r.ok or not r.data:
             return []
         return (r.data.get("tracks") or {}).get("items") or []
