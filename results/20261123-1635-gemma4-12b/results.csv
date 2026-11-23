@@ -1,0 +1,181 @@
+prompt_id,rank,artist,title,duplicate,mb_found,mb_title,mb_artist,year,lb_users,lb_listens,lastfm_found,lastfm_listeners,spotify_found,n_tags_song,n_tags_any,mood_tags,tags_song,recognizable,found_anywhere
+preboliche,1,Bad Bunny,Tití Me Preguntó,False,True,Tití me preguntó,Bad Bunny,2022,4712,37866,True,1089855,True,20,23,,ph_3_stars|dembow|trap|billboard hot 100|synth pop|spanish|ph_temp_checken|latin pop|billboard hot 100 2026|offizielle charts|reggaeton|5+ wochen|electronic|pop|rap|latin|dancehall|chillwave|afrobeats|king of pop,True,True
+preboliche,2,Daddy Yankee,Gasolina,False,True,Gasolina,Daddy Yankee,2004,25271,153156,True,1295913,True,12,19,,latin pop|latin|reggaeton|club|regueton|extremely droopy|pop|dance|hip hop|spanish|eurodance|latin urban,True,True
+preboliche,3,Karleyn,Simmelele,False,False,,,,,,False,,False,0,0,,,False,False
+preboliche,4,J Balvin,Que Yo Pertenezco A Tu Barrio,False,False,,,,,,False,,False,0,0,,,False,False
+preboliche,5,Ozuna,Coriano,False,False,,,,,,False,,False,0,0,,,False,False
+preboliche,6,Anitta,Envolver,False,True,Envolver,Anitta,2021,1389,12641,True,417266,True,8,11,happy,happy|pop|electronic|hip hop|power pop|ballad|latin|reggaeton,True,True
+preboliche,7,Farruko,Pepas,False,True,Pepas,Farruko,2021,3608,28258,True,526814,True,3,5,,pop|latin|reggaeton,True,True
+preboliche,8,Rauw Alejandro,Todo de Ti,False,True,Todo de ti,Rauw Alejandro,2021,2215,17957,True,462874,True,4,7,,funk;latin|reggaeton|contemporary r&b|trap latino,True,True
+preboliche,9,Feid,Ferxxo,False,False,,,,,,True,1,True,0,0,,,False,True
+preboliche,10,Major Lazer,Lean On,False,True,Lean On,Major Lazer,2015,3209,20602,True,793132,True,10,20,party,dancehall|moombahton|party|electronic|house|hip hop|electro house|pop|dance|mo,True,True
+preboliche,11,Daddy Yankee,Shaky Shaky,False,True,Shaky Shaky,Daddy Yankee,2016,408,1644,True,88345,True,1,13,,reggaeton,True,True
+preboliche,12,Bad Bunny,Moscow Mule,False,True,Moscow Mule,Bad Bunny,2022,2901,27426,True,656543,True,14,17,,reggaeton|electronic|pop|rap|synth pop|latin pop|latin|dancehall|chillwave|afrobeats|dembow|5+ wochen|psytrance|rock,True,True
+preboliche,13,J Balvin,"BZRP Music Sessions, Vol. 53",False,False,,,,,,False,,False,0,0,,,False,False
+preboliche,14,Karleyn,Simmelele,True,False,,,,,,False,,False,0,0,,,False,False
+preboliche,15,Maluma,Hawái Vs Toscana,False,False,,,,,,False,,False,0,0,,,False,False
+preboliche,16,Natti Natasha,Esclava Tuya,False,False,,,,,,False,,False,0,0,,,False,False
+preboliche,17,Arcángel,La Noche,False,False,,,,,,False,,True,0,0,,,False,True
+preboliche,18,Ozuna,Safanda,False,False,,,,,,False,,False,0,0,,,False,False
+preboliche,19,Bad Bunny,Ojitos Lindos,False,True,Ojitos lindos,Bad Bunny & Bomba Estéreo,2022,2690,22919,True,558596,True,14,19,summer,merge|latin pop|reggaeton|electronic|pop|rap|synth pop|latin|dancehall|chillwave|afrobeats|dembow|5+ wochen|summer,True,True
+preboliche,20,Daddy Yankee,Ella Me Perdonó,False,False,,,,,,False,,False,0,0,,,False,False
+preboliche,21,J Balvin,Que Yo Pertenezco A Tu Barrio,True,False,,,,,,False,,False,0,0,,,False,False
+preboliche,22,Farruko,Pa' Que Me Miren,False,False,,,,,,False,,False,0,0,,,False,False
+preboliche,23,Rauw Alejandro,Vice Versa,False,False,,,,,,True,11,False,0,0,,,False,True
+preboliche,24,Karleyn,Simmelele,True,False,,,,,,False,,False,0,0,,,False,False
+preboliche,25,Bad Bunny,Dákiti,False,True,DÁKITI,Bad Bunny & Jhay Cortez,2020,2972,27194,True,645959,True,23,23,,billboard hot 100|latin trap|offizielle charts|billboard hot 100 2026|1–4 wochen|jazz|merge|electronic|alternative rock|latino|pop rock|pop rap|latin|reggaeton|alternative r&b|trap|emo rap|trap latino|rap|rnb|hip hop|dancehall|ambient pop,True,True
+preboliche,26,J Balvin,Que Yo Pertenezco A Tu Barrio,True,False,,,,,,False,,False,0,0,,,False,False
+preboliche,27,Ozuna,Coriano,True,False,,,,,,False,,False,0,0,,,False,False
+preboliche,28,Daddy Yankee,"Con Tra, Tra",False,False,,,,,,False,,False,0,0,,,False,False
+preboliche,29,Feid,Classy 101,False,True,CLASSY 101,Feid x Young Miko,2023,974,8382,True,339358,True,3,8,,latin|reggaeton|rap/hip hop,True,True
+preboliche,30,Bad Bunny,Yo Perreaba,False,False,,,,,,False,,False,0,0,,,False,False
+lluvia,1,Norah Jones,Sunrise,False,True,Sunrise,Norah Jones,2004,82711,674843,True,877045,True,29,36,,adult contemporary|americana|vocal|folk|jazz|pop|soundtrack|contemporary jazz|jazz: jazz vocals|jazz/pop|contemporary jazz vocals|torch songs|pop/rock|singer/songwriter|jazz blues|cccd|soft jazz vocals|jazz vocals|contemporary|smooth jazz|vocal jazz|contemporary folk|rock|blues|singer songwriter|country|alt country|jazz pop|soul jazz,True,True
+lluvia,2,Billie Eilish,What Was I Made For?,False,True,What Was I Made For?,Billie Eilish,2023,5279,43247,True,26798,True,0,22,,,True,True
+lluvia,3,Frank Sinatra,In the Wee Small Hour,False,False,,,,,,True,3,False,0,0,,,False,True
+lluvia,4,Lana Del Rey,Video Games,False,True,Video Games,Lana Del Rey,2011,179971,2748569,True,2301054,True,18,45,,soft rock|rock|baroque pop|dream pop|indie pop|ballad|chamber pop|ambient pop|indie|singer songwriter|art pop|pop|downtempo|alternative rock|alternative pop|trip hop|female vocalists|alternative,True,True
+lluvia,5,Chet Baker,I Get Along Without You Alone,False,False,,,,,,False,,False,0,0,,,False,False
+lluvia,6,SZA,Special,False,True,Special,SZA,2022,1871,10910,True,634855,True,15,21,,pop|soul|english|r&b|contemporary r&b|offizielle charts|5+ wochen|rnb|acoustic|pop rock|trip hop|contemporary rnb|acoustic pop|folk pop|alternative r&b,True,True
+lluvia,7,Mac DeMarco,We're Going to Be Friends,False,False,,,,,,False,,False,0,0,,,False,False
+lluvia,8,Bon Iver,Hol-cen,False,False,,,,,,False,,False,0,0,,,False,False
+lluvia,9,Fleetwood Mac,Dreams,False,True,Dreams,Fleetwood Mac,1977,31,102,True,987507,True,19,23,,soft rock|rock|blues|folk rock|blues rock|classic rock|album rock|adult contemporary|pop rock|english|folk pop|pop/rock|contemporary pop/rock|rock/pop|offizielle charts|5+ wochen|70s|pop|female vocalists,True,True
+lluvia,10,Frank Ocean,Pink + White,False,True,Pink + White,Frank Ocean,2014,11285,161043,True,5487,True,8,10,,contemporary r&b|r&b|neo soul|soul|hip hop|pop|art pop|alternative r&b,True,True
+lluvia,11,Corinne Bailey Diaz,Slow Down,False,False,,,,,,False,,False,0,0,,,False,False
+lluvia,12,Joni Mitchell,Both My Loving Companions,False,False,,,,,,False,,False,0,0,,,False,False
+lluvia,13,Mazards,L'amour à la plage,False,False,,,,,,False,,False,0,0,,,False,False
+lluvia,14,The Paper Kites,Bloom,False,True,Bloom,The Paper Kites,2010,5163,41300,True,56322,True,3,5,,folk|indie|singer songwriter,True,True
+lluvia,15,Kings of Convenience,Cabin at the Bottom of the River,False,False,,,,,,False,,False,0,0,,,False,False
+lluvia,16,Iron & Wine,Via la Luz,False,False,,,,,,False,,False,0,0,,,False,False
+lluvia,17,Diana Krall,The Girl's Next Door,False,False,,,,,,False,,False,0,0,,,False,False
+lluvia,18,Radiohead,No Surprises,False,True,No Surprises,Radiohead,1996,,,True,3502676,True,48,61,melancholic|atmospheric,rock|electronic|alternative rock|owned|i own this|experimental|british|uk|britannique|indie rock|cd|acoustic|alternative|britpop|art rock|leftfield|experimental rock|pop rock|neo psychedelia|english|melancholic|alt rock|futuristic|rock and indie|alternative and punk|poprock|atmospheric|existential|britrock|brit rock|lonely|nihilistic|cold|pop/rock|alternative/indie rock|alternative pop/rock|alternative & punk|rock/alternative rock|alienation|anxious|post britpop|offizielle charts|space rock revival|discogs/the most popular album released every year from 1950 to 2020|5+ wochen|vyrzukhisuc album|indie|90s,True,True
+lluvia,19,Sufjan Stevens,Mystery Is Gone,False,False,,,,,,False,,False,0,0,,,False,False
+lluvia,20,Billie Holiday,Blue Moon,False,True,Blue Moon,Billie Holiday,1962,33,93,True,540789,True,3,13,,jazz|blues|piano blues,True,True
+lluvia,21,Leon Bridges,Coming Home,False,True,Coming Home,Leon Bridges,2015,3906,20625,True,538118,True,4,7,,acoustic|soul|r&b|award/qobuz/qobuzissime,True,True
+lluvia,22,Tom Odell,Like Older People,False,False,,,,,,False,,False,0,0,,,False,False
+lluvia,23,Clairo,Bubble Gum,False,False,,,,,,True,1124585,True,7,7,,bedroom pop|rock|indie|guitar|pop|alternative|singer songwriter,True,True
+lluvia,24,Frank Sinatra,The Way You Look Tonight,False,True,The Way You Look Tonight,Frank Sinatra,1944,41243,202559,True,634808,True,10,20,,big band|pop|vocal jazz|swing|vocal|easy listening|jazz|standards|traditional pop|show tunes,True,True
+lluvia,25,Norah Jones,Don't Know Why,False,True,Don’t Know Why,Norah Jones,2002,100970,935047,True,1334123,True,30,38,mellow,soft jazz vocals|jazz: jazz vocals|vocal jazz|adult contemporary|ballad|soul|vocal|folk/country|pop|blues|ambient|jazz|contemporary jazz|folk|smooth jazz|easy listening soundtracks and musicals|jazz vocals|pop/rock|country music|standards|singer songwriter|easy listening|country|english|debut|jazz blues|offizielle charts|5+ wochen|female vocalists|mellow,True,True
+lluvia,26,Gregory Alan Isakov,The Bachelor,False,False,,,,,,False,,False,0,0,,,False,False
+lluvia,27,Alice Phoebe ==,The Way I See You,False,False,,,,,,False,,False,0,0,,,False,False
+lluvia,28,Beabadoobee,Coffee,False,True,Coffee,beabadoobee,2017,3174,21904,True,734085,True,8,18,,singer songwriter|indie folk|twee pop|folk pop|bedroom pop|the bookshelf|acoustic|wsum 91.7 fm madison,True,True
+lluvia,29,Slowan Dawson,Slow Down,False,False,,,,,,False,,False,0,0,,,False,False
+lluvia,30,Eloise,You Know Me,False,False,,,,,,False,,False,0,0,,,False,False
+estudio,1,Lofi Girl,Study Session,False,False,,,,,,False,,True,0,0,,,False,True
+estudio,2,Idealism,controlla,False,True,controlla,idealism,2016,3312,25387,True,315325,True,6,13,,ambient|jazz|hip hop|soul|neo soul|r&b,True,True
+estudio,3,Jinsang,Affection,False,True,affection,jinsang,2016,3485,23369,True,320779,True,4,6,,instrumental|hip hop|soul|boom bap,True,True
+estudio,4,Nujabes,Average Woman,False,False,,,,,,False,,False,0,0,,,False,False
+estudio,5,Uyama Hirodeki,A New Day,False,False,,,,,,False,,False,0,0,,,False,False
+estudio,6,Fredrik Andersson,The Way of the Wind,False,False,,,,,,False,,False,0,0,,,False,False
+estudio,7,Tycho,Awake,False,True,Awake,Tycho,2013,5548,47095,True,374370,True,7,12,chillout,chillwave|electronic|rock|downtempo|ambient|experimental|idm,True,True
+estudio,8,Bonobo,Cirrus,False,True,Cirrus,Bonobo,2013,30800,174956,True,418110,True,11,16,chillout,ninja tune|future jazz|dance|jazz|edm|dance and dj|electronic|house|trip hop|downtempo|nu jazz,True,True
+estudio,9,Emancipator,Soon,False,False,,,,,,True,1,False,0,0,,,False,True
+estudio,10,Aphex Twin,Say Less,False,False,,,,,,False,,False,0,0,,,False,False
+estudio,11,Brian Eno,Music for Airports,False,True,Music for Airports (Live) - 1/2,Brian Eno,1999,355,1236,True,1321,True,0,11,,,True,True
+estudio,12,Max Richter,On the Nature of Daylight,False,True,On the Nature of Daylight,"Natalia Bonner, Louisa Fuller, John Metcalfe, Max Richter, Philip Sheppard, Chris Worsey",2004,31105,229231,True,479865,True,10,27,,classical|electronic|instrumental|ambient|contemporary instrumental|contemporary classical|modern classical|neoclassicism|post classical|avantgarde,True,True
+estudio,13,Ludovico Einaudi,Experience,False,True,Experience,Ludovico Einaudi,2013,6336,41988,True,588463,True,8,17,,instrumental|locations|post modern|modern classical|contemporary|classical crossover|classical|podcast,True,True
+estudio,14,Ólafur Arnalds,re:member,False,True,re:member,Ólafur Arnalds,2018,1747,12020,True,83191,True,6,38,,ambient|instrumental|contemporary classical|electronic|classical|modern classical,True,True
+estudio,15,Sigur Rós,Untitled #1,False,True,Untitled #1,Sigur Rós,2003,4828,36145,True,14614,True,5,20,,post rock|cccd|rock|electronic|iceland,True,True
+estudio,16,Explosions in the Sky,Your Hand in Mine,False,True,Your Hand in Mine,Explosions in the Sky,2003,115060,1223657,True,664953,True,7,10,,post rock|rock|instrumental|american|usa|americain|alternative and punk,True,True
+estudio,17,Guise,Deep Focus,False,False,,,,,,False,,False,0,0,,,False,False
+estudio,18,Marconiuts,Focus,False,False,,,,,,False,,False,0,0,,,False,False
+estudio,19,Glass_Beads,Focus,False,False,,,,,,False,,False,0,0,,,False,False
+estudio,20,The Cinematic Orchestra,Arrival of the Birds,False,True,Arrival of the Birds,The Cinematic Orchestra,2008,21112,181841,True,209705,True,12,14,chillout|relaxed,downtempo|future jazz|electronic|soundtrack|classical|chillout|orchestral|relaxed|score|contemporary jazz|contemporary classical|nu jazz,True,True
+estudio,21,Johann Johannsson,The Theory of Everything,False,True,The Theory of Everything,Jóhann Jóhannsson,2014,2226,9457,True,209488,True,4,9,,soundtrack|score|classical|modern classical,True,True
+estudio,22,Hans Zimmer,Time,False,True,Time,Hans Zimmer,2010,51716,652653,True,685797,True,13,35,emotional|melancholy|dark,modern classical|emotional|stage & screen|jazz|instrumental|classical|soundtrack|melancholy|dramatic|haunting|dark|house|score,True,True
+estudio,23,Yann Tiersen,"Comptine d'un autre été, n° 5",False,False,,,,,,False,,True,0,0,,,False,True
+estudio,24,Erik Satie,Gymnopédie No. 1,False,True,Gymnopedie No. 1,Erik Satie,1991,3488,18166,True,755917,True,4,11,,classical|piano|instrumental|ambient,True,True
+estudio,25,Claude Debussy,Clair de Lune,False,True,Clair de Lune,Claude Debussy,1995,247,865,True,679349,True,0,20,,,True,True
+estudio,26,Chopin,Nocturne Op. 9 No. 2,False,True,Nocturne Op 9 No 2,Frédéric Chopin,1998,228,944,True,188064,True,0,11,romantic,,True,True
+estudio,27,Beethoven,Moonlight Sonata,False,True,Moonlight Sonata (radio edit),Rave Over Beethoven,1995,20,130,True,358654,True,3,3,,euro house|electronic|happy hardcore,True,True
+estudio,28,Bach,Goldberg Variations,False,False,,,,,,True,4933,False,0,0,,,False,True
+estudio,29,Mozart,Piano Concerto No. 21,False,True,Piano Concerto no. 21 (Allegro),"Mozart Festival Orchestra, Alberto Lizzio",1991,1,5,True,7945,True,2,5,,classical|baroque,False,True
+estudio,30,Spotify,Deep Focus,False,False,,,,,,False,,False,0,0,,,False,False
+entrenamiento,1,Eminem,Till I Collapse,False,True,Till I Collapse,Eminem feat. Nate Dogg,2002,43986,338069,True,894540,True,33,50,anthemic|angry|aggressive|energetic,boastful|vulgar|anthemic|rhythmic|conscious hip hop|hardcore hip hop|angry|aggressive|midwestern rap|hip hop|detroit hip hop|pop rap|hardcore rap|energetic|hip hop rap|sampling|drugs|hateful|passionate|political|rap|sexual|humorous|nocturnal|introspective|political hip hop|violence|rap/hip hop|sarcastic|misanthropic|midwestern hip hop|hip hop / rap|jahrescharts 2024,True,True
+entrenamiento,2,Royal Blood,Fake Knows Nothing,False,False,,,,,,False,,False,0,0,,,False,False
+entrenamiento,3,Skrillex,Equalize,False,False,,,,,,False,,False,0,0,,,False,False
+entrenamiento,4,FortMinor,Remember the Name,False,False,,,,,,True,407689,True,0,0,,,True,True
+entrenamiento,5,Survivor,Eye of the Tiger,False,True,Eye of the Tiger,Survivor,1982,122133,997213,True,1877601,True,17,18,,soundtrack|soft rock|pop rock|album rock|classic rock|рок|synth pop|hard rock|electro|industrial|aor|contemporary pop/rock|pop|rock|arena rock|80s|rocky,True,True
+entrenamiento,6,Linkin Park,One Step Closer,False,True,One Step Closer,Linkin Park,2001,23,30,True,2311836,True,26,28,energetic,nu metal|punk|alternative punk|post grunge|alternative metal|rock|heavy metal|rap metal|pop/rock|new metal|alternative rock|industrial rock|heavy|melodic|urban|rap rock|energetic|alt metal|introspective|offizielle charts|self hatred|5+ wochen|jahrescharts 2023|jahrescharts 2024|alternative|metal,True,True
+entrenamiento,7,Metallica,Enter Sandman,False,True,Enter Sandman,Metallica,1992,,,True,1901976,True,8,10,,rock|heavy metal|thrash metal|metal|hard rock|nwoahm|new wave of american heavy metal|jahrescharts 2024,True,True
+entrenamiento,8,Disturbed,Down with the Sickness,False,True,Down With the Sickness,Disturbed,1998,107672,1318474,True,1619205,True,12,15,,hard rock|rock|metal|death metal|heavy metal|nu metal|alternative metal|rap metal|rock_heavy metal_hard rock|english|offizielle charts|1–4 wochen,True,True
+entrenamiento,9,Bring Me The Horizon,Can You Feel My Heart,False,True,Can You Feel My Heart,Bring Me the Horizon,2013,23021,296546,True,1249637,True,14,30,epic|anthemic,melodic dubstep|epic|alternative metal|anxious|electronic|metal|electronicore|post hardcore|metalcore|anthemic|passionate|heavy metal|deth core|sempiternal,True,True
+entrenamiento,10,Fortissachero,The Way I Feel,False,False,,,,,,False,,False,0,0,,,False,False
+entrenamiento,11,AC/DC,Thunderstruck,False,True,Thunderstruck,AC/DC,1990,130666,1400744,True,1786482,True,11,13,,australian rock|classic rock|album rock|arena rock|rock|pop|heavy metal|blues|hard rock|hard & heavy|acdc,True,True
+entrenamiento,12,Rage Against the Machine,Killing in the Name,False,True,Killing in the Name,Rage Against the Machine,1993,1,1,True,2283229,True,23,25,,rock|alternative rock|pop|heavy metal|perfect debut|metal|crossover|alternative metal|funk metal|post hardcore|rap metal|crime|anarchism|raw|hardnheavy|alternative pop/rock|rhythm & blues|political hip hop|violence|discogs/the most popular album released every year from 1950 to 2020|political|alternative|rapcore,True,True
+entrenamiento,13,System of a Down,Chop Suey!,False,True,Chop Suey!,System of a Down,2001,1,1,True,2877110,True,19,19,,political|rock|alternative rock|heavy metal|metal|nu metal|heavy|art rock|alternative metal|avant garde metal|english|crossover thrash|hidden track|quirky|manic|offizielle charts|5+ wochen|alternative|hard rock,True,True
+entrenamiento,14,Slipknot,Duality,False,True,Duality,Slipknot,2004,110104,1530588,True,1915919,True,14,15,angry|energetic|aggressive,nu metal|alternative metal|angry|energetic|aggressive|anxious|metal|heavy metal|rock|melodic|alternative rock|groove metal|introspective|misanthropic,True,True
+entrenamiento,15,Machine Head,Davidstown,False,False,,,,,,False,,False,0,0,,,False,False
+entrenamiento,16,Body Count,Cease to Exist,False,False,,,,,,False,,False,0,0,,,False,False
+entrenamiento,17,Pantera,Walk,False,True,Walk,Pantera,1992,93863,982026,True,1257364,True,23,25,angry|energetic|aggressive,groove metal|metal|rock|alternative metal|heavy metal|thrash metal|90s|heavy|thrash|conscious|angry|energetic|male vocalist|aggressive|rhythmic|violence|alienation|rebellious|vulgar|misanthropic|hateful|boastful|power metal,True,True
+entrenamiento,18,Motley Crue,Kickstart My Side,False,False,,,,,,False,,False,0,0,,,False,False
+entrenamiento,19,The White Stripes,Seven Nation Army,False,True,Seven Nation Army,The White Stripes,2003,252575,2780378,True,2973764,True,24,28,aggressive,alternative rock|remark/well known|rock & roll|garage rock revival|blues rock|indie rock|blues|punk|rock|pop|aggressive|punk blues|alternative and punk|alt rock|garage rock|post punk revival|alternative pop|raw|alternative/indie rock|alternative pop/rock|discogs/the most popular album released every year from 1950 to 2020|alternative|indie|00s,True,True
+entrenamiento,20,Imagine Dragons,Believin',False,False,,,,,,False,,False,0,0,,,False,False
+entrenamiento,21,Fall Out Boy,Centuries,False,True,Centuries,Fall Out Boy,2014,10921,130203,True,1262732,True,14,17,fun|emotional,alternative|rock|pop|alternative rock|punk|pop punk|emo|electropop|pop rock|alt rock|fun|emotional|surf rock|punk rock,True,True
+entrenamiento,22,Kendrick Lamar,DNA.,False,True,DNA.,Kendrick Lamar,2017,11498,157955,True,1808973,True,16,30,,hardcore hip hop|west coast hip hop|trap|westcoast rap|conscious hip hop|pop|concept album|hip hop|pop rap|english|compton|contemporary r&b|political hip hop|5+ wochen|ph_4_stars|rap,True,True
+entrenamiento,23,Drake,God's Plan,False,True,God’s Plan,Drake,2018,7383,80500,True,1560937,True,14,23,,pop rap|hip hop|hip hop/rap|house|contemporary r&b|alternative r&b|trap|canadian hip hop|cloud rap|trap soul|rap|2010s|dios plan|canadian,True,True
+entrenamiento,24,Travis Scott,FEIN,False,False,,,,,,True,203,False,0,0,,,False,True
+entrenamiento,25,Future,Mask Off,False,True,Mask Off,Future,2017,7697,83877,True,1386582,True,5,11,,pop|alternative hip hop|electronic|hip hop|trap,True,True
+entrenamiento,26,Lil Uzi Vert,Just Wanna Rock,False,True,Just Wanna Rock,Lil Uzi Vert,2022,3724,33275,True,1097915,True,14,22,,rap|hip hop|alternative metal|english|rap rock|experimental hip hop|rage|cloud rap|emo rap|double album|offizielle charts|1–4 wochen|jersey club|electronic,True,True
+entrenamiento,27,Hardstyle,Techno,False,False,,,,,,True,2,False,0,0,,,False,True
+entrenamiento,28,Swedish House Mafia,One (Your Mind Won't Work),False,False,,,,,,False,,True,0,0,,,False,True
+entrenamiento,29,David Guetta,Titanium,False,True,Titanium,David Guetta feat. Sia,2011,28099,307100,True,103776,True,21,37,party|summer,none/electronic/electro/david guetta|progressive house|dance pop|electropop|electro|house|hip house|electro house|none|dance|electronic|pop|party|pop general|rnb/swing|dance & house|electronic dance music|other hip hop/rap|summer|rhythmic|festival progressive house,True,True
+entrenamiento,30,Tiësto,The Way I Are,False,False,,,,,,False,,False,0,0,,,False,False
+nostalgia,1,Britney Spears,Oops!... I Did It Again,False,True,Oops!…I Did It Again,Britney Spears,2000,57743,561987,True,58958,True,15,24,,pop rock|electronic|pop|contemporary r&b|electro|hip hop|synth pop|ballad|teen pop|dance pop|europop|remark/well known|remark/catchy|ballad_pop_rnb swing|ballad_rnb swing_pop,True,True
+nostalgia,2,Backstreet's Back,Quit Playing Games (With My Heart),False,False,,,,,,False,,False,0,0,,,False,False
+nostalgia,3,Eminem,The Real Slim Shady,False,True,The Real Slim Shady,Eminem,1999,111170,799537,True,2323638,True,65,78,energetic|anthemic|dark|angry|aggressive,vulgar|sarcastic|misanthropic|hip hop / rap|rap|pop rap|g funk|sexual|energetic|playful|humorous|nihilistic|detroit hip hop|hip hop|anthemic|comedy rap|rhythmic|hardcore hip hop|concept album|death|urban|dark|horrorcore|technical|hip hop rap|sampling|crime|drugs|angry|theatrical|alcohol|diss|male vocalist|domestic|aggressive|menacing|alter ego|ominous|passionate|nocturnal|introspective|raw|family|skit|satirical|midwest hip hop|violence|disturbing|homicide|alienation|mental health|gore|macabre|rebellious|wordplay|provocative|dark humor|hateful|pessimistic|fame|self hatred|parenthood|boastful|antidrug|00s,True,True
+nostalgia,4,Linkin Park,In the End,False,True,In the End,Linkin Park,2000,158,383,True,3431996,True,25,26,energetic,nu metal|rock|alternative rock|heavy metal|industrial rock|heavy|melodic|post grunge|alternative metal|urban|rap metal|rap rock|alternative punk|energetic|alt metal|introspective|pop/rock|offizielle charts|self hatred|5+ wochen|jahrescharts 2023|jahrescharts 2024|alternative|metal|rapcore,True,True
+nostalgia,5,Evanescence,Bring Me to Life,False,True,Bring Me to Life,Evanescence,2003,25,47,True,3042269,True,19,21,,experimental|classical|electronica|symphonic rock|rock|gothic rock|electronic|pop|alternative rock|heavy metal|metal|gothic metal|nu metal|post grunge|ballad|alternative metal|female vocalists|gothic|alternative,True,True
+nostalgia,6,Avril Lavigne,Complicated,False,True,Complicated,Avril Lavigne,2002,102109,994136,True,2308282,True,26,30,,alternative rock|pop|rock|let go|pop/rock|teen rock|pop rock_blues_rock_blues_rock_pop rock_rock_pop rock_blues_rock_rock|alternative rock; pop rock|alternative/indie rock|contemporary pop/rock|unknown|country pop|pop rock|alternative|bubblegum punk|teen pop|adult alternative pop/rock|post grunge|pop punk|pop and chart|teen punk|mall punk|clean up|female vocalists|00s|canadian,True,True
+nostalgia,7,Kelly Clarkson,Since U Been Gone,False,True,Since U Been Gone,Kelly Clarkson,2003,84145,814609,True,1927360,True,18,19,romantico,pop|trance|pop/rock|pop rock|adult contemporary|teen pop|alternative rock|american idol|adult alternative pop|rock|electronic|ballad|soft rock|country pop|general pop vocal|romantico|female vocalists|00s,True,True
+nostalgia,8,OutKast,Ms. Jackson,False,True,Ms. Jackson,OutKast,2000,116868,811689,True,2437170,True,20,23,,dirty south|alternative hip hop|drum and bass|pop rap|hip hop music|southern rap|hip hop|techno|hip hop_hip hop|southern hip hop|rap|conscious hip hop|alternative rap|default|psychedelic funk|electronic|hip hop rap|00s|pop|funk,True,True
+nostalgia,9,Gorillaz,"Feel It, Feel Good",False,False,,,,,,False,,False,0,0,,,False,False
+nostalgia,10,Fall Out Boy,"Sugar, We're Going Down Only",False,False,,,,,,False,,True,0,0,,,False,True
+nostalgia,11,Green Day,Basket Case,False,True,Basket Case,Green Day,1994,1,1,True,2662006,True,21,26,summer|energetic,rock|alternative rock|punk|punk rock|melodic|pop punk|skate punk|alternative punk|alternative and punk|summer|energetic|lgbt|playful|humorous|bittersweet|introspective|sarcastic|breakup|rebellious|90s|alternative,True,True
+nostalgia,12,The White Stripes,Seven Nation Army,False,True,Seven Nation Army,The White Stripes,2003,252575,2780378,True,2973764,True,24,28,aggressive,alternative rock|remark/well known|rock & roll|garage rock revival|blues rock|indie rock|blues|punk|rock|pop|aggressive|punk blues|alternative and punk|alt rock|garage rock|post punk revival|alternative pop|raw|alternative/indie rock|alternative pop/rock|discogs/the most popular album released every year from 1950 to 2020|alternative|indie|00s,True,True
+nostalgia,13,Coldplay,Yellow,False,True,Yellow,Coldplay,2001,,,True,3686767,True,15,18,uplifting,rock|alternative rock|ambient|jazz|indie rock|uplifting|alternative|pop rock|dream pop|piano rock|nocturnal|post britpop|offizielle charts|britpop|british,True,True
+nostalgia,14,Shakira,"Whenever, Wherever",False,True,"Whenever, Wherever",Shakira,2001,58035,453737,True,1269165,True,15,15,sexy,latin music|latin|latin pop|pop rock|pop|dance|house|dance pop|rock|adult contemporary|electronic|alternative rock|sexy|female vocalists|00s,True,True
+nostalgia,15,Enrique Iglesias,Escape,False,True,Escape,Enrique Iglesias,2001,23544,197679,True,244150,True,16,19,party,male vocal|rnb/swing|general latin pop|pop latino|party|club house|latin|latin pop|pop rock|adult contemporary|dance pop|soft rock|spanish|pop|electronic|rock,True,True
+nostalgia,16,Daddy Yankee,Gasolina,False,True,Gasolina,Daddy Yankee,2004,25271,153156,True,1295913,True,12,19,,latin pop|latin|reggaeton|club|regueton|extremely droopy|pop|dance|hip hop|spanish|eurodance|latin urban,True,True
+nostalgia,17,Fat Joe,Lean Back,False,True,Lean Back,Terror Squad f. Fat Joe and Remy,2004,2927,14720,True,13610,True,5,12,,pop rap|hip hop rap|hip hop|pop|east coast hip hop,True,True
+nostalgia,18,50 Cent,In Da Club,False,True,In da Club,50 Cent,2002,8,19,True,2340237,True,29,48,party|angry|energetic|aggressive,hip hop|hip hop rap|east coast rap|pop rap|gangsta rap|east coast hip hop|rap|blues|urban|hardcore rap|sexual|sampling|crime|drugs|gangsta|thug rap|party|angry|energetic|rap soundtrack|aggressive|hedonistic|rhythmic|hardcore hip hop|violence|rap/hip hop|vulgar|boastful|dance,True,True
+nostalgia,19,Nelly,Ride With Me,False,True,Ride With Me,Nelly,2001,57,182,True,1036338,True,5,25,,hip hop|rap|rnb|00s|pop,True,True
+nostalgia,20,Ashanti,Foolish,False,True,Foolish,Ashanti,2002,1,4,True,724737,True,11,27,,pop|hip hop|r b|urban|rnb swing|r&b|contemporary r&b|rnb|female vocalists|foolish|r and b,True,True
+nostalgia,21,Destiny's Child,Say My Name,False,True,Say My Name,Destiny’s Child,1998,13826,87739,True,1611627,True,15,17,party,party|pop|hip hop|soul|rnb|r b|dance pop|urban soul|contemporary r&b|r&b|urban contemporary|urban crossover|90s|destinys child|female vocalists,True,True
+nostalgia,22,Christina Aguilera,Dirrty,False,True,Dirrty,Christina Aguilera,2002,37912,364733,True,275671,True,3,11,,pop|hip hop|soul,True,True
+nostalgia,23,Janet Jackson,Doesn't Really Matter,False,True,Doesn’t Really Matter,Janet Jackson,2000,11118,73873,True,175130,True,13,15,party,dance|soul|r b|urban soul|contemporary r&b|dance pop|r&b|adult contemporary|party|pop|hip hop|electronic|house,True,True
+nostalgia,24,Ne-Yo,Missalize,False,False,,,,,,False,,False,0,0,,,False,False
+nostalgia,25,Usher,U Got It Bad,False,True,U Got It Bad,Usher,2001,18582,120287,True,607068,True,13,21,,soul|split me|rnb/swing|top 40_blues_blues_top 40_blues_top 40_top 40_blues|r&b|contemporary r&b|pop|blues|hip hop|rock|r b|urban soul|pop and chart,True,True
+nostalgia,26,Timbaland,Get Closer,False,False,,,,,,False,,False,0,0,,,False,False
+nostalgia,27,The Killers,Mr. Brightside,False,True,Mr. Brightside,The Killers,2004,58,189,True,3864043,True,6,13,,rock|indie rock|indie|alternative|alternative rock|00s,True,True
+nostalgia,28,Franz Ferdinand,Take Me Out,False,True,Take Me Out,Franz Ferdinand,2004,1,1,True,3242245,True,12,20,,rock|new wave|indie rock|indie|art rock|post punk revival|dance punk|alternative punk|alternative and punk|alternative|alternative rock|british,True,True
+nostalgia,29,Amy Winehouse,Rehab,False,True,Rehab,Amy Winehouse,2007,3,3,True,2142580,True,27,33,,pop|jazz|neo soul|soul|r b|contemporary jazz|jazz pop|english|artist session1_track1|funk soul|jazz soul|pop soul|discoth que|lonely|brill building|classic soul r b|r&b|contemporary r&b|rhythm & blues|british soul|frank|offizielle charts|discogs/the most popular album released every year from 1950 to 2020|5+ wochen|jahrescharts 2024|female vocalists|british,True,True
+nostalgia,30,Amy Winehouse,Back to Black,False,True,Back to Black,Amy Winehouse,2007,1,1,True,2766407,True,27,33,,pop|jazz|neo soul|soul|r b|contemporary jazz|jazz pop|english|artist session1_track1|funk soul|jazz soul|pop soul|discoth que|lonely|brill building|classic soul r b|r&b|contemporary r&b|rhythm & blues|british soul|frank|offizielle charts|discogs/the most popular album released every year from 1950 to 2020|5+ wochen|jahrescharts 2024|female vocalists|british,True,True
+previa_local,1,La Deliza,La Cumbia de los Pibitos,False,False,,,,,,False,,False,0,0,,,False,False
+previa_local,2,Los Palmeras,El Bombón Asesino,False,False,,,,,,True,21,False,0,0,,,False,True
+previa_local,3,Gerardo Gutiérrez Russo,La Cumbia de los Pibitos,False,False,,,,,,False,,False,0,0,,,False,False
+previa_local,4,Los Pibitos,La Cumbia de los Pibitos,False,False,,,,,,False,,False,0,0,,,False,False
+previa_local,5,Los Palmeras,El Bombón Asesino,True,False,,,,,,True,21,False,0,0,,,False,True
+previa_local,6,La Deliza,El Bombón Asesino,False,False,,,,,,False,,False,0,0,,,False,False
+previa_local,7,Los Palmeras,El Bombón Asesino,True,False,,,,,,True,21,False,0,0,,,False,True
+previa_local,8,Los Palmeras,El Bombón Asesino,True,False,,,,,,True,21,False,0,0,,,False,True
+previa_local,9,Los Palmeras,El Bombón Asesino,True,False,,,,,,True,21,False,0,0,,,False,True
+previa_local,10,Los Palmeras,El Bombón Asesino,True,False,,,,,,True,21,False,0,0,,,False,True
+previa_local,11,Los Palmeras,El Bombón Asesino,True,False,,,,,,True,21,False,0,0,,,False,True
+previa_local,12,Los Palmeras,El Bombón Asesino,True,False,,,,,,True,21,False,0,0,,,False,True
+previa_local,13,Los Palmeras,El Bombón Asesino,True,False,,,,,,True,21,False,0,0,,,False,True
+previa_local,14,Los Palmeras,El Bombón Asesino,True,False,,,,,,True,21,False,0,0,,,False,True
+previa_local,15,Los Palmeras,El Bombón Asesino,True,False,,,,,,True,21,False,0,0,,,False,True
+previa_local,16,Los Palmeras,El Bombón Asesino,True,False,,,,,,True,21,False,0,0,,,False,True
+previa_local,17,Los Palmeras,El Bombón Asesino,True,False,,,,,,True,21,False,0,0,,,False,True
+previa_local,18,Los Palmeras,El Bombón Asesino,True,False,,,,,,True,21,False,0,0,,,False,True
+previa_local,19,Los Palmeras,El Bombón Asesino,True,False,,,,,,True,21,False,0,0,,,False,True
+previa_local,20,Los Palmeras,El Bombón Asesino,True,False,,,,,,True,21,False,0,0,,,False,True
+previa_local,21,Los Palmeras,El Bombón Asesino,True,False,,,,,,True,21,False,0,0,,,False,True
+previa_local,22,Los Palmeras,El Bombón Asesino,True,False,,,,,,True,21,False,0,0,,,False,True
+previa_local,23,Los Palmeras,El Bombón Asesino,True,False,,,,,,True,21,False,0,0,,,False,True
+previa_local,24,Los Palmeras,El Bombón Asesino,True,False,,,,,,True,21,False,0,0,,,False,True
+previa_local,25,Los Palmeras,El Bombón Asesino,True,False,,,,,,True,21,False,0,0,,,False,True
+previa_local,26,Los Palmeras,El Bombón Asesino,True,False,,,,,,True,21,False,0,0,,,False,True
+previa_local,27,Los Palmeras,El Bombón Asesino,True,False,,,,,,True,21,False,0,0,,,False,True
+previa_local,28,Los Palmeras,El Bombón Asesino,True,False,,,,,,True,21,False,0,0,,,False,True
+previa_local,29,Los Palmeras,El Bombón Asesino,True,False,,,,,,True,21,False,0,0,,,False,True
+previa_local,30,Los Palmeras,El Bombón Asesino,True,False,,,,,,True,21,False,0,0,,,False,True

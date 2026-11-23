@@ -1,0 +1,743 @@
+{
+  "generator": {
+    "model": "gemma4:12b",
+    "method": "API compatible OpenAI (http://localhost:11434/v1)",
+    "date": "2026-11-23",
+    "notes": "Modelo elegido por el equipo, misma consigna y temperatura 0.3.",
+    "errors": {}
+  },
+  "prompts": {
+    "preboliche": [
+      {
+        "artist": "Bad Bunny",
+        "title": "Tití Me Preguntó"
+      },
+      {
+        "artist": "Daddy Yankee",
+        "title": "Gasolina"
+      },
+      {
+        "artist": "Karleyn",
+        "title": "Simmelele"
+      },
+      {
+        "artist": "J Balvin",
+        "title": "Que Yo Pertenezco A Tu Barrio"
+      },
+      {
+        "artist": "Ozuna",
+        "title": "Coriano"
+      },
+      {
+        "artist": "Anitta",
+        "title": "Envolver"
+      },
+      {
+        "artist": "Farruko",
+        "title": "Pepas"
+      },
+      {
+        "artist": "Rauw Alejandro",
+        "title": "Todo de Ti"
+      },
+      {
+        "artist": "Feid",
+        "title": "Ferxxo"
+      },
+      {
+        "artist": "Major Lazer",
+        "title": "Lean On"
+      },
+      {
+        "artist": "Daddy Yankee",
+        "title": "Shaky Shaky"
+      },
+      {
+        "artist": "Bad Bunny",
+        "title": "Moscow Mule"
+      },
+      {
+        "artist": "J Balvin",
+        "title": "BZRP Music Sessions, Vol. 53"
+      },
+      {
+        "artist": "Karleyn",
+        "title": "Simmelele"
+      },
+      {
+        "artist": "Maluma",
+        "title": "Hawái Vs Toscana"
+      },
+      {
+        "artist": "Natti Natasha",
+        "title": "Esclava Tuya"
+      },
+      {
+        "artist": "Arcángel",
+        "title": "La Noche"
+      },
+      {
+        "artist": "Ozuna",
+        "title": "Safanda"
+      },
+      {
+        "artist": "Bad Bunny",
+        "title": "Ojitos Lindos"
+      },
+      {
+        "artist": "Daddy Yankee",
+        "title": "Ella Me Perdonó"
+      },
+      {
+        "artist": "J Balvin",
+        "title": "Que Yo Pertenezco A Tu Barrio"
+      },
+      {
+        "artist": "Farruko",
+        "title": "Pa' Que Me Miren"
+      },
+      {
+        "artist": "Rauw Alejandro",
+        "title": "Vice Versa"
+      },
+      {
+        "artist": "Karleyn",
+        "title": "Simmelele"
+      },
+      {
+        "artist": "Bad Bunny",
+        "title": "Dákiti"
+      },
+      {
+        "artist": "J Balvin",
+        "title": "Que Yo Pertenezco A Tu Barrio"
+      },
+      {
+        "artist": "Ozuna",
+        "title": "Coriano"
+      },
+      {
+        "artist": "Daddy Yankee",
+        "title": "Con Tra, Tra"
+      },
+      {
+        "artist": "Feid",
+        "title": "Classy 101"
+      },
+      {
+        "artist": "Bad Bunny",
+        "title": "Yo Perreaba"
+      }
+    ],
+    "lluvia": [
+      {
+        "artist": "Norah Jones",
+        "title": "Sunrise"
+      },
+      {
+        "artist": "Billie Eilish",
+        "title": "What Was I Made For?"
+      },
+      {
+        "artist": "Frank Sinatra",
+        "title": "In the Wee Small Hour"
+      },
+      {
+        "artist": "Lana Del Rey",
+        "title": "Video Games"
+      },
+      {
+        "artist": "Chet Baker",
+        "title": "I Get Along Without You Alone"
+      },
+      {
+        "artist": "SZA",
+        "title": "Special"
+      },
+      {
+        "artist": "Mac DeMarco",
+        "title": "We're Going to Be Friends"
+      },
+      {
+        "artist": "Bon Iver",
+        "title": "Hol-cen"
+      },
+      {
+        "artist": "Fleetwood Mac",
+        "title": "Dreams"
+      },
+      {
+        "artist": "Frank Ocean",
+        "title": "Pink + White"
+      },
+      {
+        "artist": "Corinne Bailey Diaz",
+        "title": "Slow Down"
+      },
+      {
+        "artist": "Joni Mitchell",
+        "title": "Both My Loving Companions"
+      },
+      {
+        "artist": "Mazards",
+        "title": "L'amour à la plage"
+      },
+      {
+        "artist": "The Paper Kites",
+        "title": "Bloom"
+      },
+      {
+        "artist": "Kings of Convenience",
+        "title": "Cabin at the Bottom of the River"
+      },
+      {
+        "artist": "Iron & Wine",
+        "title": "Via la Luz"
+      },
+      {
+        "artist": "Diana Krall",
+        "title": "The Girl's Next Door"
+      },
+      {
+        "artist": "Radiohead",
+        "title": "No Surprises"
+      },
+      {
+        "artist": "Sufjan Stevens",
+        "title": "Mystery Is Gone"
+      },
+      {
+        "artist": "Billie Holiday",
+        "title": "Blue Moon"
+      },
+      {
+        "artist": "Leon Bridges",
+        "title": "Coming Home"
+      },
+      {
+        "artist": "Tom Odell",
+        "title": "Like Older People"
+      },
+      {
+        "artist": "Clairo",
+        "title": "Bubble Gum"
+      },
+      {
+        "artist": "Frank Sinatra",
+        "title": "The Way You Look Tonight"
+      },
+      {
+        "artist": "Norah Jones",
+        "title": "Don't Know Why"
+      },
+      {
+        "artist": "Gregory Alan Isakov",
+        "title": "The Bachelor"
+      },
+      {
+        "artist": "Alice Phoebe ==",
+        "title": "The Way I See You"
+      },
+      {
+        "artist": "Beabadoobee",
+        "title": "Coffee"
+      },
+      {
+        "artist": "Slowan Dawson",
+        "title": "Slow Down"
+      },
+      {
+        "artist": "Eloise",
+        "title": "You Know Me"
+      }
+    ],
+    "estudio": [
+      {
+        "artist": "Lofi Girl",
+        "title": "Study Session"
+      },
+      {
+        "artist": "Idealism",
+        "title": "controlla"
+      },
+      {
+        "artist": "Jinsang",
+        "title": "Affection"
+      },
+      {
+        "artist": "Nujabes",
+        "title": "Average Woman"
+      },
+      {
+        "artist": "Uyama Hirodeki",
+        "title": "A New Day"
+      },
+      {
+        "artist": "Fredrik Andersson",
+        "title": "The Way of the Wind"
+      },
+      {
+        "artist": "Tycho",
+        "title": "Awake"
+      },
+      {
+        "artist": "Bonobo",
+        "title": "Cirrus"
+      },
+      {
+        "artist": "Emancipator",
+        "title": "Soon"
+      },
+      {
+        "artist": "Aphex Twin",
+        "title": "Say Less"
+      },
+      {
+        "artist": "Brian Eno",
+        "title": "Music for Airports"
+      },
+      {
+        "artist": "Max Richter",
+        "title": "On the Nature of Daylight"
+      },
+      {
+        "artist": "Ludovico Einaudi",
+        "title": "Experience"
+      },
+      {
+        "artist": "Ólafur Arnalds",
+        "title": "re:member"
+      },
+      {
+        "artist": "Sigur Rós",
+        "title": "Untitled #1"
+      },
+      {
+        "artist": "Explosions in the Sky",
+        "title": "Your Hand in Mine"
+      },
+      {
+        "artist": "Guise",
+        "title": "Deep Focus"
+      },
+      {
+        "artist": "Marconiuts",
+        "title": "Focus"
+      },
+      {
+        "artist": "Glass_Beads",
+        "title": "Focus"
+      },
+      {
+        "artist": "The Cinematic Orchestra",
+        "title": "Arrival of the Birds"
+      },
+      {
+        "artist": "Johann Johannsson",
+        "title": "The Theory of Everything"
+      },
+      {
+        "artist": "Hans Zimmer",
+        "title": "Time"
+      },
+      {
+        "artist": "Yann Tiersen",
+        "title": "Comptine d'un autre été, n° 5"
+      },
+      {
+        "artist": "Erik Satie",
+        "title": "Gymnopédie No. 1"
+      },
+      {
+        "artist": "Claude Debussy",
+        "title": "Clair de Lune"
+      },
+      {
+        "artist": "Chopin",
+        "title": "Nocturne Op. 9 No. 2"
+      },
+      {
+        "artist": "Beethoven",
+        "title": "Moonlight Sonata"
+      },
+      {
+        "artist": "Bach",
+        "title": "Goldberg Variations"
+      },
+      {
+        "artist": "Mozart",
+        "title": "Piano Concerto No. 21"
+      },
+      {
+        "artist": "Spotify",
+        "title": "Deep Focus"
+      }
+    ],
+    "entrenamiento": [
+      {
+        "artist": "Eminem",
+        "title": "Till I Collapse"
+      },
+      {
+        "artist": "Royal Blood",
+        "title": "Fake Knows Nothing"
+      },
+      {
+        "artist": "Skrillex",
+        "title": "Equalize"
+      },
+      {
+        "artist": "FortMinor",
+        "title": "Remember the Name"
+      },
+      {
+        "artist": "Survivor",
+        "title": "Eye of the Tiger"
+      },
+      {
+        "artist": "Linkin Park",
+        "title": "One Step Closer"
+      },
+      {
+        "artist": "Metallica",
+        "title": "Enter Sandman"
+      },
+      {
+        "artist": "Disturbed",
+        "title": "Down with the Sickness"
+      },
+      {
+        "artist": "Bring Me The Horizon",
+        "title": "Can You Feel My Heart"
+      },
+      {
+        "artist": "Fortissachero",
+        "title": "The Way I Feel"
+      },
+      {
+        "artist": "AC/DC",
+        "title": "Thunderstruck"
+      },
+      {
+        "artist": "Rage Against the Machine",
+        "title": "Killing in the Name"
+      },
+      {
+        "artist": "System of a Down",
+        "title": "Chop Suey!"
+      },
+      {
+        "artist": "Slipknot",
+        "title": "Duality"
+      },
+      {
+        "artist": "Machine Head",
+        "title": "Davidstown"
+      },
+      {
+        "artist": "Body Count",
+        "title": "Cease to Exist"
+      },
+      {
+        "artist": "Pantera",
+        "title": "Walk"
+      },
+      {
+        "artist": "Motley Crue",
+        "title": "Kickstart My Side"
+      },
+      {
+        "artist": "The White Stripes",
+        "title": "Seven Nation Army"
+      },
+      {
+        "artist": "Imagine Dragons",
+        "title": "Believin'"
+      },
+      {
+        "artist": "Fall Out Boy",
+        "title": "Centuries"
+      },
+      {
+        "artist": "Kendrick Lamar",
+        "title": "DNA."
+      },
+      {
+        "artist": "Drake",
+        "title": "God's Plan"
+      },
+      {
+        "artist": "Travis Scott",
+        "title": "FEIN"
+      },
+      {
+        "artist": "Future",
+        "title": "Mask Off"
+      },
+      {
+        "artist": "Lil Uzi Vert",
+        "title": "Just Wanna Rock"
+      },
+      {
+        "artist": "Hardstyle",
+        "title": "Techno"
+      },
+      {
+        "artist": "Swedish House Mafia",
+        "title": "One (Your Mind Won't Work)"
+      },
+      {
+        "artist": "David Guetta",
+        "title": "Titanium"
+      },
+      {
+        "artist": "Tiësto",
+        "title": "The Way I Are"
+      }
+    ],
+    "nostalgia": [
+      {
+        "artist": "Britney Spears",
+        "title": "Oops!... I Did It Again"
+      },
+      {
+        "artist": "Backstreet's Back",
+        "title": "Quit Playing Games (With My Heart)"
+      },
+      {
+        "artist": "Eminem",
+        "title": "The Real Slim Shady"
+      },
+      {
+        "artist": "Linkin Park",
+        "title": "In the End"
+      },
+      {
+        "artist": "Evanescence",
+        "title": "Bring Me to Life"
+      },
+      {
+        "artist": "Avril Lavigne",
+        "title": "Complicated"
+      },
+      {
+        "artist": "Kelly Clarkson",
+        "title": "Since U Been Gone"
+      },
+      {
+        "artist": "OutKast",
+        "title": "Ms. Jackson"
+      },
+      {
+        "artist": "Gorillaz",
+        "title": "Feel It, Feel Good"
+      },
+      {
+        "artist": "Fall Out Boy",
+        "title": "Sugar, We're Going Down Only"
+      },
+      {
+        "artist": "Green Day",
+        "title": "Basket Case"
+      },
+      {
+        "artist": "The White Stripes",
+        "title": "Seven Nation Army"
+      },
+      {
+        "artist": "Coldplay",
+        "title": "Yellow"
+      },
+      {
+        "artist": "Shakira",
+        "title": "Whenever, Wherever"
+      },
+      {
+        "artist": "Enrique Iglesias",
+        "title": "Escape"
+      },
+      {
+        "artist": "Daddy Yankee",
+        "title": "Gasolina"
+      },
+      {
+        "artist": "Fat Joe",
+        "title": "Lean Back"
+      },
+      {
+        "artist": "50 Cent",
+        "title": "In Da Club"
+      },
+      {
+        "artist": "Nelly",
+        "title": "Ride With Me"
+      },
+      {
+        "artist": "Ashanti",
+        "title": "Foolish"
+      },
+      {
+        "artist": "Destiny's Child",
+        "title": "Say My Name"
+      },
+      {
+        "artist": "Christina Aguilera",
+        "title": "Dirrty"
+      },
+      {
+        "artist": "Janet Jackson",
+        "title": "Doesn't Really Matter"
+      },
+      {
+        "artist": "Ne-Yo",
+        "title": "Missalize"
+      },
+      {
+        "artist": "Usher",
+        "title": "U Got It Bad"
+      },
+      {
+        "artist": "Timbaland",
+        "title": "Get Closer"
+      },
+      {
+        "artist": "The Killers",
+        "title": "Mr. Brightside"
+      },
+      {
+        "artist": "Franz Ferdinand",
+        "title": "Take Me Out"
+      },
+      {
+        "artist": "Amy Winehouse",
+        "title": "Rehab"
+      },
+      {
+        "artist": "Amy Winehouse",
+        "title": "Back to Black"
+      }
+    ],
+    "previa_local": [
+      {
+        "artist": "La Deliza",
+        "title": "La Cumbia de los Pibitos"
+      },
+      {
+        "artist": "Los Palmeras",
+        "title": "El Bombón Asesino"
+      },
+      {
+        "artist": "Gerardo Gutiérrez Russo",
+        "title": "La Cumbia de los Pibitos"
+      },
+      {
+        "artist": "Los Pibitos",
+        "title": "La Cumbia de los Pibitos"
+      },
+      {
+        "artist": "Los Palmeras",
+        "title": "El Bombón Asesino"
+      },
+      {
+        "artist": "La Deliza",
+        "title": "El Bombón Asesino"
+      },
+      {
+        "artist": "Los Palmeras",
+        "title": "El Bombón Asesino"
+      },
+      {
+        "artist": "Los Palmeras",
+        "title": "El Bombón Asesino"
+      },
+      {
+        "artist": "Los Palmeras",
+        "title": "El Bombón Asesino"
+      },
+      {
+        "artist": "Los Palmeras",
+        "title": "El Bombón Asesino"
+      },
+      {
+        "artist": "Los Palmeras",
+        "title": "El Bombón Asesino"
+      },
+      {
+        "artist": "Los Palmeras",
+        "title": "El Bombón Asesino"
+      },
+      {
+        "artist": "Los Palmeras",
+        "title": "El Bombón Asesino"
+      },
+      {
+        "artist": "Los Palmeras",
+        "title": "El Bombón Asesino"
+      },
+      {
+        "artist": "Los Palmeras",
+        "title": "El Bombón Asesino"
+      },
+      {
+        "artist": "Los Palmeras",
+        "title": "El Bombón Asesino"
+      },
+      {
+        "artist": "Los Palmeras",
+        "title": "El Bombón Asesino"
+      },
+      {
+        "artist": "Los Palmeras",
+        "title": "El Bombón Asesino"
+      },
+      {
+        "artist": "Los Palmeras",
+        "title": "El Bombón Asesino"
+      },
+      {
+        "artist": "Los Palmeras",
+        "title": "El Bombón Asesino"
+      },
+      {
+        "artist": "Los Palmeras",
+        "title": "El Bombón Asesino"
+      },
+      {
+        "artist": "Los Palmeras",
+        "title": "El Bombón Asesino"
+      },
+      {
+        "artist": "Los Palmeras",
+        "title": "El Bombón Asesino"
+      },
+      {
+        "artist": "Los Palmeras",
+        "title": "El Bombón Asesino"
+      },
+      {
+        "artist": "Los Palmeras",
+        "title": "El Bombón Asesino"
+      },
+      {
+        "artist": "Los Palmeras",
+        "title": "El Bombón Asesino"
+      },
+      {
+        "artist": "Los Palmeras",
+        "title": "El Bombón Asesino"
+      },
+      {
+        "artist": "Los Palmeras",
+        "title": "El Bombón Asesino"
+      },
+      {
+        "artist": "Los Palmeras",
+        "title": "El Bombón Asesino"
+      },
+      {
+        "artist": "Los Palmeras",
+        "title": "El Bombón Asesino"
+      }
+    ]
+  }
+}

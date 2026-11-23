@@ -1,0 +1,210 @@
+{
+  "overall": {
+    "n": 180,
+    "duplicates": 30,
+    "unique_artist_ratio": 0.86,
+    "exists_in_musicbrainz": 0.5666666666666667,
+    "not_found_anywhere": 0.3333333333333333,
+    "resolved_in_spotify": 0.62,
+    "recognizable": 0.5733333333333334,
+    "hit": 0.4,
+    "has_3_useful_tags_song": 0.5333333333333333,
+    "has_3_useful_tags_any": 0.5733333333333334,
+    "has_mood_tag_song": 0.17333333333333334,
+    "has_mood_tag_any": 0.19333333333333333,
+    "released_2024_or_later": 0.0,
+    "median_year": 2004.0,
+    "median_lastfm_listeners": 685797.0,
+    "median_listenbrainz_users": 4995.5
+  },
+  "per_prompt": {
+    "preboliche": {
+      "n": 30,
+      "duplicates": 5,
+      "unique_artist_ratio": 0.52,
+      "exists_in_musicbrainz": 0.44,
+      "not_found_anywhere": 0.44,
+      "resolved_in_spotify": 0.52,
+      "recognizable": 0.44,
+      "hit": 0.28,
+      "has_3_useful_tags_song": 0.4,
+      "has_3_useful_tags_any": 0.44,
+      "has_mood_tag_song": 0.12,
+      "has_mood_tag_any": 0.12,
+      "released_2024_or_later": 0.0,
+      "median_year": 2021.0,
+      "median_lastfm_listeners": 526814.0,
+      "median_listenbrainz_users": 2901.0
+    },
+    "lluvia": {
+      "n": 30,
+      "duplicates": 0,
+      "unique_artist_ratio": 0.9333333333333333,
+      "exists_in_musicbrainz": 0.43333333333333335,
+      "not_found_anywhere": 0.5,
+      "resolved_in_spotify": 0.4666666666666667,
+      "recognizable": 0.4666666666666667,
+      "hit": 0.36666666666666664,
+      "has_3_useful_tags_song": 0.43333333333333335,
+      "has_3_useful_tags_any": 0.4666666666666667,
+      "has_mood_tag_song": 0.06666666666666667,
+      "has_mood_tag_any": 0.06666666666666667,
+      "released_2024_or_later": 0.0,
+      "median_year": 2010.0,
+      "median_lastfm_listeners": 634855.0,
+      "median_listenbrainz_users": 5221.0
+    },
+    "estudio": {
+      "n": 30,
+      "duplicates": 0,
+      "unique_artist_ratio": 1.0,
+      "exists_in_musicbrainz": 0.6,
+      "not_found_anywhere": 0.26666666666666666,
+      "resolved_in_spotify": 0.6666666666666666,
+      "recognizable": 0.5666666666666667,
+      "hit": 0.16666666666666666,
+      "has_3_useful_tags_song": 0.4666666666666667,
+      "has_3_useful_tags_any": 0.6,
+      "has_mood_tag_song": 0.06666666666666667,
+      "has_mood_tag_any": 0.16666666666666666,
+      "released_2024_or_later": 0.0,
+      "median_year": 2006.0,
+      "median_lastfm_listeners": 318052.0,
+      "median_listenbrainz_users": 3486.5
+    },
+    "entrenamiento": {
+      "n": 30,
+      "duplicates": 0,
+      "unique_artist_ratio": 1.0,
+      "exists_in_musicbrainz": 0.6,
+      "not_found_anywhere": 0.26666666666666666,
+      "resolved_in_spotify": 0.6666666666666666,
+      "recognizable": 0.6333333333333333,
+      "hit": 0.5666666666666667,
+      "has_3_useful_tags_song": 0.6,
+      "has_3_useful_tags_any": 0.6,
+      "has_mood_tag_song": 0.26666666666666666,
+      "has_mood_tag_any": 0.26666666666666666,
+      "released_2024_or_later": 0.0,
+      "median_year": 2002.5,
+      "median_lastfm_listeners": 1560937.0,
+      "median_listenbrainz_users": 23021.0
+    },
+    "nostalgia": {
+      "n": 30,
+      "duplicates": 0,
+      "unique_artist_ratio": 0.9666666666666667,
+      "exists_in_musicbrainz": 0.8333333333333334,
+      "not_found_anywhere": 0.13333333333333333,
+      "resolved_in_spotify": 0.8666666666666667,
+      "recognizable": 0.8333333333333334,
+      "hit": 0.6666666666666666,
+      "has_3_useful_tags_song": 0.8333333333333334,
+      "has_3_useful_tags_any": 0.8333333333333334,
+      "has_mood_tag_song": 0.36666666666666664,
+      "has_mood_tag_any": 0.36666666666666664,
+      "released_2024_or_later": 0.0,
+      "median_year": 2002.0,
+      "median_lastfm_listeners": 2142580.0,
+      "median_listenbrainz_users": 12472.0
+    },
+    "previa_local": {
+      "n": 30,
+      "duplicates": 25,
+      "unique_artist_ratio": 0.8,
+      "exists_in_musicbrainz": 0.0,
+      "not_found_anywhere": 0.8,
+      "resolved_in_spotify": 0.0,
+      "recognizable": 0.0,
+      "hit": 0.0,
+      "has_3_useful_tags_song": 0.0,
+      "has_3_useful_tags_any": 0.0,
+      "has_mood_tag_song": 0.0,
+      "has_mood_tag_any": 0.0,
+      "released_2024_or_later": null,
+      "median_year": null,
+      "median_lastfm_listeners": 21.0,
+      "median_listenbrainz_users": null
+    }
+  },
+  "criteria": [
+    {
+      "key": "exists_in_musicbrainz",
+      "metric": "exists_in_musicbrainz",
+      "label": "Existe en MusicBrainz (no es alucinación)",
+      "value": 0.5666666666666667,
+      "threshold": 0.8,
+      "status": "NO PASA",
+      "needs": null,
+      "prompts_below": [
+        "preboliche",
+        "lluvia",
+        "estudio",
+        "entrenamiento",
+        "previa_local"
+      ]
+    },
+    {
+      "key": "resolved_in_spotify",
+      "metric": "resolved_in_spotify",
+      "label": "Se encuentra en Spotify (exportable)",
+      "value": 0.62,
+      "threshold": 0.7,
+      "status": "NO PASA",
+      "needs": "spotify",
+      "prompts_below": [
+        "preboliche",
+        "lluvia",
+        "estudio",
+        "entrenamiento",
+        "previa_local"
+      ]
+    },
+    {
+      "key": "has_3_useful_tags",
+      "metric": "has_3_useful_tags_song",
+      "label": "≥3 tags útiles a nivel canción",
+      "value": 0.5333333333333333,
+      "threshold": 0.5,
+      "status": "PASA",
+      "needs": "lastfm",
+      "prompts_below": [
+        "preboliche",
+        "lluvia",
+        "estudio",
+        "previa_local"
+      ]
+    },
+    {
+      "key": "recognizable",
+      "metric": "recognizable",
+      "label": "Música reconocible",
+      "value": 0.5733333333333334,
+      "threshold": 0.6,
+      "status": "NO PASA",
+      "needs": null,
+      "prompts_below": [
+        "preboliche",
+        "lluvia",
+        "estudio",
+        "previa_local"
+      ]
+    }
+  ],
+  "verdict": "NO-GO (o replantear)",
+  "sources": {
+    "listenbrainz_popularity_ok": true,
+    "listenbrainz_tags_ok": true,
+    "listenbrainz_error": null,
+    "lastfm_enabled": true,
+    "spotify_enabled": true,
+    "spotify_auth_error": null
+  },
+  "generator": {
+    "model": "gemma4:12b",
+    "method": "API compatible OpenAI (http://localhost:11434/v1)",
+    "date": "2026-11-23",
+    "notes": "Modelo elegido por el equipo, misma consigna y temperatura 0.3.",
+    "errors": {}
+  }
+}
