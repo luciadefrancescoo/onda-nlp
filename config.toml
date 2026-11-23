@@ -113,6 +113,9 @@ sources = 0.15                   # en cuántas búsquedas apareció
 popularity = 0.10                # oyentes en Last.fm (escala log)
 genre_penalty = 0.25             # x puntaje si no tiene ningún género pedido
 era_penalty = 0.30               # x puntaje si se pidió época y no la tiene
+artist_fit = 0.15                # parecido del artista a los artistas de referencia (perfil de tags)
+fit_min = 0.25                   # afinidad por debajo de esto…
+fit_penalty = 0.50               # …multiplica el puntaje por esto
 
 # --- Escenas de desarrollo -----------------------------------------------------
 # Para ajustar el ranking (pesos, filtros). Son distintas de [[prompts]], que
@@ -147,3 +150,9 @@ genres = ["cumbia", "reggaeton", "cumbia villera", "cumbia pop", "rkt", "latin",
 id = "lectura"
 text = "Leyendo un libro de noche, música clásica suave"
 genres = ["classical", "piano", "baroque", "romantic", "modern classical", "neoclassical", "chamber music"]
+
+[[dev_prompts]]
+id = "auto_vives"
+text = "Estoy en el auto volviendo del trabajo y quiero escuchar algo divertido y cantable tipo Carlos Vives"
+# Sin "tropical" ni "latin": en Last.fm "tropical" suele ser tropical house y "latin" incluye casi todo.
+genres = ["vallenato", "cumbia", "salsa", "merengue", "latin pop", "pop latino", "bachata", "colombian", "champeta", "rock en espanol", "latin rock", "son cubano"]

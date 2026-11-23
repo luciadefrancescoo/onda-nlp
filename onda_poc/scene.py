@@ -151,7 +151,8 @@ def interpret(http: HttpClient, scenario: str, base_url: str, model: str,
 
 # Versiones que no queremos en una playlist salvo que no haya otra.
 _UNWANTED_VERSION = re.compile(
-    r"\b(live|en vivo|ao vivo|remix|rmx|karaoke|instrumental|cover|demo|sped up|slowed|nightcore|8d)\b",
+    r"\b(live|en vivo|ao vivo|remix|rmx|karaoke|instrumental|cover|demo|sped up|slowed|nightcore|8d"
+    r"|alternate|extended|radio edit|\w+ mix)\b",
     re.IGNORECASE)
 
 
@@ -188,6 +189,36 @@ def verify_artists(lastfm: Lastfm, names: list[str]) -> tuple[list[str], list[st
         elif not info:
             bad.append(name)
     return ok, bad
+
+
+def artist_profile(lastfm: Lastfm, artists: list[str], junk: list[str], top: int = 10) -> dict[str, float]:
+    """El "sonido" de la escena según sus artistas de referencia.
+
+    Para cada tag, la fracción de artistas de referencia que lo tienen entre sus
+    `top` tags. "Tipo Carlos Vives" -> latin, colombia, vallenato, colombian…
+    Sirve para separar a Fonseca (latin, colombia) de TWICE (k-pop, korean), aunque
+    las dos canciones tengan el tag "tropical".
+    """
+    counts: dict[str, int] = {}
+    n = 0
+    for a in artists:
+        tags = useful_tags(lastfm.artist_tags(a), a, junk)[:top]
+        if not tags:
+            continue
+        n += 1
+        for t in set(tags):
+            counts[t] = counts.get(t, 0) + 1
+    return {t: c / n for t, c in counts.items()} if n else {}
+
+
+def artist_fit(t: Track, profile: dict[str, float], top: int = 10) -> float:
+    """Coseno entre los tags del artista de la canción y el perfil de la escena (0-1)."""
+    tags = list(dict.fromkeys(t.artist_tags[:top]))
+    if not profile or not tags:
+        return 0.0
+    dot = sum(profile.get(x, 0.0) for x in tags)
+    norm_p = math.sqrt(sum(v * v for v in profile.values()))
+    return dot / (math.sqrt(len(tags)) * norm_p) if norm_p else 0.0
 
 
 def build_pool(lastfm: Lastfm, interp: Interpretation, artists: list[str],
@@ -284,9 +315,12 @@ class RankWeights:
     tags: float = 0.15
     genre: float = 0.20
     era: float = 0.10
+    artist_fit: float = 0.15      # parecido del artista al perfil de los artistas de referencia
     sources: float = 0.15
     popularity: float = 0.10
     genre_penalty: float = 0.25   # multiplica el puntaje si la canción no tiene ningún género pedido
+    fit_min: float = 0.25         # afinidad (0-1, reescalada) por debajo de la cual se penaliza…
+    fit_penalty: float = 0.50     # …multiplicando el puntaje por esto
     era_penalty: float = 0.60     # idem si se pidió una época y la canción no tiene ese tag
 
 
@@ -352,7 +386,7 @@ def era_evidence(t: Track, era_tags: list[str]) -> bool:
 
 
 def rank(tracks: list[Track], interp: Interpretation, weights: RankWeights,
-         sims: list[float] | None = None) -> list[Track]:
+         sims: list[float] | None = None, profile: dict[str, float] | None = None) -> list[Track]:
     """Puntaje 0-1 = promedio ponderado de los rasgos activos, con penalizaciones.
 
     Rasgos: similitud semántica (si hay embeddings), moods en los tags, género pedido
@@ -370,7 +404,13 @@ def rank(tracks: list[Track], interp: Interpretation, weights: RankWeights,
     era_tags = interp.era_tags
     active = {"semantica": w.semantic if sims else 0.0, "tags": w.tags,
               "genero": w.genre if interp.genres else 0.0, "epoca": w.era if era_tags else 0.0,
+              "afinidad": w.artist_fit if profile else 0.0,
               "busquedas": w.sources, "popularidad": w.popularity}
+    # El afinidad se reescala dentro de la escena como la semántica: el coseno crudo
+    # depende de cuántos tags tenga el perfil.
+    fits = [artist_fit(t, profile) for t in tracks] if profile else [0.0] * len(tracks)
+    hi_fit = max(fits) if fits else 0.0
+    fits = [f / hi_fit if hi_fit else 0.0 for f in fits]
     total = sum(active.values()) or 1.0
     wanted_artists = {normalize_artist(a) for a in interp.artists}
     for i, t in enumerate(tracks):
@@ -378,13 +418,16 @@ def rank(tracks: list[Track], interp: Interpretation, weights: RankWeights,
         genres = genre_evidence(t, interp.genres)
         era_ok = era_evidence(t, era_tags) if era_tags else False
         f = {"semantica": sims[i] if sims else 0.0, "tags": tm, "genero": 1.0 if genres else 0.0,
-             "epoca": 1.0 if era_ok else 0.0, "busquedas": min(1.0, len(t.sources) / 3),
+             "epoca": 1.0 if era_ok else 0.0, "afinidad": fits[i],
+             "busquedas": min(1.0, len(t.sources) / 3),
              "popularidad": popularity(t.listeners)}
         score = sum(active[k] * f[k] for k in f) / total
         if interp.genres and not genres:
             score *= w.genre_penalty
         if era_tags and not era_ok:
             score *= w.era_penalty
+        if profile and t.artist_tags and fits[i] < w.fit_min:
+            score *= w.fit_penalty  # artista que no se parece a los de referencia (k-pop en una cumbia)
         t.score = score
         t.parts = {k: round(v, 3) for k, v in f.items() if active[k]}
         why = []

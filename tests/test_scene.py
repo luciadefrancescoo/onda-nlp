@@ -219,3 +219,36 @@ def test_select_drops_songs_that_became_identical_after_enrich():
     b = track("Cyndi Lauper", "Girls Just Want To Have Fun", [])
     a.score, b.score = 0.9, 0.8
     assert scene.select([a, b], 5) == [a]
+
+
+def test_artist_profile_and_fit_separate_similar_artists_from_tag_matches():
+    tags = {"Carlos Vives": ["latin", "Colombia", "vallenato", "cumbia"],
+            "Fonseca": ["latin", "Colombia", "latin pop", "colombian"],
+            "TWICE": ["k-pop", "Korean", "pop", "girl group"]}
+
+    def handler(params, body):
+        names = tags.get(params["artist"], [])
+        return Response(200, {"toptags": {"tag": [{"name": n, "count": 100} for n in names]}})
+
+    lastfm = Lastfm(FakeHttp([("GET", "audioscrobbler", handler)]), "key")
+    profile = scene.artist_profile(lastfm, ["Carlos Vives", "Fonseca"], junk=[])
+    assert profile["latin"] == 1.0 and profile["vallenato"] == 0.5
+    fonseca = track("Fonseca", "Te Mando Flores", [])
+    fonseca.artist_tags = [x.lower() for x in tags["Fonseca"]]
+    twice = track("TWICE", "Alcohol-Free", [("tropical", 100), ("pop", 100)])
+    twice.artist_tags = ["k pop", "korean", "pop", "girl group"]
+    assert scene.artist_fit(fonseca, profile) > 0.5 > scene.artist_fit(twice, profile) == 0.0
+
+    i = scene.parse_interpretation(json.dumps({**INTERP, "generos": ["tropical", "pop"]}))
+    fonseca.tags = [("pop", 50)]
+    ranked = scene.rank([twice, fonseca], i, scene.RankWeights(), sims=[0.5, 0.5], profile=profile)
+    assert ranked[0] is fonseca and fonseca.parts["afinidad"] == 1.0
+
+
+def test_unwanted_versions_filter():
+    U = scene._UNWANTED_VERSION
+    for bad in ["Boquita De Caramelo (Alternate Mix)", "La Bicicleta (Live)", "Cumbia (Extended Version)",
+                "Song - Radio Edit", "Gasolina (Remix)"]:
+        assert U.search(bad), bad
+    for ok in ["Mixed Feelings", "Mix It Up", "Blue Monday", "Mi Gente"]:
+        assert not U.search(ok), ok

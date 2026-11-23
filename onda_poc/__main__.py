@@ -190,6 +190,7 @@ def cmd_build(args, cfg) -> int:
             artists, dropped = scene.verify_artists(lastfm, interp.artists)
             print(f"  artistas: {', '.join(artists) or '—'}"
                   + (f" (descartados por no existir: {', '.join(dropped)})" if dropped else ""), file=sys.stderr)
+            profile = scene.artist_profile(lastfm, artists, cfg["tags"]["junk"])
             pool = scene.build_pool(lastfm, interp, artists, params)
             tracks = scene.enrich(lastfm, scene.prefilter(pool, params.enrich), cfg["tags"]["junk"])
             print(f"  pool: {len(pool)} canciones, {len(tracks)} con tags", file=sys.stderr, flush=True)
@@ -202,10 +203,12 @@ def cmd_build(args, cfg) -> int:
                 except Exception as e:  # sin embeddings, rankea igual con tags y popularidad
                     print(f"  AVISO: sin embeddings ({e}); rankeo sin similitud semántica", file=sys.stderr)
                     out["generator"]["errors"][f"{pid}:embeddings"] = str(e)[:300]
-            chosen = scene.select(scene.rank(tracks, interp, weights, sims), n, max_per_artist, interp.genres)
+            chosen = scene.select(scene.rank(tracks, interp, weights, sims, profile), n, max_per_artist,
+                                  interp.genres)
             out["interpretations"][pid] = {**interp.to_dict(), "artistas_verificados": artists,
                                            "artistas_descartados": dropped, "pool": len(pool),
-                                           "con_tags": len(tracks), "embeddings": sims is not None}
+                                           "con_tags": len(tracks), "embeddings": sims is not None,
+                                           "perfil": dict(sorted(profile.items(), key=lambda kv: -kv[1])[:12])}
         except Exception as e:  # seguimos con los demás prompts
             print(f"  ERROR en {pid}: {e}", file=sys.stderr)
             out["generator"]["errors"][pid] = str(e)[:500]
