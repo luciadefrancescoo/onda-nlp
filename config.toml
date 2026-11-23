@@ -82,3 +82,21 @@ mood_lexicon = [
   "atmospheric", "uplifting", "epic", "peaceful", "sleep", "morning",
   "sing along", "singalong", "catchy", "previa", "joda", "tranqui", "dark",
 ]
+
+# --- build: el enfoque de onda. ----------------------------------------------
+# El LLM interpreta la escena (moods, géneros, artistas); las canciones salen
+# de Last.fm y se rankean. Ver onda_poc/scene.py.
+[build]
+embed_model = "embeddinggemma"   # modelo de embeddings (Ollama); LLM_EMBED_MODEL lo pisa
+tag_limit = 50                   # canciones por tag (tag.getTopTracks)
+artist_limit = 10                # canciones por artista de referencia
+similar_artists = 3              # artistas similares por cada artista de referencia
+similar_limit = 5                # canciones por artista similar
+enrich = 90                      # cuántas del pool se enriquecen con tags (2 requests c/u)
+max_per_artist = 2               # diversidad en la playlist final
+
+[build.weights]                  # puntaje = suma ponderada (se discuten, no se tunean mirando el test)
+semantic = 0.45                  # similitud de embeddings escena vs. tags de la canción
+tags = 0.30                      # tags pedidos que la canción tiene
+sources = 0.15                   # en cuántas búsquedas apareció
+popularity = 0.10                # oyentes en Last.fm (escala log)

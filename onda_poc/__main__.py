@@ -3,6 +3,7 @@
     python -m onda_poc check                      # ¿llegan las APIs?
     python -m onda_poc run --candidates data/candidates/claude-opus-5-5.json
     python -m onda_poc generate --out data/candidates/mi-modelo.json
+    python -m onda_poc build --out data/candidates/onda-mi-modelo.json   # enfoque nuevo
     python -m onda_poc export --candidates data/candidates/claude-opus-5-5.json --prompt preboliche
     python -m onda_poc compare results/<corrida-1> results/<corrida-2>
 """
@@ -132,6 +133,87 @@ def cmd_generate(args, cfg) -> int:
     Path(args.out).parent.mkdir(parents=True, exist_ok=True)
     Path(args.out).write_text(json.dumps(out, ensure_ascii=False, indent=2))
     print(f"Guardado en {args.out}")
+    return 0 if any(out["prompts"].values()) else 1
+
+
+def cmd_build(args, cfg) -> int:
+    """Enfoque nuevo: el LLM interpreta la escena y las canciones salen de Last.fm."""
+    from . import scene
+
+    base_url = os.environ.get("LLM_BASE_URL")
+    model = os.environ.get("LLM_MODEL")
+    if not base_url or not model:
+        print("Definí LLM_BASE_URL y LLM_MODEL en .env", file=sys.stderr)
+        return 2
+    if not os.environ.get("LASTFM_API_KEY"):
+        print("build necesita LASTFM_API_KEY: las canciones salen de Last.fm.", file=sys.stderr)
+        return 2
+    b = cfg.get("build", {})
+    embed_model = os.environ.get("LLM_EMBED_MODEL") or b.get("embed_model", "embeddinggemma")
+    api_key = os.environ.get("LLM_API_KEY")
+    effort = os.environ.get("LLM_REASONING_EFFORT", "none") or None
+    params = scene.CatalogParams(**{k: b[k] for k in
+                                    ("tag_limit", "artist_limit", "similar_artists", "similar_limit", "enrich")
+                                    if k in b})
+    weights = scene.RankWeights(**b.get("weights", {}))
+    max_per_artist = b.get("max_per_artist", 2)
+    n = args.n or cfg["run"]["candidates_per_prompt"]
+    prompts = [p for p in cfg["prompts"] if not args.prompt or p["id"] == args.prompt]
+    if not prompts:
+        print(f"No existe el prompt '{args.prompt}'.", file=sys.stderr)
+        return 2
+
+    http = make_http(timeout=600)
+    m = cfg["matching"]
+    lastfm = Lastfm(http, os.environ["LASTFM_API_KEY"],
+                    title_min=m["title_min_similarity"], artist_min=m["artist_min_similarity"])
+    out = {"generator": {"model": f"onda. ({model} + {embed_model})",
+                         "method": "el LLM interpreta la escena; canciones de Last.fm; ranking por embeddings y tags",
+                         "date": datetime.now().strftime("%Y-%m-%d"),
+                         "notes": "El LLM no nombra canciones: salen del catálogo de Last.fm.",
+                         "errors": {}},
+           "interpretations": {}, "prompts": {}}
+    for p in prompts:
+        pid = p["id"]
+        t0 = datetime.now()
+        print(f"\n[{pid}] {p['text']}", file=sys.stderr, flush=True)
+        chosen = []
+        try:
+            interp = scene.interpret(http, p["text"], base_url, model, api_key, effort)
+            print(f"  moods: {', '.join(interp.moods)} | géneros: {', '.join(interp.genres)}"
+                  + (f" | época: {interp.era}" if interp.era else ""), file=sys.stderr)
+            artists, dropped = scene.verify_artists(lastfm, interp.artists)
+            print(f"  artistas: {', '.join(artists) or '—'}"
+                  + (f" (descartados por no existir: {', '.join(dropped)})" if dropped else ""), file=sys.stderr)
+            pool = scene.build_pool(lastfm, interp, artists, params)
+            tracks = scene.enrich(lastfm, scene.prefilter(pool, params.enrich), cfg["tags"]["junk"])
+            print(f"  pool: {len(pool)} canciones, {len(tracks)} con tags", file=sys.stderr, flush=True)
+            sims = None
+            if tracks:
+                try:
+                    texts = [scene.scene_text(p["text"], interp)] + [scene.track_text(t) for t in tracks]
+                    vecs = scene.embed(http, texts, base_url, embed_model, api_key)
+                    sims = [scene.cosine(vecs[0], v) for v in vecs[1:]]
+                except Exception as e:  # sin embeddings, rankea igual con tags y popularidad
+                    print(f"  AVISO: sin embeddings ({e}); rankeo sin similitud semántica", file=sys.stderr)
+                    out["generator"]["errors"][f"{pid}:embeddings"] = str(e)[:300]
+            chosen = scene.select(scene.rank(tracks, interp, weights, sims), n, max_per_artist)
+            out["interpretations"][pid] = {**interp.to_dict(), "artistas_verificados": artists,
+                                           "artistas_descartados": dropped, "pool": len(pool),
+                                           "con_tags": len(tracks), "embeddings": sims is not None}
+        except Exception as e:  # seguimos con los demás prompts
+            print(f"  ERROR en {pid}: {e}", file=sys.stderr)
+            out["generator"]["errors"][pid] = str(e)[:500]
+        out["prompts"][pid] = [{"artist": t.artist, "title": t.title, "score": round(t.score, 3),
+                                "why": t.why, "parts": t.parts, "listeners": t.listeners} for t in chosen]
+        secs = (datetime.now() - t0).total_seconds()
+        print(f"  {len(chosen)} canciones en {secs:.0f} s", file=sys.stderr, flush=True)
+        for t in chosen[:5]:
+            print(f"    {t.score:.2f}  {t.artist} — {t.title}  [{'; '.join(t.why)}]", file=sys.stderr)
+    Path(args.out).parent.mkdir(parents=True, exist_ok=True)
+    Path(args.out).write_text(json.dumps(out, ensure_ascii=False, indent=2))
+    print(f"\nGuardado en {args.out}")
+    print(f"HTTP: {http.stats}", file=sys.stderr)
     return 0 if any(out["prompts"].values()) else 1
 
 
@@ -286,6 +368,11 @@ def main(argv: list[str] | None = None) -> int:
     g.add_argument("--out", required=True)
     g.add_argument("--n", type=int)
 
+    bd = sub.add_parser("build", help="enfoque nuevo: el LLM interpreta la escena y las canciones salen de Last.fm")
+    bd.add_argument("--out", required=True)
+    bd.add_argument("--n", type=int)
+    bd.add_argument("--prompt", help="solo este prompt (id)")
+
     r = sub.add_parser("run", help="verifica candidatos y genera el reporte")
     r.add_argument("--candidates", required=True)
     r.add_argument("--out")
@@ -312,7 +399,7 @@ def main(argv: list[str] | None = None) -> int:
 
     args = ap.parse_args(argv)
     cfg = load_config(Path(args.config))
-    cmds = {"check": cmd_check, "generate": cmd_generate, "run": cmd_run,
+    cmds = {"check": cmd_check, "generate": cmd_generate, "build": cmd_build, "run": cmd_run,
             "export": cmd_export, "compare": cmd_compare}
     return cmds[args.cmd](args, cfg)
 

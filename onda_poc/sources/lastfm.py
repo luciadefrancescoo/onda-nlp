@@ -62,6 +62,52 @@ class Lastfm:
             res.tags = [(x.get("name", ""), _int(x.get("count")) or 0) for x in tags]
         return res
 
+    # --- Catálogo: de dónde sale el pool de canciones reales para `build` ---
+
+    def artist_info(self, artist: str) -> tuple[str, int] | None:
+        """(nombre canónico, oyentes) si el artista existe; None si no (p. ej. inventado por el LLM)."""
+        r = self._call("artist.getInfo", artist=artist, autocorrect=1)
+        if not r.ok or not r.data or "error" in r.data:
+            return None
+        a = r.data.get("artist") or {}
+        name = a.get("name", "")
+        if not name or artist_similarity(artist, [name]) < self.artist_min:
+            return None
+        return name, _int((a.get("stats") or {}).get("listeners")) or 0
+
+    def tag_top_tracks(self, tag: str, limit: int = 50) -> list[dict]:
+        r = self._call("tag.getTopTracks", tag=tag, limit=limit)
+        return _tracks(r, "tracks")
+
+    def artist_top_tracks(self, artist: str, limit: int = 10) -> list[dict]:
+        r = self._call("artist.getTopTracks", artist=artist, limit=limit, autocorrect=1)
+        return _tracks(r, "toptracks")
+
+    def similar_artists(self, artist: str, limit: int = 5) -> list[str]:
+        r = self._call("artist.getSimilar", artist=artist, limit=limit, autocorrect=1)
+        if not r.ok or not r.data or "error" in r.data:
+            return []
+        items = (r.data.get("similarartists") or {}).get("artist", []) or []
+        if isinstance(items, dict):
+            items = [items]
+        return [a.get("name", "") for a in items if a.get("name")]
+
+
+def _tracks(r, key: str) -> list[dict]:
+    """[{'artist','title','listeners'}] de una respuesta tipo tag/artist.getTopTracks."""
+    if not r.ok or not r.data or "error" in r.data:
+        return []
+    items = (r.data.get(key) or {}).get("track", []) or []
+    if isinstance(items, dict):
+        items = [items]
+    out = []
+    for t in items:
+        art = t.get("artist")
+        art = art.get("name", "") if isinstance(art, dict) else str(art or "")
+        if t.get("name") and art:
+            out.append({"artist": art, "title": t["name"], "listeners": _int(t.get("listeners"))})
+    return out
+
 
 def _int(x) -> int | None:
     try:

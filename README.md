@@ -122,6 +122,36 @@ Los candidatos incluidos los generó un modelo grande. Para saber si el proyecto
 
 `generate` intenta modo JSON, ignora bloques de razonamiento (`<think>`) y reintenta si la respuesta no se puede leer. Un modelo local puede tardar varios minutos por prompt.
 
+## Enfoque de onda.: `build`
+
+Con `gemma4:12b`, `generate` da NO-GO: 1 de cada 3 canciones no existe (ver `results/comparacion.md`). Por eso el enfoque de onda. cambia el rol del LLM: **interpreta la escena, no nombra canciones.**
+
+```
+escena ──► LLM interpreta ──► moods, géneros, artistas, época      (los artistas se verifican en Last.fm)
+                                    │
+                                    ▼
+           Last.fm: top tracks por tag, por artista y por similares ──► pool de canciones reales
+                                    │
+                                    ▼
+           tags de cada canción ──► ranking: embeddings + tags + búsquedas + popularidad
+                                    │
+                                    ▼
+                   30 canciones, como mucho 2 por artista, cada una con su "por qué"
+```
+
+Necesita `LASTFM_API_KEY` y un modelo de embeddings en Ollama:
+
+```bash
+ollama pull embeddinggemma
+LLM_MODEL=gemma4:12b python -m onda_poc build --out data/candidates/onda-gemma4-12b.json
+python -m onda_poc build --prompt lluvia --out /tmp/lluvia.json      # una sola escena
+python -m onda_poc run --candidates data/candidates/onda-gemma4-12b.json
+```
+
+La salida tiene el mismo formato que `generate`, así que `run`, `export` y `compare` funcionan igual. Además guarda, por escena, la interpretación del LLM, los artistas descartados por no existir y, por canción, el puntaje desglosado y su explicación.
+
+Los pesos del ranking y los tamaños de búsqueda están en `config.toml`, sección `[build]`. Si el modelo de embeddings no está, `build` rankea igual con tags, búsquedas y popularidad, y lo avisa.
+
 ## Candidatos
 
 `data/candidates/claude-opus-5-5.json` tiene 30 canciones por prompt, propuestas por Claude Opus 5.5 con la misma consigna que usa `generate`. **Es un modelo grande: tómenlo como cota optimista.** La comparación que importa es con el modelo chico que piensen usar:
@@ -159,8 +189,9 @@ Además de los 5 prompts del documento hay uno de estrés (`previa_local`: cumbi
 config.toml                 prompts, umbrales, listas de tags
 data/candidates/            candidatos por modelo (JSON)
 onda_poc/
-  __main__.py               CLI: check / generate / run / export / compare
-  llm.py                    consigna y parser de la respuesta del LLM
+  __main__.py               CLI: check / generate / build / run / export / compare
+  llm.py                    consignas y parser de las respuestas del LLM
+  scene.py                  build: interpretar la escena, armar el pool, rankear
   http.py                   caché SQLite, rate limit por host, reintentos
   matching.py               normalización y similitud artista/título
   tags.py                   filtro de tags basura, detección de mood
