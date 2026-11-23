@@ -1,10 +1,10 @@
 import pytest
 
-from vibematch_poc.llm import parse_candidates
-from vibematch_poc.matching import (
+from onda_poc.llm import parse_candidates
+from onda_poc.matching import (
     artist_similarity, dedup_key, normalize_title, primary_artist, title_similarity,
 )
-from vibematch_poc.tags import mood_tags, useful_tags
+from onda_poc.tags import mood_tags, useful_tags
 
 
 @pytest.mark.parametrize("raw,expected", [

@@ -17,7 +17,7 @@ from urllib.parse import urlparse
 
 import requests
 
-USER_AGENT = "VibeMatchPoC/0.1 (proyecto academico NLP)"
+USER_AGENT = "OndaPoC/0.1 (proyecto academico NLP)"
 
 # Segundos mínimos entre requests al mismo host.
 DEFAULT_MIN_INTERVAL = {
@@ -177,4 +177,4 @@ class HttpClient:
 
 def build_user_agent(contact: str | None) -> str:
     """MusicBrainz pide un User-Agent con forma de contacto."""
-    return f"VibeMatchPoC/0.1 ( {contact} )" if contact else USER_AGENT
+    return f"OndaPoC/0.1 ( {contact} )" if contact else USER_AGENT

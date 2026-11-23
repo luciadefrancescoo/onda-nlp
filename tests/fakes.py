@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from vibematch_poc.http import Response
+from onda_poc.http import Response
 
 
 class FakeHttp:

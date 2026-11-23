@@ -1,4 +1,4 @@
-from vibematch_poc.http import HttpClient
+from onda_poc.http import HttpClient
 
 
 class FakeResp:

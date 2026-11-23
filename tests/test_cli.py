@@ -1,6 +1,6 @@
 import json
 
-import vibematch_poc.__main__ as cli
+import onda_poc.__main__ as cli
 
 from .test_pipeline import build
 

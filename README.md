@@ -1,6 +1,6 @@
-# VibeMatch: prueba de factibilidad de datos
+# onda. — prueba de factibilidad de datos
 
-Antes de comprometernos con VibeMatch, esta prueba responde cuatro preguntas con números:
+Antes de comprometernos con onda., esta prueba responde cuatro preguntas con números:
 
 1. Si un LLM propone canciones para una escena ("preboliche con reguetón conocido"), **¿existen o las inventa?**
 2. **¿Son reconocibles?** (oyentes en Last.fm / ListenBrainz)
@@ -34,8 +34,8 @@ python3 -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
 cp .env.example .env        # completar lo que tengan (todo es opcional salvo CONTACT_EMAIL)
 
-python -m vibematch_poc check          # prueba cada fuente con "Gasolina"
-python -m vibematch_poc run --candidates data/candidates/claude-opus-5-5.json
+python -m onda_poc check          # prueba cada fuente con "Gasolina"
+python -m onda_poc run --candidates data/candidates/claude-opus-5-5.json
 ```
 
 Para probar rápido antes de la corrida completa: `--limit 3` (3 canciones por prompt).
@@ -79,9 +79,9 @@ Prueba el camino real de la app: iniciás sesión con tu cuenta, el script busca
 
 ```bash
 # Primero solo buscar, sin crear nada:
-python -m vibematch_poc export --candidates data/candidates/claude-opus-5-5.json --prompt preboliche --dry-run
+python -m onda_poc export --candidates data/candidates/claude-opus-5-5.json --prompt preboliche --dry-run
 # Después crear la playlist privada:
-python -m vibematch_poc export --candidates data/candidates/claude-opus-5-5.json --prompt preboliche
+python -m onda_poc export --candidates data/candidates/claude-opus-5-5.json --prompt preboliche
 ```
 
 La primera vez se abre el navegador para autorizar. El permiso queda guardado en `cache/spotify_token.json` (ignorado por git). Para revocarlo: [spotify.com/account/apps](https://www.spotify.com/account/apps/).
@@ -97,7 +97,7 @@ En modo desarrollo solo 5 cuentas pueden usar la app, así que los visitantes no
 3. Corran:
 
 ```bash
-python -m vibematch_poc export --candidates data/candidates/claude-opus-5-5.json --prompt preboliche \
+python -m onda_poc export --candidates data/candidates/claude-opus-5-5.json --prompt preboliche \
   --account equipo --public --qr
 ```
 
@@ -115,9 +115,9 @@ Los candidatos incluidos los generó un modelo grande. Para saber si el proyecto
 2. En `.env`: `LLM_BASE_URL=http://localhost:11434/v1` (sin API key).
 3. Generar, verificar y comparar:
    ```bash
-   LLM_MODEL=gemma4:12b python -m vibematch_poc generate --out data/candidates/gemma4-12b.json
-   python -m vibematch_poc run --candidates data/candidates/gemma4-12b.json
-   python -m vibematch_poc compare results/<corrida-claude> results/<corrida-nueva> --out results/comparacion.md
+   LLM_MODEL=gemma4:12b python -m onda_poc generate --out data/candidates/gemma4-12b.json
+   python -m onda_poc run --candidates data/candidates/gemma4-12b.json
+   python -m onda_poc compare results/<corrida-claude> results/<corrida-nueva> --out results/comparacion.md
    ```
 
 `generate` intenta modo JSON, ignora bloques de razonamiento (`<think>`) y reintenta si la respuesta no se puede leer. Un modelo local puede tardar varios minutos por prompt.
@@ -129,8 +129,8 @@ Los candidatos incluidos los generó un modelo grande. Para saber si el proyecto
 ```bash
 # Ejemplo con Ollama local
 LLM_BASE_URL=http://localhost:11434/v1 LLM_MODEL=qwen2.5:7b \
-  python -m vibematch_poc generate --out data/candidates/qwen2.5-7b.json
-python -m vibematch_poc run --candidates data/candidates/qwen2.5-7b.json
+  python -m onda_poc generate --out data/candidates/qwen2.5-7b.json
+python -m onda_poc run --candidates data/candidates/qwen2.5-7b.json
 ```
 
 ## Umbrales
@@ -158,7 +158,7 @@ Además de los 5 prompts del documento hay uno de estrés (`previa_local`: cumbi
 ```
 config.toml                 prompts, umbrales, listas de tags
 data/candidates/            candidatos por modelo (JSON)
-vibematch_poc/
+onda_poc/
   __main__.py               CLI: check / generate / run / export / compare
   llm.py                    consigna y parser de la respuesta del LLM
   http.py                   caché SQLite, rate limit por host, reintentos

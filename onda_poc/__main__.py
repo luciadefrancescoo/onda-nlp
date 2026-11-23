@@ -1,10 +1,10 @@
 """CLI de la prueba de factibilidad.
 
-    python -m vibematch_poc check                      # ¿llegan las APIs?
-    python -m vibematch_poc run --candidates data/candidates/claude-opus-5-5.json
-    python -m vibematch_poc generate --out data/candidates/mi-modelo.json
-    python -m vibematch_poc export --candidates data/candidates/claude-opus-5-5.json --prompt preboliche
-    python -m vibematch_poc compare results/<corrida-1> results/<corrida-2>
+    python -m onda_poc check                      # ¿llegan las APIs?
+    python -m onda_poc run --candidates data/candidates/claude-opus-5-5.json
+    python -m onda_poc generate --out data/candidates/mi-modelo.json
+    python -m onda_poc export --candidates data/candidates/claude-opus-5-5.json --prompt preboliche
+    python -m onda_poc compare results/<corrida-1> results/<corrida-2>
 """
 
 from __future__ import annotations
@@ -241,8 +241,8 @@ def cmd_export(args, cfg) -> int:
     if args.dry_run:
         print("Modo --dry-run: no se creó ninguna playlist.")
     elif uris:
-        name = args.name or f"VibeMatch PoC · {args.prompt}"
-        desc = f"{prompts.get(args.prompt, args.prompt)} (prueba de exportación VibeMatch)"
+        name = args.name or f"onda. PoC · {args.prompt}"
+        desc = f"{prompts.get(args.prompt, args.prompt)} (prueba de exportación onda.)"
         pid, url = exp.create_playlist(name, desc, public=args.public)
         summary["add_endpoint"] = exp.add_items(pid, uris)
         summary["playlist_url"] = url
@@ -275,7 +275,7 @@ def cmd_compare(args, cfg) -> int:
 
 def main(argv: list[str] | None = None) -> int:
     load_dotenv(ROOT / ".env")
-    ap = argparse.ArgumentParser(prog="vibematch_poc")
+    ap = argparse.ArgumentParser(prog="onda_poc")
     ap.add_argument("--config", default=str(ROOT / "config.toml"))
     sub = ap.add_subparsers(dest="cmd", required=True)
 

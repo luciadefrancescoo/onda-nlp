@@ -7,14 +7,14 @@ try:
 except ModuleNotFoundError:
     import tomli as tomllib
 
-from vibematch_poc.http import Response
-from vibematch_poc.metrics import summarize
-from vibematch_poc.pipeline import Sources, verify
-from vibematch_poc.report import render, results_rows
-from vibematch_poc.sources.lastfm import Lastfm
-from vibematch_poc.sources.listenbrainz import ListenBrainz
-from vibematch_poc.sources.musicbrainz import MusicBrainz
-from vibematch_poc.sources.spotify import Spotify
+from onda_poc.http import Response
+from onda_poc.metrics import summarize
+from onda_poc.pipeline import Sources, verify
+from onda_poc.report import render, results_rows
+from onda_poc.sources.lastfm import Lastfm
+from onda_poc.sources.listenbrainz import ListenBrainz
+from onda_poc.sources.musicbrainz import MusicBrainz
+from onda_poc.sources.spotify import Spotify
 
 from .fakes import FakeHttp, mb_recording
 

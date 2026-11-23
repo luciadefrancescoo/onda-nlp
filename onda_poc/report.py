@@ -28,7 +28,7 @@ def render(summary: dict, records: list[dict], info: dict, generator: dict,
            prompts: dict[str, str]) -> str:
     o = summary["overall"]
     L: list[str] = []
-    L.append("# VibeMatch: prueba de factibilidad de datos")
+    L.append("# onda. — prueba de factibilidad de datos")
     L.append("")
     L.append(f"Corrida: {datetime.now():%Y-%m-%d %H:%M}  ")
     L.append(f"Candidatos: {generator.get('model', '?')} ({generator.get('method', '')})  ")

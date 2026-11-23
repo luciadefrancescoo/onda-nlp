@@ -2,8 +2,8 @@ import json
 
 import pytest
 
-from vibematch_poc import llm
-from vibematch_poc.http import Response
+from onda_poc import llm
+from onda_poc.http import Response
 
 from .fakes import FakeHttp
 

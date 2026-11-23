@@ -5,9 +5,9 @@ import time
 
 import requests
 
-import vibematch_poc.__main__ as cli
-from vibematch_poc.http import Response
-from vibematch_poc.sources import spotify_user as su
+import onda_poc.__main__ as cli
+from onda_poc.http import Response
+from onda_poc.sources import spotify_user as su
 
 from .fakes import FakeHttp
 
@@ -126,7 +126,7 @@ def test_cli_export_creates_private_playlist(tmp_path, monkeypatch):
         {"artist": "Daddy Yankee", "title": "Gasolina"}, {"artist": "Nadie", "title": "Inventada"}]}}))
     cfg_path = str(cli.Path(__file__).parent.parent / "config.toml")
     assert cli.main(["--config", cfg_path, "export", "--candidates", str(cands), "--prompt", "preboliche"]) == 0
-    assert created["public"] is False and "VibeMatch" in created["name"]
+    assert created["public"] is False and "onda." in created["name"]
     summary = json.loads(next(tmp_path.glob("results/*/export_summary.json")).read_text())
     assert summary["found"] == 1 and summary["playlist_url"].endswith("pl1")
 
