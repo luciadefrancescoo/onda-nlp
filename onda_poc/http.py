@@ -48,6 +48,7 @@ class HttpClient:
         min_interval: dict[str, float] | None = None,
         max_retries: int = 3,
         timeout: float = 20.0,
+        max_wait: float = 60.0,
         session: requests.Session | None = None,
         sleep=time.sleep,
     ):
@@ -55,6 +56,7 @@ class HttpClient:
         self.session.headers["User-Agent"] = user_agent
         self.min_interval = {**DEFAULT_MIN_INTERVAL, **(min_interval or {})}
         self.max_retries = max_retries
+        self.max_wait = max_wait  # si el servidor pide esperar más que esto, no se reintenta
         self.timeout = timeout
         self._last_call: dict[str, float] = {}
         self._sleep = sleep
@@ -146,15 +148,21 @@ class HttpClient:
                 continue
 
             self.stats["network"] += 1
-            if r.status_code in (429, 500, 502, 503, 504) and attempt < self.max_retries:
+            if r.status_code in (429, 500, 502, 503, 504):
                 retry_after = r.headers.get("Retry-After")
                 try:
                     wait = float(retry_after) if retry_after else backoff
                 except ValueError:
                     wait = backoff
-                self._sleep(min(wait, 60))
-                backoff *= 2
-                continue
+                if wait > self.max_wait:
+                    # Nos bloquearon por mucho tiempo (Spotify llegó a pedir 21 h): no tiene
+                    # sentido esperar. Devolvemos el error con cuánto hay que esperar.
+                    self.stats["errors"] += 1
+                    return Response(r.status_code, {"retry_after": wait})
+                if attempt < self.max_retries:
+                    self._sleep(wait)
+                    backoff *= 2
+                    continue
 
             try:
                 payload = r.json()

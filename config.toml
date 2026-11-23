@@ -8,30 +8,39 @@ candidates_per_prompt = 30
 spotify_market = "AR"
 
 # --- Prompts de prueba -------------------------------------------------------
+# genres / years: lo que un humano espera de cada escena, para medir relevancia
+# (comando `relevance`). Se escribieron ANTES de ajustar el ranking y no se tocan
+# para que den mejor: si están mal, se corrigen discutiéndolo en el equipo.
 # Los 5 del documento + 1 de estrés para música argentina/latina reciente.
 [[prompts]]
 id = "preboliche"
 text = "Preboliche con amigos: reguetón divertido y conocido para cantar todos"
+genres = ["reggaeton", "latin", "latin pop", "latin urban", "urbano latino", "dembow", "latin trap", "moombahton"]
 
 [[prompts]]
 id = "lluvia"
 text = "Domingo de lluvia, tranqui, mirando por la ventana"
+genres = ["indie folk", "folk", "singer songwriter", "acoustic", "jazz", "soul", "bossa nova", "dream pop", "ambient", "lo fi", "chamber pop", "slowcore"]
 
 [[prompts]]
 id = "estudio"
 text = "Música para estudiar concentrada para un parcial, que no me distraiga"
+genres = ["ambient", "classical", "neoclassical", "modern classical", "contemporary classical", "piano", "instrumental", "lo fi", "chillhop", "post rock", "downtempo", "idm", "soundtrack"]
 
 [[prompts]]
 id = "entrenamiento"
 text = "Entrenamiento de fuerza en el gimnasio, algo que me dé mucha energía"
+genres = ["metal", "nu metal", "metalcore", "hard rock", "hip hop", "rap", "trap", "electronic", "edm", "dubstep", "drum and bass", "hardstyle", "industrial", "punk"]
 
 [[prompts]]
 id = "nostalgia"
 text = "Nostalgia de la secundaria: temas que escuchábamos en los 2000"
+years = [2000, 2009]   # acá lo que importa es la época
 
 [[prompts]]
 id = "previa_local"
 text = "Previa en Buenos Aires con cumbia, cuarteto y RKT"
+genres = ["cumbia", "cuarteto", "rkt", "turreo", "cumbia villera", "cumbia argentina", "cumbia santafesina", "cumbia pop"]
 
 # --- Matching (artista, título) contra cada fuente ---------------------------
 [matching]
@@ -92,11 +101,49 @@ tag_limit = 50                   # canciones por tag (tag.getTopTracks)
 artist_limit = 10                # canciones por artista de referencia
 similar_artists = 3              # artistas similares por cada artista de referencia
 similar_limit = 5                # canciones por artista similar
-enrich = 90                      # cuántas del pool se enriquecen con tags (2 requests c/u)
+enrich = 120                     # cuántas del pool se enriquecen con tags (3 requests c/u la primera vez)
 max_per_artist = 2               # diversidad en la playlist final
 
-[build.weights]                  # puntaje = suma ponderada (se discuten, no se tunean mirando el test)
-semantic = 0.45                  # similitud de embeddings escena vs. tags de la canción
-tags = 0.30                      # tags pedidos que la canción tiene
+[build.weights]                  # puntaje = promedio ponderado; ajustar SOLO mirando --dev
+semantic = 0.30                  # similitud de embeddings escena vs. tags de la canción y del artista
+tags = 0.15                      # moods pedidos que la canción tiene
+genre = 0.20                     # tiene algún género pedido (canción o artista)
+era = 0.10                       # tiene el tag de la época pedida (solo si se pidió)
 sources = 0.15                   # en cuántas búsquedas apareció
 popularity = 0.10                # oyentes en Last.fm (escala log)
+genre_penalty = 0.25             # x puntaje si no tiene ningún género pedido
+era_penalty = 0.30               # x puntaje si se pidió época y no la tiene
+
+# --- Escenas de desarrollo -----------------------------------------------------
+# Para ajustar el ranking (pesos, filtros). Son distintas de [[prompts]], que
+# quedan solo para evaluar: si ajustamos mirando esas, los números dejan de valer.
+[[dev_prompts]]
+id = "asado"
+text = "Asado con amigos un sábado al mediodía, rock nacional"
+genres = ["rock nacional", "rock argentino", "argentine rock", "rock en espanol", "rock"]
+
+[[dev_prompts]]
+id = "ruta_noche"
+text = "Manejando de noche por la ruta, algo electrónico y tranquilo"
+genres = ["electronic", "synthwave", "downtempo", "ambient", "chillwave", "electronica", "deep house", "trip hop"]
+
+[[dev_prompts]]
+id = "cena"
+text = "Cena romántica en casa, jazz o bossa nova"
+genres = ["jazz", "bossa nova", "vocal jazz", "smooth jazz", "mpb", "soul"]
+
+[[dev_prompts]]
+id = "limpieza"
+text = "Limpiando la casa un domingo con pop de los 80"
+genres = ["pop", "synthpop", "new wave", "80s", "dance pop", "pop rock"]
+years = [1980, 1989]
+
+[[dev_prompts]]
+id = "quince"
+text = "Fiesta de 15 con cumbia y reggaetón"
+genres = ["cumbia", "reggaeton", "cumbia villera", "cumbia pop", "rkt", "latin", "dembow"]
+
+[[dev_prompts]]
+id = "lectura"
+text = "Leyendo un libro de noche, música clásica suave"
+genres = ["classical", "piano", "baroque", "romantic", "modern classical", "neoclassical", "chamber music"]

@@ -29,7 +29,8 @@
         "Ozuna",
         "Farruko"
       ],
-      "epoca": "2020s",
+      "epoca": "",
+      "epoca_descartada": "2020s",
       "artistas_verificados": [
         "Bad Bunny",
         "Daddy Yankee",
@@ -40,8 +41,8 @@
         "Farruko"
       ],
       "artistas_descartados": [],
-      "pool": 528,
-      "con_tags": 89,
+      "pool": 252,
+      "con_tags": 120,
       "embeddings": true
     },
     "lluvia": {
@@ -69,6 +70,7 @@
         "Alice Phoebe =="
       ],
       "epoca": "",
+      "epoca_descartada": "",
       "artistas_verificados": [
         "Billie Evans",
         "Norah Jones",
@@ -80,8 +82,8 @@
       "artistas_descartados": [
         "Alice Phoebe =="
       ],
-      "pool": 603,
-      "con_tags": 90,
+      "pool": 311,
+      "con_tags": 120,
       "embeddings": true
     },
     "estudio": {
@@ -109,6 +111,7 @@
         "Max Richter"
       ],
       "epoca": "",
+      "epoca_descartada": "",
       "artistas_verificados": [
         "Tycho",
         "Nils Frahm",
@@ -120,8 +123,8 @@
       "artistas_descartados": [
         "Marconiutas"
       ],
-      "pool": 539,
-      "con_tags": 89,
+      "pool": 321,
+      "con_tags": 118,
       "embeddings": true
     },
     "entrenamiento": {
@@ -149,6 +152,7 @@
         "Hardstyle DJ"
       ],
       "epoca": "",
+      "epoca_descartada": "",
       "artistas_verificados": [
         "Skrillex",
         "Gesaffelstein",
@@ -160,8 +164,8 @@
       "artistas_descartados": [
         "Hardstyle DJ"
       ],
-      "pool": 625,
-      "con_tags": 86,
+      "pool": 337,
+      "con_tags": 120,
       "embeddings": true
     },
     "nostalgia": {
@@ -189,6 +193,7 @@
         "Evanescence"
       ],
       "epoca": "2000s",
+      "epoca_descartada": "",
       "artistas_verificados": [
         "blink-182",
         "Avril Lavigne",
@@ -200,8 +205,8 @@
         "Evanescence"
       ],
       "artistas_descartados": [],
-      "pool": 628,
-      "con_tags": 90,
+      "pool": 380,
+      "con_tags": 120,
       "embeddings": true
     },
     "previa_local": {
@@ -228,7 +233,8 @@
         "Pablo Flores",
         "Los Palmeras"
       ],
-      "epoca": "2020s",
+      "epoca": "",
+      "epoca_descartada": "2020s",
       "artistas_verificados": [
         "La Delio Valdez",
         "Banda MS",
@@ -241,8 +247,8 @@
       "artistas_descartados": [
         "ULER"
       ],
-      "pool": 582,
-      "con_tags": 90,
+      "pool": 314,
+      "con_tags": 120,
       "embeddings": true
     }
   },
@@ -251,14 +257,15 @@
       {
         "artist": "J Balvin",
         "title": "Mi Gente",
-        "score": 0.735,
+        "score": 0.746,
         "why": [
-          "tags: reggaeton, latin pop",
+          "género: reggaeton, latin pop",
           "artista de referencia"
         ],
         "parts": {
-          "semantica": 0.995,
-          "tags": 0.387,
+          "semantica": 1.0,
+          "tags": 0.0,
+          "genero": 1.0,
           "busquedas": 0.667,
           "popularidad": 0.715
         },
@@ -266,63 +273,16 @@
       },
       {
         "artist": "Bad Bunny",
-        "title": "VeLDÁ",
-        "score": 0.704,
-        "why": [
-          "tags: party, reggaeton",
-          "artista de referencia"
-        ],
-        "parts": {
-          "semantica": 0.955,
-          "tags": 0.347,
-          "busquedas": 0.667,
-          "popularidad": 0.697
-        },
-        "listeners": 613429
-      },
-      {
-        "artist": "KAROL G",
-        "title": "PROVENZA",
-        "score": 0.689,
-        "why": [
-          "tags: reggaeton, latin pop",
-          "artista de referencia"
-        ],
-        "parts": {
-          "semantica": 0.965,
-          "tags": 0.457,
-          "busquedas": 0.333,
-          "popularidad": 0.673
-        },
-        "listeners": 490725
-      },
-      {
-        "artist": "Daddy Yankee",
-        "title": "Gasolina",
-        "score": 0.688,
-        "why": [
-          "tags: reggaeton",
-          "artista de referencia"
-        ],
-        "parts": {
-          "semantica": 0.911,
-          "tags": 0.333,
-          "busquedas": 0.667,
-          "popularidad": 0.778
-        },
-        "listeners": 1295913
-      },
-      {
-        "artist": "Bad Bunny",
         "title": "VOY A LLeVARTE PA PR",
-        "score": 0.687,
+        "score": 0.695,
         "why": [
-          "tags: reggaeton",
+          "género: reggaeton, latin pop",
           "artista de referencia"
         ],
         "parts": {
-          "semantica": 0.92,
-          "tags": 0.333,
+          "semantica": 0.843,
+          "tags": 0.0,
+          "genero": 1.0,
           "busquedas": 0.667,
           "popularidad": 0.728
         },
@@ -331,897 +291,1061 @@
       {
         "artist": "Daddy Yankee",
         "title": "Rompe",
-        "score": 0.678,
+        "score": 0.694,
         "why": [
-          "tags: reggaeton",
+          "género: reggaeton",
           "artista de referencia"
         ],
         "parts": {
-          "semantica": 0.915,
-          "tags": 0.333,
+          "semantica": 0.86,
+          "tags": 0.0,
+          "genero": 1.0,
           "busquedas": 0.667,
           "popularidad": 0.664
         },
         "listeners": 450938
       },
       {
-        "artist": "J Balvin",
-        "title": "LA CANCIÓN",
-        "score": 0.667,
+        "artist": "Bad Bunny",
+        "title": "NUEVAYoL",
+        "score": 0.687,
         "why": [
-          "tags: reggaeton",
+          "género: reggaeton, latin pop",
           "artista de referencia"
         ],
         "parts": {
-          "semantica": 0.989,
-          "tags": 0.333,
-          "busquedas": 0.333,
-          "popularidad": 0.721
-        },
-        "listeners": 765071
-      },
-      {
-        "artist": "Don Omar",
-        "title": "Danza Kuduro",
-        "score": 0.644,
-        "why": [
-          "tags: reggaeton",
-          "parecido a Daddy Yankee"
-        ],
-        "parts": {
-          "semantica": 0.82,
-          "tags": 0.333,
+          "semantica": 0.808,
+          "tags": 0.0,
+          "genero": 1.0,
           "busquedas": 0.667,
-          "popularidad": 0.751
+          "popularidad": 0.763
         },
-        "listeners": 1009175
+        "listeners": 1131711
       },
       {
-        "artist": "Flo Rida",
-        "title": "Good Feeling",
-        "score": 0.631,
+        "artist": "Daddy Yankee",
+        "title": "Gasolina",
+        "score": 0.68,
         "why": [
-          "tags: party"
-        ],
-        "parts": {
-          "semantica": 0.898,
-          "tags": 0.333,
-          "busquedas": 0.333,
-          "popularidad": 0.77
-        },
-        "listeners": 1206557
-      },
-      {
-        "artist": "Wisin & Yandel",
-        "title": "Me Estas Tentando",
-        "score": 0.63,
-        "why": [
-          "tags: party, reggaeton",
-          "parecido a Daddy Yankee"
-        ],
-        "parts": {
-          "semantica": 0.825,
-          "tags": 0.337,
-          "busquedas": 0.667,
-          "popularidad": 0.579
-        },
-        "listeners": 206462
-      },
-      {
-        "artist": "Ozuna",
-        "title": "Se Preparó",
-        "score": 0.615,
-        "why": [
-          "tags: reggaeton",
+          "género: reggaeton",
           "artista de referencia"
         ],
         "parts": {
-          "semantica": 0.891,
-          "tags": 0.333,
-          "busquedas": 0.333,
-          "popularidad": 0.639
+          "semantica": 0.78,
+          "tags": 0.0,
+          "genero": 1.0,
+          "busquedas": 0.667,
+          "popularidad": 0.778
         },
-        "listeners": 361074
+        "listeners": 1295913
       },
       {
         "artist": "Rauw Alejandro",
         "title": "Qué Pasaría...",
-        "score": 0.613,
+        "score": 0.676,
         "why": [
-          "tags: reggaeton",
+          "género: reggaeton",
           "artista de referencia"
         ],
         "parts": {
-          "semantica": 0.875,
-          "tags": 0.333,
+          "semantica": 0.964,
+          "tags": 0.0,
+          "genero": 1.0,
           "busquedas": 0.333,
           "popularidad": 0.694
         },
         "listeners": 596333
       },
       {
-        "artist": "Maluma",
-        "title": "Borro Cassette",
-        "score": 0.593,
+        "artist": "J Balvin",
+        "title": "LA CANCIÓN",
+        "score": 0.672,
         "why": [
-          "tags: reggaeton",
+          "género: reggaeton, latin pop",
+          "artista de referencia"
+        ],
+        "parts": {
+          "semantica": 0.943,
+          "tags": 0.0,
+          "genero": 1.0,
+          "busquedas": 0.333,
+          "popularidad": 0.721
+        },
+        "listeners": 765071
+      },
+      {
+        "artist": "KAROL G",
+        "title": "PROVENZA",
+        "score": 0.668,
+        "why": [
+          "género: reggaeton, latin pop",
+          "artista de referencia"
+        ],
+        "parts": {
+          "semantica": 0.946,
+          "tags": 0.0,
+          "genero": 1.0,
+          "busquedas": 0.333,
+          "popularidad": 0.673
+        },
+        "listeners": 490725
+      },
+      {
+        "artist": "Don Omar",
+        "title": "Danza Kuduro",
+        "score": 0.667,
+        "why": [
+          "género: reggaeton",
+          "parecido a Daddy Yankee"
+        ],
+        "parts": {
+          "semantica": 0.752,
+          "tags": 0.0,
+          "genero": 1.0,
+          "busquedas": 0.667,
+          "popularidad": 0.751
+        },
+        "listeners": 1009175
+      },
+      {
+        "artist": "Maluma",
+        "title": "Felices los 4",
+        "score": 0.664,
+        "why": [
+          "género: reggaeton, latin pop",
           "parecido a J Balvin"
         ],
         "parts": {
-          "semantica": 0.84,
-          "tags": 0.333,
+          "semantica": 0.946,
+          "tags": 0.0,
+          "genero": 1.0,
           "busquedas": 0.333,
-          "popularidad": 0.652
+          "popularidad": 0.634
         },
-        "listeners": 403776
+        "listeners": 344868
+      },
+      {
+        "artist": "KAROL G",
+        "title": "BbY WOW",
+        "score": 0.656,
+        "why": [
+          "género: reggaeton, latin pop",
+          "artista de referencia"
+        ],
+        "parts": {
+          "semantica": 0.972,
+          "tags": 0.0,
+          "genero": 1.0,
+          "busquedas": 0.333,
+          "popularidad": 0.486
+        },
+        "listeners": 87739
+      },
+      {
+        "artist": "Calle 13",
+        "title": "Atrévete-te-te",
+        "score": 0.638,
+        "why": [
+          "género: reggaeton"
+        ],
+        "parts": {
+          "semantica": 0.88,
+          "tags": 0.0,
+          "genero": 1.0,
+          "busquedas": 0.333,
+          "popularidad": 0.605
+        },
+        "listeners": 262997
+      },
+      {
+        "artist": "Wisin & Yandel",
+        "title": "Me Estas Tentando",
+        "score": 0.635,
+        "why": [
+          "género: reggaeton",
+          "tags: party",
+          "parecido a Daddy Yankee"
+        ],
+        "parts": {
+          "semantica": 0.712,
+          "tags": 0.003,
+          "genero": 1.0,
+          "busquedas": 0.667,
+          "popularidad": 0.579
+        },
+        "listeners": 206462
+      },
+      {
+        "artist": "Natti Natasha",
+        "title": "Amantes de una Noche",
+        "score": 0.631,
+        "why": [
+          "género: reggaeton",
+          "parecido a KAROL G"
+        ],
+        "parts": {
+          "semantica": 0.913,
+          "tags": 0.0,
+          "genero": 1.0,
+          "busquedas": 0.333,
+          "popularidad": 0.442
+        },
+        "listeners": 58486
+      },
+      {
+        "artist": "Wisin & Yandel",
+        "title": "Sexy Movimiento",
+        "score": 0.626,
+        "why": [
+          "género: reggaeton",
+          "parecido a Daddy Yankee"
+        ],
+        "parts": {
+          "semantica": 0.678,
+          "tags": 0.0,
+          "genero": 1.0,
+          "busquedas": 0.667,
+          "popularidad": 0.598
+        },
+        "listeners": 247606
+      },
+      {
+        "artist": "Ozuna",
+        "title": "Se Preparó",
+        "score": 0.625,
+        "why": [
+          "género: reggaeton",
+          "artista de referencia"
+        ],
+        "parts": {
+          "semantica": 0.829,
+          "tags": 0.0,
+          "genero": 1.0,
+          "busquedas": 0.333,
+          "popularidad": 0.639
+        },
+        "listeners": 361074
       },
       {
         "artist": "Don Omar",
         "title": "Dile",
-        "score": 0.583,
+        "score": 0.622,
         "why": [
-          "tags: reggaeton",
+          "género: reggaeton",
           "parecido a Daddy Yankee"
         ],
         "parts": {
-          "semantica": 0.697,
-          "tags": 0.333,
+          "semantica": 0.635,
+          "tags": 0.0,
+          "genero": 1.0,
           "busquedas": 0.667,
           "popularidad": 0.696
         },
         "listeners": 608657
       },
       {
-        "artist": "LE SSERAFIM",
-        "title": "ANTIFRAGILE",
-        "score": 0.571,
+        "artist": "Nicky Jam",
+        "title": "X",
+        "score": 0.621,
         "why": [
-          "tags: reggaeton"
+          "género: reggaeton",
+          "parecido a Daddy Yankee"
         ],
         "parts": {
-          "semantica": 0.817,
-          "tags": 0.263,
+          "semantica": 0.813,
+          "tags": 0.0,
+          "genero": 1.0,
           "busquedas": 0.333,
-          "popularidad": 0.747
+          "popularidad": 0.649
         },
-        "listeners": 970284
+        "listeners": 393007
       },
       {
-        "artist": "KATSEYE",
-        "title": "Gabriela",
-        "score": 0.565,
+        "artist": "Nicky Jam",
+        "title": "El Perdón (with Enrique Iglesias)",
+        "score": 0.617,
         "why": [
-          "tags: latin pop"
+          "género: reggaeton",
+          "parecido a Daddy Yankee"
         ],
         "parts": {
-          "semantica": 0.752,
-          "tags": 0.333,
+          "semantica": 0.825,
+          "tags": 0.0,
+          "genero": 1.0,
           "busquedas": 0.333,
-          "popularidad": 0.761
+          "popularidad": 0.576
         },
-        "listeners": 1107499
-      },
-      {
-        "artist": "Ariana Grande",
-        "title": "pov",
-        "score": 0.55,
-        "why": [
-          "tags: 2020s"
-        ],
-        "parts": {
-          "semantica": 0.725,
-          "tags": 0.333,
-          "busquedas": 0.333,
-          "popularidad": 0.739
-        },
-        "listeners": 905299
-      },
-      {
-        "artist": "Far East Movement",
-        "title": "Like a G6",
-        "score": 0.528,
-        "why": [
-          "tags: party"
-        ],
-        "parts": {
-          "semantica": 0.744,
-          "tags": 0.21,
-          "busquedas": 0.333,
-          "popularidad": 0.799
-        },
-        "listeners": 1573489
-      },
-      {
-        "artist": "Katy Perry",
-        "title": "Last Friday Night (T.G.I.F.)",
-        "score": 0.518,
-        "why": [
-          "tags: party, fun"
-        ],
-        "parts": {
-          "semantica": 0.7,
-          "tags": 0.057,
-          "busquedas": 0.667,
-          "popularidad": 0.855
-        },
-        "listeners": 2642155
-      },
-      {
-        "artist": "Ariana Grande",
-        "title": "Side to Side",
-        "score": 0.514,
-        "why": [
-          "tags: sing along"
-        ],
-        "parts": {
-          "semantica": 0.854,
-          "tags": 0.003,
-          "busquedas": 0.333,
-          "popularidad": 0.793
-        },
-        "listeners": 1479446
-      },
-      {
-        "artist": "Bruno Mars",
-        "title": "Runaway Baby",
-        "score": 0.495,
-        "why": [
-          "tags: energetic"
-        ],
-        "parts": {
-          "semantica": 0.755,
-          "tags": 0.097,
-          "busquedas": 0.333,
-          "popularidad": 0.765
-        },
-        "listeners": 1149531
+        "listeners": 202005
       },
       {
         "artist": "Ozuna",
-        "title": "Dile Que Tu Me Quieres",
-        "score": 0.486,
+        "title": "Baila Baila Baila",
+        "score": 0.612,
         "why": [
-          "tags: reggaeton",
+          "género: reggaeton",
           "artista de referencia"
         ],
         "parts": {
-          "semantica": 0.61,
-          "tags": 0.333,
+          "semantica": 0.817,
+          "tags": 0.0,
+          "genero": 1.0,
+          "busquedas": 0.333,
+          "popularidad": 0.554
+        },
+        "listeners": 164882
+      },
+      {
+        "artist": "Farruko",
+        "title": "Hola Beba",
+        "score": 0.607,
+        "why": [
+          "género: reggaeton",
+          "artista de referencia"
+        ],
+        "parts": {
+          "semantica": 0.836,
+          "tags": 0.0,
+          "genero": 1.0,
+          "busquedas": 0.333,
+          "popularidad": 0.456
+        },
+        "listeners": 66696
+      },
+      {
+        "artist": "Rauw Alejandro",
+        "title": "DILUVIO",
+        "score": 0.606,
+        "why": [
+          "género: reggaeton",
+          "artista de referencia"
+        ],
+        "parts": {
+          "semantica": 0.778,
+          "tags": 0.0,
+          "genero": 1.0,
           "busquedas": 0.333,
           "popularidad": 0.616
         },
-        "listeners": 289944
+        "listeners": 291108
+      },
+      {
+        "artist": "Maluma",
+        "title": "El Perdedor",
+        "score": 0.604,
+        "why": [
+          "género: reggaeton, latin pop",
+          "parecido a J Balvin"
+        ],
+        "parts": {
+          "semantica": 0.776,
+          "tags": 0.0,
+          "genero": 1.0,
+          "busquedas": 0.333,
+          "popularidad": 0.611
+        },
+        "listeners": 278933
+      },
+      {
+        "artist": "Farruko",
+        "title": "Pepas",
+        "score": 0.59,
+        "why": [
+          "género: reggaeton",
+          "artista de referencia"
+        ],
+        "parts": {
+          "semantica": 0.709,
+          "tags": 0.0,
+          "genero": 1.0,
+          "busquedas": 0.333,
+          "popularidad": 0.68
+        },
+        "listeners": 526814
+      },
+      {
+        "artist": "Sech",
+        "title": "Otro Trago",
+        "score": 0.587,
+        "why": [
+          "género: reggaeton",
+          "parecido a Ozuna"
+        ],
+        "parts": {
+          "semantica": 0.756,
+          "tags": 0.0,
+          "genero": 1.0,
+          "busquedas": 0.333,
+          "popularidad": 0.513
+        },
+        "listeners": 112974
+      },
+      {
+        "artist": "Feid",
+        "title": "Feliz Cumpleaños Ferxxo",
+        "score": 0.583,
+        "why": [
+          "género: reggaeton",
+          "parecido a Rauw Alejandro"
+        ],
+        "parts": {
+          "semantica": 0.718,
+          "tags": 0.0,
+          "genero": 1.0,
+          "busquedas": 0.333,
+          "popularidad": 0.596
+        },
+        "listeners": 242727
+      },
+      {
+        "artist": "Selena Gomez",
+        "title": "Good for You",
+        "score": 0.471,
+        "why": [
+          "género: urban"
+        ],
+        "parts": {
+          "semantica": 0.335,
+          "tags": 0.0,
+          "genero": 1.0,
+          "busquedas": 0.333,
+          "popularidad": 0.732
+        },
+        "listeners": 851128
       },
       {
         "artist": "Rihanna",
         "title": "Bitch Better Have My Money",
-        "score": 0.482,
+        "score": 0.469,
         "why": [
-          "tags: urban"
+          "género: urban"
         ],
         "parts": {
-          "semantica": 0.59,
-          "tags": 0.303,
+          "semantica": 0.322,
+          "tags": 0.0,
+          "genero": 1.0,
           "busquedas": 0.333,
           "popularidad": 0.758
         },
         "listeners": 1079005
       },
       {
-        "artist": "Shawn Mendes",
-        "title": "Señorita",
-        "score": 0.482,
+        "artist": "Selena Gomez",
+        "title": "Fetish (feat. Gucci Mane)",
+        "score": 0.421,
         "why": [
-          "tags: latin pop"
+          "género: urban"
         ],
         "parts": {
-          "semantica": 0.722,
-          "tags": 0.107,
-          "busquedas": 0.333,
-          "popularidad": 0.753
-        },
-        "listeners": 1026325
-      },
-      {
-        "artist": "KAROL G",
-        "title": "Si Antes Te Hubiera Conocido",
-        "score": 0.468,
-        "why": [
-          "tags: party, latin pop",
-          "artista de referencia"
-        ],
-        "parts": {
-          "semantica": 0.768,
-          "tags": 0.01,
-          "busquedas": 0.333,
-          "popularidad": 0.693
-        },
-        "listeners": 590453
-      },
-      {
-        "artist": "Future",
-        "title": "Life Is Good (feat. Drake)",
-        "score": 0.465,
-        "why": [
-          "tags: 2020s"
-        ],
-        "parts": {
-          "semantica": 0.615,
-          "tags": 0.213,
-          "busquedas": 0.333,
-          "popularidad": 0.74
-        },
-        "listeners": 908576
-      },
-      {
-        "artist": "Jin",
-        "title": "Running Wild",
-        "score": 0.454,
-        "why": [
-          "tags: energetic"
-        ],
-        "parts": {
-          "semantica": 0.542,
-          "tags": 0.333,
-          "busquedas": 0.333,
-          "popularidad": 0.598
-        },
-        "listeners": 247032
-      },
-      {
-        "artist": "fun.",
-        "title": "We Are Young (feat. Janelle Monáe)",
-        "score": 0.448,
-        "why": [],
-        "parts": {
-          "semantica": 0.708,
+          "semantica": 0.189,
           "tags": 0.0,
+          "genero": 1.0,
           "busquedas": 0.333,
-          "popularidad": 0.796
+          "popularidad": 0.723
         },
-        "listeners": 1528560
+        "listeners": 782231
       },
       {
-        "artist": "The 1975",
-        "title": "All I Need to Hear",
-        "score": 0.441,
+        "artist": "DJ Thiago Martins",
+        "title": "MAMA OLHANDO PRO PAI",
+        "score": 0.39,
         "why": [
-          "tags: 2020s"
+          "género: urban"
         ],
         "parts": {
-          "semantica": 0.507,
-          "tags": 0.333,
-          "busquedas": 0.333,
-          "popularidad": 0.63
-        },
-        "listeners": 330557
-      },
-      {
-        "artist": "Wisin & Yandel",
-        "title": "Pam Pam",
-        "score": 0.433,
-        "why": [
-          "parecido a Daddy Yankee"
-        ],
-        "parts": {
-          "semantica": 0.613,
+          "semantica": 0.195,
           "tags": 0.0,
-          "busquedas": 0.667,
-          "popularidad": 0.567
+          "genero": 1.0,
+          "busquedas": 0.333,
+          "popularidad": 0.423
         },
-        "listeners": 186201
+        "listeners": 49254
       }
     ],
     "lluvia": [
       {
-        "artist": "The Microphones",
-        "title": "I Want Wind to Blow",
-        "score": 0.678,
-        "why": [
-          "tags: mellow, lo fi, indie folk"
-        ],
-        "parts": {
-          "semantica": 0.961,
-          "tags": 0.43,
-          "busquedas": 0.333,
-          "popularidad": 0.666
-        },
-        "listeners": 463265
-      },
-      {
         "artist": "C418",
-        "title": "Subwoofer Lullaby",
-        "score": 0.645,
+        "title": "Danny",
+        "score": 0.684,
         "why": [
-          "tags: chill, ambient"
+          "género: ambient",
+          "tags: chill"
         ],
         "parts": {
-          "semantica": 0.939,
-          "tags": 0.337,
+          "semantica": 1.0,
+          "tags": 0.003,
+          "genero": 1.0,
           "busquedas": 0.333,
-          "popularidad": 0.713
+          "popularidad": 0.647
         },
-        "listeners": 708943
-      },
-      {
-        "artist": "311",
-        "title": "Amber",
-        "score": 0.64,
-        "why": [
-          "tags: chill, mellow"
-        ],
-        "parts": {
-          "semantica": 0.747,
-          "tags": 0.433,
-          "busquedas": 0.667,
-          "popularidad": 0.744
-        },
-        "listeners": 944990
+        "listeners": 387781
       },
       {
         "artist": "Bon Iver",
         "title": "Rosyln",
-        "score": 0.633,
+        "score": 0.679,
         "why": [
-          "tags: indie folk",
+          "género: lo fi, indie folk",
           "artista de referencia"
         ],
         "parts": {
-          "semantica": 0.878,
-          "tags": 0.213,
+          "semantica": 0.789,
+          "tags": 0.0,
+          "genero": 1.0,
           "busquedas": 0.667,
           "popularidad": 0.742
         },
         "listeners": 926679
       },
       {
-        "artist": "The Neighbourhood",
-        "title": "Sweater Weather",
-        "score": 0.61,
+        "artist": "C418",
+        "title": "Subwoofer Lullaby",
+        "score": 0.677,
         "why": [
+          "género: ambient",
           "tags: chill"
         ],
         "parts": {
-          "semantica": 1.0,
-          "tags": 0.077,
+          "semantica": 0.958,
+          "tags": 0.003,
+          "genero": 1.0,
           "busquedas": 0.333,
-          "popularidad": 0.875
+          "popularidad": 0.713
         },
-        "listeners": 3153473
-      },
-      {
-        "artist": "Mac DeMarco",
-        "title": "Chamber of Reflection",
-        "score": 0.609,
-        "why": [
-          "tags: chill, lo fi"
-        ],
-        "parts": {
-          "semantica": 0.913,
-          "tags": 0.22,
-          "busquedas": 0.333,
-          "popularidad": 0.824
-        },
-        "listeners": 1984281
-      },
-      {
-        "artist": "Alex G",
-        "title": "Sarah",
-        "score": 0.608,
-        "why": [
-          "tags: lo fi, indie folk"
-        ],
-        "parts": {
-          "semantica": 0.845,
-          "tags": 0.337,
-          "busquedas": 0.333,
-          "popularidad": 0.769
-        },
-        "listeners": 1195463
-      },
-      {
-        "artist": "C418",
-        "title": "Mice on Venus",
-        "score": 0.606,
-        "why": [
-          "tags: chill, ambient"
-        ],
-        "parts": {
-          "semantica": 0.856,
-          "tags": 0.337,
-          "busquedas": 0.333,
-          "popularidad": 0.699
-        },
-        "listeners": 623855
-      },
-      {
-        "artist": "Norah Jones",
-        "title": "Don't Know Why",
-        "score": 0.586,
-        "why": [
-          "tags: mellow, jazz",
-          "artista de referencia"
-        ],
-        "parts": {
-          "semantica": 0.66,
-          "tags": 0.37,
-          "busquedas": 0.667,
-          "popularidad": 0.781
-        },
-        "listeners": 1334123
-      },
-      {
-        "artist": "Beach House",
-        "title": "Master of None",
-        "score": 0.581,
-        "why": [
-          "tags: mellow"
-        ],
-        "parts": {
-          "semantica": 0.909,
-          "tags": 0.15,
-          "busquedas": 0.333,
-          "popularidad": 0.772
-        },
-        "listeners": 1219070
-      },
-      {
-        "artist": "Sufjan Stevens",
-        "title": "Mystery of Love",
-        "score": 0.564,
-        "why": [
-          "tags: indie folk"
-        ],
-        "parts": {
-          "semantica": 0.751,
-          "tags": 0.333,
-          "busquedas": 0.333,
-          "popularidad": 0.766
-        },
-        "listeners": 1158253
+        "listeners": 708943
       },
       {
         "artist": "The Microphones",
-        "title": "The Moon",
-        "score": 0.564,
+        "title": "I Want Wind to Blow",
+        "score": 0.659,
         "why": [
-          "tags: lo fi, indie folk"
+          "género: lo fi, indie folk",
+          "tags: mellow"
         ],
         "parts": {
-          "semantica": 0.747,
-          "tags": 0.37,
+          "semantica": 0.89,
+          "tags": 0.067,
+          "genero": 1.0,
           "busquedas": 0.333,
-          "popularidad": 0.665
+          "popularidad": 0.666
         },
-        "listeners": 458740
+        "listeners": 463265
       },
       {
         "artist": "Bon Iver",
         "title": "Skinny Love",
-        "score": 0.545,
+        "score": 0.651,
         "why": [
-          "tags: mellow, indie folk",
+          "género: lo fi, indie folk",
+          "tags: mellow",
           "artista de referencia"
         ],
         "parts": {
-          "semantica": 0.878,
-          "tags": 0.063,
+          "semantica": 0.835,
+          "tags": 0.03,
+          "genero": 1.0,
           "busquedas": 0.333,
           "popularidad": 0.813
         },
         "listeners": 1790621
       },
       {
-        "artist": "Mazzy Star",
-        "title": "Fade Into You",
-        "score": 0.541,
+        "artist": "Mac DeMarco",
+        "title": "Chamber of Reflection",
+        "score": 0.646,
         "why": [
-          "tags: mellow"
+          "género: jazz, lo fi",
+          "tags: chill"
         ],
         "parts": {
-          "semantica": 0.831,
-          "tags": 0.11,
+          "semantica": 0.828,
+          "tags": 0.003,
+          "genero": 1.0,
           "busquedas": 0.333,
-          "popularidad": 0.842
+          "popularidad": 0.824
         },
-        "listeners": 2332829
+        "listeners": 1984281
+      },
+      {
+        "artist": "Mumford & Sons",
+        "title": "Little Lion Man",
+        "score": 0.632,
+        "why": [
+          "género: indie folk"
+        ],
+        "parts": {
+          "semantica": 0.8,
+          "tags": 0.0,
+          "genero": 1.0,
+          "busquedas": 0.333,
+          "popularidad": 0.792
+        },
+        "listeners": 1475655
+      },
+      {
+        "artist": "Edward Sharpe & The Magnetic Zeros",
+        "title": "Home",
+        "score": 0.607,
+        "why": [
+          "género: indie folk"
+        ],
+        "parts": {
+          "semantica": 0.729,
+          "tags": 0.0,
+          "genero": 1.0,
+          "busquedas": 0.333,
+          "popularidad": 0.775
+        },
+        "listeners": 1261471
+      },
+      {
+        "artist": "Silver Jews",
+        "title": "Random Rules",
+        "score": 0.594,
+        "why": [
+          "género: lo fi"
+        ],
+        "parts": {
+          "semantica": 0.743,
+          "tags": 0.0,
+          "genero": 1.0,
+          "busquedas": 0.333,
+          "popularidad": 0.615
+        },
+        "listeners": 288318
+      },
+      {
+        "artist": "The Microphones",
+        "title": "The Moon",
+        "score": 0.591,
+        "why": [
+          "género: lo fi, indie folk"
+        ],
+        "parts": {
+          "semantica": 0.719,
+          "tags": 0.0,
+          "genero": 1.0,
+          "busquedas": 0.333,
+          "popularidad": 0.665
+        },
+        "listeners": 458740
+      },
+      {
+        "artist": "Alex G",
+        "title": "Sarah",
+        "score": 0.573,
+        "why": [
+          "género: lo fi, indie folk"
+        ],
+        "parts": {
+          "semantica": 0.63,
+          "tags": 0.0,
+          "genero": 1.0,
+          "busquedas": 0.333,
+          "popularidad": 0.769
+        },
+        "listeners": 1195463
+      },
+      {
+        "artist": "Sufjan Stevens",
+        "title": "Mystery of Love",
+        "score": 0.572,
+        "why": [
+          "género: indie folk"
+        ],
+        "parts": {
+          "semantica": 0.627,
+          "tags": 0.0,
+          "genero": 1.0,
+          "busquedas": 0.333,
+          "popularidad": 0.766
+        },
+        "listeners": 1158253
+      },
+      {
+        "artist": "Lana Del Rey",
+        "title": "The Other Woman",
+        "score": 0.566,
+        "why": [
+          "género: jazz"
+        ],
+        "parts": {
+          "semantica": 0.611,
+          "tags": 0.0,
+          "genero": 1.0,
+          "busquedas": 0.333,
+          "popularidad": 0.766
+        },
+        "listeners": 1159286
       },
       {
         "artist": "Milky Chance",
         "title": "Stolen Dance",
-        "score": 0.534,
+        "score": 0.558,
         "why": [
-          "tags: indie folk"
+          "género: indie folk"
         ],
         "parts": {
-          "semantica": 0.721,
-          "tags": 0.27,
+          "semantica": 0.577,
+          "tags": 0.0,
+          "genero": 1.0,
           "busquedas": 0.333,
           "popularidad": 0.789
         },
         "listeners": 1436075
       },
       {
-        "artist": "Sade",
-        "title": "Like a Tattoo",
-        "score": 0.528,
+        "artist": "Volcano Choir",
+        "title": "Husks and Shells",
+        "score": 0.555,
         "why": [
-          "tags: chill, jazz"
+          "género: indie folk, ambient",
+          "parecido a Bon Iver"
         ],
         "parts": {
-          "semantica": 0.728,
-          "tags": 0.24,
+          "semantica": 0.64,
+          "tags": 0.0,
+          "genero": 1.0,
           "busquedas": 0.333,
-          "popularidad": 0.781
+          "popularidad": 0.576
         },
-        "listeners": 1331090
+        "listeners": 202197
       },
       {
-        "artist": "Chet Baker",
-        "title": "I Fall in Love Too Easily",
-        "score": 0.503,
+        "artist": "Volcano Choir",
+        "title": "Island, IS",
+        "score": 0.553,
         "why": [
-          "tags: jazz",
-          "artista de referencia"
+          "género: indie folk, ambient",
+          "parecido a Bon Iver"
         ],
         "parts": {
-          "semantica": 0.517,
-          "tags": 0.333,
-          "busquedas": 0.667,
-          "popularidad": 0.709
+          "semantica": 0.635,
+          "tags": 0.0,
+          "genero": 1.0,
+          "busquedas": 0.333,
+          "popularidad": 0.574
         },
-        "listeners": 687406
+        "listeners": 196851
       },
       {
         "artist": "Neutral Milk Hotel",
         "title": "Holland, 1945",
-        "score": 0.486,
+        "score": 0.551,
         "why": [
-          "tags: lo fi"
+          "género: lo fi, indie folk"
         ],
         "parts": {
-          "semantica": 0.671,
-          "tags": 0.197,
+          "semantica": 0.57,
+          "tags": 0.0,
+          "genero": 1.0,
           "busquedas": 0.333,
           "popularidad": 0.752
         },
         "listeners": 1016922
       },
       {
-        "artist": "Mazzy Star",
-        "title": "Blue Light",
-        "score": 0.482,
+        "artist": "Sade",
+        "title": "Paradise",
+        "score": 0.548,
         "why": [
-          "tags: mellow"
-        ],
-        "parts": {
-          "semantica": 0.701,
-          "tags": 0.143,
-          "busquedas": 0.333,
-          "popularidad": 0.732
-        },
-        "listeners": 844904
-      },
-      {
-        "artist": "Big Thief",
-        "title": "Simulation Swarm",
-        "score": 0.472,
-        "why": [
-          "tags: indie folk"
-        ],
-        "parts": {
-          "semantica": 0.558,
-          "tags": 0.333,
-          "busquedas": 0.333,
-          "popularidad": 0.713
-        },
-        "listeners": 710993
-      },
-      {
-        "artist": "Amy Winehouse",
-        "title": "Back to Black",
-        "score": 0.471,
-        "why": [
-          "tags: jazz"
-        ],
-        "parts": {
-          "semantica": 0.6,
-          "tags": 0.217,
-          "busquedas": 0.333,
-          "popularidad": 0.86
-        },
-        "listeners": 2766407
-      },
-      {
-        "artist": "Frank Sinatra",
-        "title": "My Way",
-        "score": 0.451,
-        "why": [
-          "tags: jazz"
-        ],
-        "parts": {
-          "semantica": 0.496,
-          "tags": 0.333,
-          "busquedas": 0.333,
-          "popularidad": 0.778
-        },
-        "listeners": 1300000
-      },
-      {
-        "artist": "Kavinsky",
-        "title": "Nightcall",
-        "score": 0.434,
-        "why": [
+          "género: jazz",
           "tags: chill"
         ],
         "parts": {
-          "semantica": 0.635,
-          "tags": 0.07,
+          "semantica": 0.561,
+          "tags": 0.003,
+          "genero": 1.0,
           "busquedas": 0.333,
-          "popularidad": 0.776
+          "popularidad": 0.745
         },
-        "listeners": 1272086
+        "listeners": 956850
       },
       {
-        "artist": "Bill Evans Trio",
-        "title": "My Foolish Heart",
-        "score": 0.323,
+        "artist": "Chet Baker",
+        "title": "That Old Feeling",
+        "score": 0.547,
         "why": [
-          "parecido a Chet Baker"
+          "género: jazz",
+          "artista de referencia"
         ],
         "parts": {
-          "semantica": 0.356,
+          "semantica": 0.429,
           "tags": 0.0,
+          "genero": 1.0,
           "busquedas": 0.667,
-          "popularidad": 0.634
+          "popularidad": 0.636
         },
-        "listeners": 342127
+        "listeners": 351034
       },
       {
-        "artist": "Brian Eno",
-        "title": "An Ending (Ascent) - Remastered 2005",
-        "score": 0.313,
-        "why": [],
+        "artist": "Norah Jones",
+        "title": "Don't Know Why",
+        "score": 0.537,
+        "why": [
+          "género: jazz",
+          "tags: mellow",
+          "artista de referencia"
+        ],
         "parts": {
-          "semantica": 0.451,
-          "tags": 0.0,
-          "busquedas": 0.333,
-          "popularidad": 0.603
+          "semantica": 0.332,
+          "tags": 0.037,
+          "genero": 1.0,
+          "busquedas": 0.667,
+          "popularidad": 0.781
         },
-        "listeners": 257281
+        "listeners": 1334123
+      },
+      {
+        "artist": "Sade",
+        "title": "Like a Tattoo",
+        "score": 0.536,
+        "why": [
+          "género: jazz",
+          "tags: chill"
+        ],
+        "parts": {
+          "semantica": 0.507,
+          "tags": 0.013,
+          "genero": 1.0,
+          "busquedas": 0.333,
+          "popularidad": 0.781
+        },
+        "listeners": 1331090
       },
       {
         "artist": "John Coltrane",
         "title": "My Favorite Things",
-        "score": 0.303,
+        "score": 0.535,
         "why": [
+          "género: jazz",
           "parecido a Miles Davis"
         ],
         "parts": {
-          "semantica": 0.304,
+          "semantica": 0.385,
           "tags": 0.0,
+          "genero": 1.0,
           "busquedas": 0.667,
           "popularidad": 0.661
         },
         "listeners": 441831
       },
       {
+        "artist": "Bill Evans Trio",
+        "title": "My Foolish Heart",
+        "score": 0.532,
+        "why": [
+          "género: jazz",
+          "parecido a Chet Baker"
+        ],
+        "parts": {
+          "semantica": 0.385,
+          "tags": 0.0,
+          "genero": 1.0,
+          "busquedas": 0.667,
+          "popularidad": 0.634
+        },
+        "listeners": 342127
+      },
+      {
         "artist": "John Coltrane",
         "title": "Blue Train",
-        "score": 0.302,
+        "score": 0.525,
         "why": [
+          "género: jazz",
           "parecido a Miles Davis"
         ],
         "parts": {
-          "semantica": 0.308,
+          "semantica": 0.364,
           "tags": 0.0,
+          "genero": 1.0,
           "busquedas": 0.667,
           "popularidad": 0.633
         },
         "listeners": 339609
       },
       {
-        "artist": "Radiohead",
-        "title": "Codex",
-        "score": 0.296,
-        "why": [],
+        "artist": "Sufjan Stevens",
+        "title": "Death With Dignity",
+        "score": 0.524,
+        "why": [
+          "género: indie folk, ambient"
+        ],
         "parts": {
-          "semantica": 0.39,
+          "semantica": 0.503,
           "tags": 0.0,
+          "genero": 1.0,
           "busquedas": 0.333,
-          "popularidad": 0.709
+          "popularidad": 0.707
         },
-        "listeners": 683379
+        "listeners": 672416
       },
       {
         "artist": "Chet Baker",
         "title": "My Funny Valentine",
-        "score": 0.288,
+        "score": 0.52,
         "why": [
+          "género: jazz",
           "artista de referencia"
         ],
         "parts": {
-          "semantica": 0.259,
+          "semantica": 0.323,
           "tags": 0.0,
+          "genero": 1.0,
           "busquedas": 0.667,
           "popularidad": 0.714
         },
         "listeners": 715396
       },
       {
-        "artist": "Miles Davis Quintet",
-        "title": "It Never Entered My Mind",
-        "score": 0.285,
+        "artist": "Amy Winehouse",
+        "title": "Back to Black",
+        "score": 0.516,
         "why": [
+          "género: jazz"
+        ],
+        "parts": {
+          "semantica": 0.428,
+          "tags": 0.0,
+          "genero": 1.0,
+          "busquedas": 0.333,
+          "popularidad": 0.86
+        },
+        "listeners": 2766407
+      },
+      {
+        "artist": "Big Thief",
+        "title": "Simulation Swarm",
+        "score": 0.516,
+        "why": [
+          "género: indie folk"
+        ],
+        "parts": {
+          "semantica": 0.476,
+          "tags": 0.0,
+          "genero": 1.0,
+          "busquedas": 0.333,
+          "popularidad": 0.713
+        },
+        "listeners": 710993
+      },
+      {
+        "artist": "Charles Mingus",
+        "title": "Goodbye Pork Pie Hat",
+        "score": 0.515,
+        "why": [
+          "género: jazz",
           "parecido a Miles Davis"
         ],
         "parts": {
-          "semantica": 0.274,
+          "semantica": 0.323,
           "tags": 0.0,
+          "genero": 1.0,
           "busquedas": 0.667,
-          "popularidad": 0.617
+          "popularidad": 0.662
         },
-        "listeners": 292554
+        "listeners": 446330
+      },
+      {
+        "artist": "S. Carey",
+        "title": "In The Stream",
+        "score": 0.505,
+        "why": [
+          "género: indie folk",
+          "parecido a Bon Iver"
+        ],
+        "parts": {
+          "semantica": 0.511,
+          "tags": 0.0,
+          "genero": 1.0,
+          "busquedas": 0.333,
+          "popularidad": 0.515
+        },
+        "listeners": 114545
       }
     ],
     "estudio": [
       {
-        "artist": "Aphex Twin",
-        "title": "Avril 14th",
-        "score": 0.744,
+        "artist": "Ludovico Einaudi",
+        "title": "Una Mattina",
+        "score": 0.697,
         "why": [
-          "tags: instrumental, ambient",
+          "género: ambient, classical, neoclassical",
           "artista de referencia"
         ],
         "parts": {
-          "semantica": 0.92,
-          "tags": 0.347,
-          "busquedas": 1.0,
-          "popularidad": 0.764
-        },
-        "listeners": 1133256
-      },
-      {
-        "artist": "Radiohead",
-        "title": "Treefingers",
-        "score": 0.709,
-        "why": [
-          "tags: instrumental, ambient"
-        ],
-        "parts": {
-          "semantica": 0.849,
-          "tags": 0.5,
+          "semantica": 0.88,
+          "tags": 0.0,
+          "genero": 1.0,
           "busquedas": 0.667,
-          "popularidad": 0.765
+          "popularidad": 0.632
         },
-        "listeners": 1147347
+        "listeners": 336941
       },
       {
         "artist": "Aphex Twin",
         "title": "Xtal",
-        "score": 0.681,
+        "score": 0.695,
         "why": [
-          "tags: instrumental, ambient",
+          "género: ambient",
+          "tags: instrumental",
           "artista de referencia"
         ],
         "parts": {
-          "semantica": 0.899,
-          "tags": 0.337,
+          "semantica": 0.83,
+          "tags": 0.003,
+          "genero": 1.0,
           "busquedas": 0.667,
           "popularidad": 0.757
         },
         "listeners": 1070547
       },
       {
-        "artist": "C418",
-        "title": "Subwoofer Lullaby",
-        "score": 0.672,
+        "artist": "Max Richter",
+        "title": "On the Nature of Daylight",
+        "score": 0.693,
         "why": [
-          "tags: chill, ambient"
+          "género: ambient, classical, neoclassical",
+          "artista de referencia"
         ],
         "parts": {
-          "semantica": 1.0,
-          "tags": 0.337,
+          "semantica": 0.69,
+          "tags": 0.0,
+          "genero": 1.0,
+          "busquedas": 1.0,
+          "popularidad": 0.67
+        },
+        "listeners": 479865
+      },
+      {
+        "artist": "Aphex Twin",
+        "title": "Tha",
+        "score": 0.692,
+        "why": [
+          "género: ambient",
+          "tags: instrumental",
+          "artista de referencia"
+        ],
+        "parts": {
+          "semantica": 0.843,
+          "tags": 0.003,
+          "genero": 1.0,
+          "busquedas": 0.667,
+          "popularidad": 0.698
+        },
+        "listeners": 621163
+      },
+      {
+        "artist": "C418",
+        "title": "Subwoofer Lullaby",
+        "score": 0.685,
+        "why": [
+          "género: ambient, classical",
+          "tags: chill"
+        ],
+        "parts": {
+          "semantica": 0.983,
+          "tags": 0.003,
+          "genero": 1.0,
           "busquedas": 0.333,
           "popularidad": 0.713
         },
@@ -1229,875 +1353,968 @@
       },
       {
         "artist": "C418",
-        "title": "Minecraft",
-        "score": 0.611,
+        "title": "Danny",
+        "score": 0.684,
         "why": [
-          "tags: ambient"
-        ],
-        "parts": {
-          "semantica": 0.87,
-          "tags": 0.333,
-          "busquedas": 0.333,
-          "popularidad": 0.696
-        },
-        "listeners": 608129
-      },
-      {
-        "artist": "The Neighbourhood",
-        "title": "Sweater Weather",
-        "score": 0.582,
-        "why": [
+          "género: ambient, classical",
           "tags: chill"
         ],
         "parts": {
-          "semantica": 0.937,
-          "tags": 0.077,
+          "semantica": 1.0,
+          "tags": 0.003,
+          "genero": 1.0,
           "busquedas": 0.333,
-          "popularidad": 0.875
+          "popularidad": 0.647
         },
-        "listeners": 3153473
-      },
-      {
-        "artist": "Mac DeMarco",
-        "title": "Chamber of Reflection",
-        "score": 0.564,
-        "why": [
-          "tags: chill, lo fi"
-        ],
-        "parts": {
-          "semantica": 0.812,
-          "tags": 0.22,
-          "busquedas": 0.333,
-          "popularidad": 0.824
-        },
-        "listeners": 1984281
-      },
-      {
-        "artist": "The Microphones",
-        "title": "I Want Wind to Blow",
-        "score": 0.54,
-        "why": [
-          "tags: lo fi"
-        ],
-        "parts": {
-          "semantica": 0.719,
-          "tags": 0.333,
-          "busquedas": 0.333,
-          "popularidad": 0.666
-        },
-        "listeners": 463265
-      },
-      {
-        "artist": "The Microphones",
-        "title": "The Moon",
-        "score": 0.511,
-        "why": [
-          "tags: lo fi"
-        ],
-        "parts": {
-          "semantica": 0.654,
-          "tags": 0.333,
-          "busquedas": 0.333,
-          "popularidad": 0.665
-        },
-        "listeners": 458740
-      },
-      {
-        "artist": "311",
-        "title": "Amber",
-        "score": 0.509,
-        "why": [
-          "tags: chill"
-        ],
-        "parts": {
-          "semantica": 0.656,
-          "tags": 0.297,
-          "busquedas": 0.333,
-          "popularidad": 0.744
-        },
-        "listeners": 944990
-      },
-      {
-        "artist": "My Chemical Romance",
-        "title": "Romance",
-        "score": 0.502,
-        "why": [
-          "tags: instrumental"
-        ],
-        "parts": {
-          "semantica": 0.639,
-          "tags": 0.333,
-          "busquedas": 0.333,
-          "popularidad": 0.648
-        },
-        "listeners": 389705
-      },
-      {
-        "artist": "Ludovico Einaudi",
-        "title": "Una Mattina",
-        "score": 0.464,
-        "why": [
-          "artista de referencia"
-        ],
-        "parts": {
-          "semantica": 0.669,
-          "tags": 0.0,
-          "busquedas": 0.667,
-          "popularidad": 0.632
-        },
-        "listeners": 336941
+        "listeners": 387781
       },
       {
         "artist": "Ludovico Einaudi",
         "title": "Primavera",
-        "score": 0.462,
+        "score": 0.644,
         "why": [
+          "género: ambient, classical, neoclassical",
           "artista de referencia"
         ],
         "parts": {
-          "semantica": 0.661,
+          "semantica": 0.717,
           "tags": 0.0,
+          "genero": 1.0,
           "busquedas": 0.667,
           "popularidad": 0.643
         },
         "listeners": 372777
       },
       {
-        "artist": "Daniel Caesar",
-        "title": "Hold Me Down",
-        "score": 0.445,
-        "why": [
-          "tags: calm"
-        ],
-        "parts": {
-          "semantica": 0.654,
-          "tags": 0.097,
-          "busquedas": 0.333,
-          "popularidad": 0.72
-        },
-        "listeners": 755773
-      },
-      {
-        "artist": "Kavinsky",
-        "title": "Nightcall",
-        "score": 0.438,
-        "why": [
-          "tags: chill"
-        ],
-        "parts": {
-          "semantica": 0.643,
-          "tags": 0.07,
-          "busquedas": 0.333,
-          "popularidad": 0.776
-        },
-        "listeners": 1272086
-      },
-      {
         "artist": "Max Richter",
-        "title": "On the Nature of Daylight",
-        "score": 0.396,
+        "title": "A Catalogue of Afternoons",
+        "score": 0.603,
         "why": [
+          "género: ambient, classical, neoclassical",
           "artista de referencia"
         ],
         "parts": {
-          "semantica": 0.397,
+          "semantica": 0.796,
           "tags": 0.0,
-          "busquedas": 1.0,
-          "popularidad": 0.67
-        },
-        "listeners": 479865
-      },
-      {
-        "artist": "Ed Sheeran",
-        "title": "Tenerife Sea",
-        "score": 0.373,
-        "why": [],
-        "parts": {
-          "semantica": 0.566,
-          "tags": 0.0,
+          "genero": 1.0,
           "busquedas": 0.333,
-          "popularidad": 0.678
+          "popularidad": 0.543
         },
-        "listeners": 514614
-      },
-      {
-        "artist": "Ólafur Arnalds",
-        "title": "Near Light",
-        "score": 0.37,
-        "why": [
-          "parecido a Nils Frahm"
-        ],
-        "parts": {
-          "semantica": 0.467,
-          "tags": 0.0,
-          "busquedas": 0.667,
-          "popularidad": 0.603
-        },
-        "listeners": 257681
-      },
-      {
-        "artist": "Erik Satie",
-        "title": "Gymnopédie No.1",
-        "score": 0.358,
-        "why": [],
-        "parts": {
-          "semantica": 0.45,
-          "tags": 0.0,
-          "busquedas": 0.667,
-          "popularidad": 0.559
-        },
-        "listeners": 172332
-      },
-      {
-        "artist": "Camille Saint-Saëns",
-        "title": "Danse Macabre",
-        "score": 0.358,
-        "why": [],
-        "parts": {
-          "semantica": 0.559,
-          "tags": 0.0,
-          "busquedas": 0.333,
-          "popularidad": 0.563
-        },
-        "listeners": 178276
-      },
-      {
-        "artist": "Claude Debussy",
-        "title": "Clair de lune",
-        "score": 0.344,
-        "why": [],
-        "parts": {
-          "semantica": 0.496,
-          "tags": 0.0,
-          "busquedas": 0.333,
-          "popularidad": 0.708
-        },
-        "listeners": 679558
-      },
-      {
-        "artist": "Neutral Milk Hotel",
-        "title": "The Fool",
-        "score": 0.34,
-        "why": [],
-        "parts": {
-          "semantica": 0.489,
-          "tags": 0.0,
-          "busquedas": 0.333,
-          "popularidad": 0.702
-        },
-        "listeners": 645059
-      },
-      {
-        "artist": "Nils Frahm",
-        "title": "Ambre",
-        "score": 0.333,
-        "why": [
-          "artista de referencia"
-        ],
-        "parts": {
-          "semantica": 0.492,
-          "tags": 0.0,
-          "busquedas": 0.333,
-          "popularidad": 0.615
-        },
-        "listeners": 287174
-      },
-      {
-        "artist": "Kanye West",
-        "title": "All of the Lights (Interlude)",
-        "score": 0.332,
-        "why": [],
-        "parts": {
-          "semantica": 0.461,
-          "tags": 0.0,
-          "busquedas": 0.333,
-          "popularidad": 0.743
-        },
-        "listeners": 934914
-      },
-      {
-        "artist": "Brian Eno",
-        "title": "Deep Blue Day",
-        "score": 0.33,
-        "why": [
-          "artista de referencia"
-        ],
-        "parts": {
-          "semantica": 0.499,
-          "tags": 0.0,
-          "busquedas": 0.333,
-          "popularidad": 0.555
-        },
-        "listeners": 166223
-      },
-      {
-        "artist": "Brian Eno",
-        "title": "An Ending (Ascent)",
-        "score": 0.326,
-        "why": [
-          "artista de referencia"
-        ],
-        "parts": {
-          "semantica": 0.478,
-          "tags": 0.0,
-          "busquedas": 0.333,
-          "popularidad": 0.611
-        },
-        "listeners": 277486
+        "listeners": 148314
       },
       {
         "artist": "Tycho",
         "title": "Hours",
-        "score": 0.323,
+        "score": 0.594,
         "why": [
+          "género: ambient",
           "artista de referencia"
         ],
         "parts": {
-          "semantica": 0.475,
+          "semantica": 0.75,
           "tags": 0.0,
+          "genero": 1.0,
           "busquedas": 0.333,
           "popularidad": 0.595
         },
         "listeners": 240128
       },
       {
-        "artist": "Tycho",
-        "title": "Awake",
-        "score": 0.314,
+        "artist": "Erik Satie",
+        "title": "Gymnopédie No. 1",
+        "score": 0.589,
         "why": [
+          "género: ambient, classical",
+          "tags: instrumental"
+        ],
+        "parts": {
+          "semantica": 0.68,
+          "tags": 0.027,
+          "genero": 1.0,
+          "busquedas": 0.333,
+          "popularidad": 0.72
+        },
+        "listeners": 755917
+      },
+      {
+        "artist": "Ólafur Arnalds",
+        "title": "Near Light",
+        "score": 0.585,
+        "why": [
+          "género: ambient, classical",
+          "parecido a Nils Frahm"
+        ],
+        "parts": {
+          "semantica": 0.555,
+          "tags": 0.0,
+          "genero": 1.0,
+          "busquedas": 0.667,
+          "popularidad": 0.603
+        },
+        "listeners": 257681
+      },
+      {
+        "artist": "Helios",
+        "title": "Nothing it Can",
+        "score": 0.579,
+        "why": [
+          "género: ambient",
+          "parecido a Tycho"
+        ],
+        "parts": {
+          "semantica": 0.716,
+          "tags": 0.0,
+          "genero": 1.0,
+          "busquedas": 0.333,
+          "popularidad": 0.568
+        },
+        "listeners": 186862
+      },
+      {
+        "artist": "Mac DeMarco",
+        "title": "Chamber of Reflection",
+        "score": 0.578,
+        "why": [
+          "género: lo fi",
+          "tags: chill"
+        ],
+        "parts": {
+          "semantica": 0.625,
+          "tags": 0.003,
+          "genero": 1.0,
+          "busquedas": 0.333,
+          "popularidad": 0.824
+        },
+        "listeners": 1984281
+      },
+      {
+        "artist": "Nils Frahm",
+        "title": "Re",
+        "score": 0.569,
+        "why": [
+          "género: ambient, classical, neoclassical",
           "artista de referencia"
         ],
         "parts": {
-          "semantica": 0.443,
+          "semantica": 0.703,
           "tags": 0.0,
+          "genero": 1.0,
+          "busquedas": 0.333,
+          "popularidad": 0.514
+        },
+        "listeners": 113280
+      },
+      {
+        "artist": "Tycho",
+        "title": "Awake",
+        "score": 0.569,
+        "why": [
+          "género: ambient",
+          "artista de referencia"
+        ],
+        "parts": {
+          "semantica": 0.66,
+          "tags": 0.0,
+          "genero": 1.0,
           "busquedas": 0.333,
           "popularidad": 0.643
         },
         "listeners": 374370
       },
       {
+        "artist": "Nils Frahm",
+        "title": "Familiar",
+        "score": 0.568,
+        "why": [
+          "género: ambient, classical, neoclassical",
+          "artista de referencia"
+        ],
+        "parts": {
+          "semantica": 0.527,
+          "tags": 0.0,
+          "genero": 1.0,
+          "busquedas": 0.667,
+          "popularidad": 0.533
+        },
+        "listeners": 135662
+      },
+      {
+        "artist": "Brian Eno",
+        "title": "Deep Blue Day",
+        "score": 0.566,
+        "why": [
+          "género: ambient",
+          "artista de referencia"
+        ],
+        "parts": {
+          "semantica": 0.679,
+          "tags": 0.0,
+          "genero": 1.0,
+          "busquedas": 0.333,
+          "popularidad": 0.555
+        },
+        "listeners": 166223
+      },
+      {
         "artist": "Ólafur Arnalds",
         "title": "Þú ert jörðin",
-        "score": 0.313,
+        "score": 0.564,
         "why": [
+          "género: ambient, classical",
           "parecido a Nils Frahm"
         ],
         "parts": {
-          "semantica": 0.346,
+          "semantica": 0.501,
           "tags": 0.0,
+          "genero": 1.0,
           "busquedas": 0.667,
           "popularidad": 0.571
         },
         "listeners": 192437
       },
       {
-        "artist": "Nils Frahm",
-        "title": "Familiar",
-        "score": 0.308,
+        "artist": "A Winged Victory for the Sullen",
+        "title": "All Farewells Are Sudden",
+        "score": 0.56,
         "why": [
+          "género: ambient, classical, neoclassical",
+          "parecido a Max Richter"
+        ],
+        "parts": {
+          "semantica": 0.539,
+          "tags": 0.0,
+          "genero": 1.0,
+          "busquedas": 0.667,
+          "popularidad": 0.425
+        },
+        "listeners": 50282
+      },
+      {
+        "artist": "A Winged Victory for the Sullen",
+        "title": "Steep Hills of Vicodin Tears",
+        "score": 0.553,
+        "why": [
+          "género: ambient, classical, neoclassical",
+          "parecido a Max Richter"
+        ],
+        "parts": {
+          "semantica": 0.48,
+          "tags": 0.0,
+          "genero": 1.0,
+          "busquedas": 0.667,
+          "popularidad": 0.538
+        },
+        "listeners": 142293
+      },
+      {
+        "artist": "Fabrizio Paterlini",
+        "title": "Rue des Trois Frères",
+        "score": 0.548,
+        "why": [
+          "género: ambient, classical, neoclassical",
+          "parecido a Ludovico Einaudi"
+        ],
+        "parts": {
+          "semantica": 0.598,
+          "tags": 0.0,
+          "genero": 1.0,
+          "busquedas": 0.333,
+          "popularidad": 0.638
+        },
+        "listeners": 354989
+      },
+      {
+        "artist": "Brian Eno",
+        "title": "An Ending (Ascent)",
+        "score": 0.546,
+        "why": [
+          "género: ambient",
           "artista de referencia"
         ],
         "parts": {
-          "semantica": 0.343,
+          "semantica": 0.602,
           "tags": 0.0,
-          "busquedas": 0.667,
-          "popularidad": 0.533
+          "genero": 1.0,
+          "busquedas": 0.333,
+          "popularidad": 0.611
         },
-        "listeners": 135662
+        "listeners": 277486
+      },
+      {
+        "artist": "Fabrizio Paterlini",
+        "title": "Waltz",
+        "score": 0.537,
+        "why": [
+          "género: ambient, classical, neoclassical",
+          "parecido a Ludovico Einaudi"
+        ],
+        "parts": {
+          "semantica": 0.58,
+          "tags": 0.0,
+          "genero": 1.0,
+          "busquedas": 0.333,
+          "popularidad": 0.593
+        },
+        "listeners": 236244
+      },
+      {
+        "artist": "Harold Budd/Brian Eno",
+        "title": "The Chill Air",
+        "score": 0.535,
+        "why": [
+          "género: ambient",
+          "parecido a Brian Eno"
+        ],
+        "parts": {
+          "semantica": 0.664,
+          "tags": 0.0,
+          "genero": 1.0,
+          "busquedas": 0.333,
+          "popularidad": 0.322
+        },
+        "listeners": 19434
+      },
+      {
+        "artist": "The Microphones",
+        "title": "The Moon",
+        "score": 0.521,
+        "why": [
+          "género: lo fi"
+        ],
+        "parts": {
+          "semantica": 0.508,
+          "tags": 0.0,
+          "genero": 1.0,
+          "busquedas": 0.333,
+          "popularidad": 0.665
+        },
+        "listeners": 458740
+      },
+      {
+        "artist": "Emancipator",
+        "title": "Soon It Will Be Cold Enough to Build Fires",
+        "score": 0.52,
+        "why": [
+          "género: ambient",
+          "parecido a Tycho"
+        ],
+        "parts": {
+          "semantica": 0.528,
+          "tags": 0.0,
+          "genero": 1.0,
+          "busquedas": 0.333,
+          "popularidad": 0.599
+        },
+        "listeners": 249639
+      },
+      {
+        "artist": "Dustin O'Halloran",
+        "title": "We Move Lightly",
+        "score": 0.519,
+        "why": [
+          "género: ambient, classical, neoclassical"
+        ],
+        "parts": {
+          "semantica": 0.546,
+          "tags": 0.0,
+          "genero": 1.0,
+          "busquedas": 0.333,
+          "popularidad": 0.532
+        },
+        "listeners": 133902
+      },
+      {
+        "artist": "Jóhann Jóhannsson",
+        "title": "Chalkboard",
+        "score": 0.514,
+        "why": [
+          "género: ambient, classical, neoclassical",
+          "parecido a Max Richter"
+        ],
+        "parts": {
+          "semantica": 0.523,
+          "tags": 0.0,
+          "genero": 1.0,
+          "busquedas": 0.333,
+          "popularidad": 0.554
+        },
+        "listeners": 164425
+      },
+      {
+        "artist": "Ophelia's Dream",
+        "title": "Egredimini",
+        "score": 0.513,
+        "why": [
+          "género: neoclassical"
+        ],
+        "parts": {
+          "semantica": 0.584,
+          "tags": 0.0,
+          "genero": 1.0,
+          "busquedas": 0.333,
+          "popularidad": 0.366
+        },
+        "listeners": 29046
+      },
+      {
+        "artist": "The Microphones",
+        "title": "I Want Wind to Blow",
+        "score": 0.504,
+        "why": [
+          "género: lo fi"
+        ],
+        "parts": {
+          "semantica": 0.456,
+          "tags": 0.0,
+          "genero": 1.0,
+          "busquedas": 0.333,
+          "popularidad": 0.666
+        },
+        "listeners": 463265
       }
     ],
     "entrenamiento": [
       {
         "artist": "BLACKPINK",
         "title": "JUMP",
-        "score": 0.705,
+        "score": 0.677,
         "why": [
-          "tags: hardstyle, techno"
+          "género: hardstyle, techno"
         ],
         "parts": {
-          "semantica": 0.936,
-          "tags": 0.373,
+          "semantica": 0.79,
+          "tags": 0.0,
+          "genero": 1.0,
           "busquedas": 0.667,
           "popularidad": 0.719
         },
         "listeners": 753338
       },
       {
-        "artist": "Jane Remover",
-        "title": "TURN UP OR DIE",
-        "score": 0.652,
-        "why": [
-          "tags: hardstyle"
-        ],
-        "parts": {
-          "semantica": 0.995,
-          "tags": 0.333,
-          "busquedas": 0.333,
-          "popularidad": 0.547
-        },
-        "listeners": 154380
-      },
-      {
-        "artist": "PinkPantheress",
-        "title": "Passion",
-        "score": 0.623,
-        "why": [
-          "tags: drum and bass"
-        ],
-        "parts": {
-          "semantica": 0.889,
-          "tags": 0.333,
-          "busquedas": 0.333,
-          "popularidad": 0.729
-        },
-        "listeners": 823312
-      },
-      {
-        "artist": "Avenged Sevenfold",
-        "title": "Hail to the King",
-        "score": 0.618,
-        "why": [
-          "tags: heavy metal"
-        ],
-        "parts": {
-          "semantica": 0.887,
-          "tags": 0.32,
-          "busquedas": 0.333,
-          "popularidad": 0.724
-        },
-        "listeners": 783492
-      },
-      {
-        "artist": "Toby Fox",
-        "title": "Black Knife",
-        "score": 0.607,
-        "why": [
-          "tags: aggressive"
-        ],
-        "parts": {
-          "semantica": 0.904,
-          "tags": 0.333,
-          "busquedas": 0.333,
-          "popularidad": 0.509
-        },
-        "listeners": 108527
-      },
-      {
-        "artist": "The Prodigy",
-        "title": "Smack My Bitch Up",
-        "score": 0.606,
-        "why": [
-          "tags: techno, drum and bass"
-        ],
-        "parts": {
-          "semantica": 0.925,
-          "tags": 0.217,
-          "busquedas": 0.333,
-          "popularidad": 0.748
-        },
-        "listeners": 980108
-      },
-      {
-        "artist": "Waka Flocka Flame",
-        "title": "No Hands (feat. Roscoe Dash & Wale)",
-        "score": 0.591,
-        "why": [
-          "tags: energetic"
-        ],
-        "parts": {
-          "semantica": 0.954,
-          "tags": 0.123,
-          "busquedas": 0.333,
-          "popularidad": 0.749
-        },
-        "listeners": 989757
-      },
-      {
         "artist": "Avenged Sevenfold",
         "title": "Nightmare",
-        "score": 0.591,
+        "score": 0.674,
         "why": [
-          "tags: heavy metal"
+          "género: heavy metal"
         ],
         "parts": {
-          "semantica": 0.819,
-          "tags": 0.333,
+          "semantica": 0.947,
+          "tags": 0.0,
+          "genero": 1.0,
           "busquedas": 0.333,
           "popularidad": 0.722
         },
         "listeners": 773525
       },
       {
-        "artist": "The Prodigy",
-        "title": "Firestarter",
-        "score": 0.579,
+        "artist": "Avenged Sevenfold",
+        "title": "Hail to the King",
+        "score": 0.67,
         "why": [
-          "tags: techno"
+          "género: heavy metal"
         ],
         "parts": {
-          "semantica": 0.86,
-          "tags": 0.227,
+          "semantica": 0.936,
+          "tags": 0.0,
+          "genero": 1.0,
+          "busquedas": 0.333,
+          "popularidad": 0.724
+        },
+        "listeners": 783492
+      },
+      {
+        "artist": "Headhunterz",
+        "title": "The Power Of The Mind (Qlimax Anthem 2007)",
+        "score": 0.625,
+        "why": [
+          "género: hardstyle"
+        ],
+        "parts": {
+          "semantica": 0.932,
+          "tags": 0.0,
+          "genero": 1.0,
+          "busquedas": 0.333,
+          "popularidad": 0.333
+        },
+        "listeners": 21539
+      },
+      {
+        "artist": "Jane Remover",
+        "title": "TURN UP OR DIE",
+        "score": 0.622,
+        "why": [
+          "género: hardstyle"
+        ],
+        "parts": {
+          "semantica": 0.849,
+          "tags": 0.0,
+          "genero": 1.0,
+          "busquedas": 0.333,
+          "popularidad": 0.547
+        },
+        "listeners": 154380
+      },
+      {
+        "artist": "The Prodigy",
+        "title": "Firestarter",
+        "score": 0.613,
+        "why": [
+          "género: techno"
+        ],
+        "parts": {
+          "semantica": 0.76,
+          "tags": 0.0,
+          "genero": 1.0,
           "busquedas": 0.333,
           "popularidad": 0.741
         },
         "listeners": 922762
       },
       {
-        "artist": "Ozzy Osbourne",
-        "title": "Crazy Train",
-        "score": 0.573,
+        "artist": "PinkPantheress",
+        "title": "Passion",
+        "score": 0.612,
         "why": [
-          "tags: heavy metal"
+          "género: drum and bass"
         ],
         "parts": {
-          "semantica": 0.762,
-          "tags": 0.333,
-          "busquedas": 0.333,
-          "popularidad": 0.802
-        },
-        "listeners": 1612119
-      },
-      {
-        "artist": "Bring Me the Horizon",
-        "title": "Throne",
-        "score": 0.573,
-        "why": [
-          "artista de referencia"
-        ],
-        "parts": {
-          "semantica": 1.0,
+          "semantica": 0.761,
           "tags": 0.0,
+          "genero": 1.0,
           "busquedas": 0.333,
-          "popularidad": 0.731
+          "popularidad": 0.729
         },
-        "listeners": 838773
+        "listeners": 823312
       },
       {
-        "artist": "Jin",
-        "title": "Running Wild",
-        "score": 0.568,
+        "artist": "D-Block & S-te-Fan",
+        "title": "Music Made Addict",
+        "score": 0.608,
         "why": [
-          "tags: energetic"
+          "género: hardstyle"
         ],
         "parts": {
-          "semantica": 0.796,
-          "tags": 0.333,
+          "semantica": 0.879,
+          "tags": 0.0,
+          "genero": 1.0,
           "busquedas": 0.333,
-          "popularidad": 0.598
+          "popularidad": 0.341
         },
-        "listeners": 247032
+        "listeners": 23029
+      },
+      {
+        "artist": "The Prodigy",
+        "title": "Breathe",
+        "score": 0.603,
+        "why": [
+          "género: techno"
+        ],
+        "parts": {
+          "semantica": 0.724,
+          "tags": 0.0,
+          "genero": 1.0,
+          "busquedas": 0.333,
+          "popularidad": 0.751
+        },
+        "listeners": 1013016
+      },
+      {
+        "artist": "Noisecontrollers",
+        "title": "Attack Again",
+        "score": 0.601,
+        "why": [
+          "género: hardstyle, techno"
+        ],
+        "parts": {
+          "semantica": 0.877,
+          "tags": 0.0,
+          "genero": 1.0,
+          "busquedas": 0.333,
+          "popularidad": 0.274
+        },
+        "listeners": 12433
+      },
+      {
+        "artist": "Headhunterz",
+        "title": "Rock Civilization",
+        "score": 0.598,
+        "why": [
+          "género: hardstyle"
+        ],
+        "parts": {
+          "semantica": 0.844,
+          "tags": 0.0,
+          "genero": 1.0,
+          "busquedas": 0.333,
+          "popularidad": 0.35
+        },
+        "listeners": 25050
+      },
+      {
+        "artist": "KATSEYE",
+        "title": "PINKY UP",
+        "score": 0.59,
+        "why": [
+          "género: hardstyle, techno"
+        ],
+        "parts": {
+          "semantica": 0.712,
+          "tags": 0.0,
+          "genero": 1.0,
+          "busquedas": 0.333,
+          "popularidad": 0.671
+        },
+        "listeners": 483516
+      },
+      {
+        "artist": "Grimes",
+        "title": "4ÆM",
+        "score": 0.589,
+        "why": [
+          "género: drum and bass"
+        ],
+        "parts": {
+          "semantica": 0.708,
+          "tags": 0.0,
+          "genero": 1.0,
+          "busquedas": 0.333,
+          "popularidad": 0.676
+        },
+        "listeners": 506524
+      },
+      {
+        "artist": "Pendulum",
+        "title": "Hold Your Colour",
+        "score": 0.589,
+        "why": [
+          "género: drum and bass"
+        ],
+        "parts": {
+          "semantica": 0.72,
+          "tags": 0.0,
+          "genero": 1.0,
+          "busquedas": 0.333,
+          "popularidad": 0.637
+        },
+        "listeners": 353884
+      },
+      {
+        "artist": "Motörhead",
+        "title": "Ace of Spades",
+        "score": 0.586,
+        "why": [
+          "género: heavy metal"
+        ],
+        "parts": {
+          "semantica": 0.66,
+          "tags": 0.0,
+          "genero": 1.0,
+          "busquedas": 0.333,
+          "popularidad": 0.791
+        },
+        "listeners": 1453221
+      },
+      {
+        "artist": "Boys Noize",
+        "title": "& Down",
+        "score": 0.585,
+        "why": [
+          "género: techno",
+          "parecido a Gesaffelstein"
+        ],
+        "parts": {
+          "semantica": 0.73,
+          "tags": 0.0,
+          "genero": 1.0,
+          "busquedas": 0.333,
+          "popularidad": 0.573
+        },
+        "listeners": 195994
+      },
+      {
+        "artist": "Technoboy",
+        "title": "Ti Sento",
+        "score": 0.584,
+        "why": [
+          "género: hardstyle, techno"
+        ],
+        "parts": {
+          "semantica": 0.815,
+          "tags": 0.0,
+          "genero": 1.0,
+          "busquedas": 0.333,
+          "popularidad": 0.31
+        },
+        "listeners": 17430
+      },
+      {
+        "artist": "Pendulum",
+        "title": "Propane Nightmares",
+        "score": 0.555,
+        "why": [
+          "género: drum and bass"
+        ],
+        "parts": {
+          "semantica": 0.606,
+          "tags": 0.0,
+          "genero": 1.0,
+          "busquedas": 0.333,
+          "popularidad": 0.68
+        },
+        "listeners": 526077
       },
       {
         "artist": "Ozzy Osbourne",
         "title": "No More Tears",
-        "score": 0.525,
+        "score": 0.553,
         "why": [
-          "tags: heavy metal"
+          "género: heavy metal"
         ],
         "parts": {
-          "semantica": 0.67,
-          "tags": 0.333,
+          "semantica": 0.582,
+          "tags": 0.0,
+          "genero": 1.0,
           "busquedas": 0.333,
           "popularidad": 0.734
         },
         "listeners": 865967
       },
       {
-        "artist": "Motionless in White",
-        "title": "Another Life",
-        "score": 0.519,
+        "artist": "Basshunter",
+        "title": "All I Ever Wanted",
+        "score": 0.547,
         "why": [
-          "parecido a Bring Me the Horizon"
+          "género: techno"
         ],
         "parts": {
-          "semantica": 0.896,
+          "semantica": 0.632,
           "tags": 0.0,
+          "genero": 1.0,
           "busquedas": 0.333,
-          "popularidad": 0.653
+          "popularidad": 0.531
         },
-        "listeners": 408355
+        "listeners": 132596
       },
       {
-        "artist": "Bring Me the Horizon",
-        "title": "Can You Feel My Heart",
-        "score": 0.517,
+        "artist": "Ozzy Osbourne",
+        "title": "Crazy Train",
+        "score": 0.543,
         "why": [
-          "artista de referencia"
+          "género: heavy metal"
         ],
         "parts": {
-          "semantica": 0.865,
+          "semantica": 0.527,
           "tags": 0.0,
+          "genero": 1.0,
           "busquedas": 0.333,
-          "popularidad": 0.774
+          "popularidad": 0.802
         },
-        "listeners": 1249637
+        "listeners": 1612119
       },
       {
-        "artist": "Death Grips",
-        "title": "Hacker",
-        "score": 0.508,
+        "artist": "Dog Blood",
+        "title": "Turn Off The Lights",
+        "score": 0.541,
         "why": [
-          "artista de referencia"
+          "género: techno",
+          "parecido a Skrillex"
         ],
         "parts": {
-          "semantica": 0.867,
+          "semantica": 0.654,
           "tags": 0.0,
+          "genero": 1.0,
           "busquedas": 0.333,
-          "popularidad": 0.681
+          "popularidad": 0.404
         },
-        "listeners": 529099
-      },
-      {
-        "artist": "Skrillex",
-        "title": "Scary Monsters and Nice Sprites",
-        "score": 0.478,
-        "why": [
-          "artista de referencia"
-        ],
-        "parts": {
-          "semantica": 0.787,
-          "tags": 0.0,
-          "busquedas": 0.333,
-          "popularidad": 0.737
-        },
-        "listeners": 885800
-      },
-      {
-        "artist": "Sia",
-        "title": "Unstoppable",
-        "score": 0.469,
-        "why": [
-          "tags: powerful"
-        ],
-        "parts": {
-          "semantica": 0.552,
-          "tags": 0.333,
-          "busquedas": 0.333,
-          "popularidad": 0.709
-        },
-        "listeners": 683240
-      },
-      {
-        "artist": "Bruno Mars",
-        "title": "Runaway Baby",
-        "score": 0.438,
-        "why": [
-          "tags: energetic"
-        ],
-        "parts": {
-          "semantica": 0.628,
-          "tags": 0.097,
-          "busquedas": 0.333,
-          "popularidad": 0.765
-        },
-        "listeners": 1149531
-      },
-      {
-        "artist": "Bad Omens",
-        "title": "Just Pretend",
-        "score": 0.405,
-        "why": [
-          "parecido a Bring Me the Horizon"
-        ],
-        "parts": {
-          "semantica": 0.642,
-          "tags": 0.0,
-          "busquedas": 0.333,
-          "popularidad": 0.665
-        },
-        "listeners": 458499
-      },
-      {
-        "artist": "Death Grips",
-        "title": "Get Got",
-        "score": 0.397,
-        "why": [
-          "artista de referencia"
-        ],
-        "parts": {
-          "semantica": 0.612,
-          "tags": 0.0,
-          "busquedas": 0.333,
-          "popularidad": 0.719
-        },
-        "listeners": 748975
-      },
-      {
-        "artist": "Skrillex",
-        "title": "Bangarang (feat. Sirah)",
-        "score": 0.396,
-        "why": [
-          "artista de referencia"
-        ],
-        "parts": {
-          "semantica": 0.613,
-          "tags": 0.0,
-          "busquedas": 0.333,
-          "popularidad": 0.698
-        },
-        "listeners": 619972
-      },
-      {
-        "artist": "Swedish House Mafia",
-        "title": "Greyhound",
-        "score": 0.393,
-        "why": [
-          "artista de referencia"
-        ],
-        "parts": {
-          "semantica": 0.619,
-          "tags": 0.0,
-          "busquedas": 0.333,
-          "popularidad": 0.644
-        },
-        "listeners": 376950
-      },
-      {
-        "artist": "Danny Brown",
-        "title": "Ain't it Funny",
-        "score": 0.392,
-        "why": [
-          "parecido a Death Grips"
-        ],
-        "parts": {
-          "semantica": 0.617,
-          "tags": 0.0,
-          "busquedas": 0.333,
-          "popularidad": 0.647
-        },
-        "listeners": 386832
-      },
-      {
-        "artist": "JPEGMAFIA",
-        "title": "1539 N. Calvert",
-        "score": 0.392,
-        "why": [
-          "parecido a Death Grips"
-        ],
-        "parts": {
-          "semantica": 0.605,
-          "tags": 0.0,
-          "busquedas": 0.333,
-          "popularidad": 0.7
-        },
-        "listeners": 629926
-      },
-      {
-        "artist": "Lil B",
-        "title": "Motivation",
-        "score": 0.386,
-        "why": [],
-        "parts": {
-          "semantica": 0.64,
-          "tags": 0.0,
-          "busquedas": 0.333,
-          "popularidad": 0.479
-        },
-        "listeners": 82709
-      },
-      {
-        "artist": "Adele",
-        "title": "Set Fire to the Rain",
-        "score": 0.384,
-        "why": [
-          "tags: powerful"
-        ],
-        "parts": {
-          "semantica": 0.545,
-          "tags": 0.017,
-          "busquedas": 0.333,
-          "popularidad": 0.832
-        },
-        "listeners": 2133690
+        "listeners": 41354
       },
       {
         "artist": "Gesaffelstein",
-        "title": "Lost in the Fire (feat. The Weeknd)",
-        "score": 0.38,
+        "title": "Pursuit",
+        "score": 0.532,
         "why": [
-          "tags: techno",
+          "género: techno",
           "artista de referencia"
         ],
         "parts": {
-          "semantica": 0.561,
-          "tags": 0.003,
-          "busquedas": 0.333,
-          "popularidad": 0.763
+          "semantica": 0.4,
+          "tags": 0.0,
+          "genero": 1.0,
+          "busquedas": 0.667,
+          "popularidad": 0.585
         },
-        "listeners": 1131628
+        "listeners": 218907
       },
       {
-        "artist": "Axwell",
-        "title": "Feel the Vibe",
-        "score": 0.378,
+        "artist": "Gesaffelstein",
+        "title": "Opr",
+        "score": 0.53,
         "why": [
-          "parecido a Swedish House Mafia"
+          "género: techno",
+          "artista de referencia"
         ],
         "parts": {
-          "semantica": 0.616,
+          "semantica": 0.565,
           "tags": 0.0,
+          "genero": 1.0,
           "busquedas": 0.333,
-          "popularidad": 0.506
+          "popularidad": 0.579
         },
-        "listeners": 105231
+        "listeners": 207139
       },
       {
-        "artist": "D-Block & S-te-Fan",
-        "title": "Music Made Addict",
-        "score": 0.336,
-        "why": [],
+        "artist": "Boys Noize",
+        "title": "Lava Lava",
+        "score": 0.528,
+        "why": [
+          "género: techno",
+          "parecido a Gesaffelstein"
+        ],
         "parts": {
-          "semantica": 0.561,
+          "semantica": 0.566,
           "tags": 0.0,
+          "genero": 1.0,
           "busquedas": 0.333,
-          "popularidad": 0.341
+          "popularidad": 0.556
         },
-        "listeners": 23029
+        "listeners": 168176
+      },
+      {
+        "artist": "Dog Blood",
+        "title": "Next Order",
+        "score": 0.524,
+        "why": [
+          "género: techno",
+          "parecido a Skrillex"
+        ],
+        "parts": {
+          "semantica": 0.611,
+          "tags": 0.0,
+          "genero": 1.0,
+          "busquedas": 0.333,
+          "popularidad": 0.379
+        },
+        "listeners": 32803
+      },
+      {
+        "artist": "Ninajirachi",
+        "title": "CSIRAC",
+        "score": 0.518,
+        "why": [
+          "género: techno"
+        ],
+        "parts": {
+          "semantica": 0.53,
+          "tags": 0.0,
+          "genero": 1.0,
+          "busquedas": 0.333,
+          "popularidad": 0.572
+        },
+        "listeners": 193973
+      },
+      {
+        "artist": "Judas Priest",
+        "title": "Painkiller",
+        "score": 0.517,
+        "why": [
+          "género: heavy metal"
+        ],
+        "parts": {
+          "semantica": 0.482,
+          "tags": 0.0,
+          "genero": 1.0,
+          "busquedas": 0.333,
+          "popularidad": 0.711
+        },
+        "listeners": 700805
+      },
+      {
+        "artist": "Frontliner",
+        "title": "Spacer",
+        "score": 0.516,
+        "why": [
+          "género: hardstyle"
+        ],
+        "parts": {
+          "semantica": 0.614,
+          "tags": 0.0,
+          "genero": 1.0,
+          "busquedas": 0.333,
+          "popularidad": 0.306
+        },
+        "listeners": 16732
+      },
+      {
+        "artist": "JPEGMAFIA",
+        "title": "BALD!",
+        "score": 0.506,
+        "why": [
+          "género: drum and bass",
+          "parecido a Death Grips"
+        ],
+        "parts": {
+          "semantica": 0.459,
+          "tags": 0.0,
+          "genero": 1.0,
+          "busquedas": 0.333,
+          "popularidad": 0.68
+        },
+        "listeners": 523495
       }
     ],
     "nostalgia": [
       {
+        "artist": "Panic! at the Disco",
+        "title": "I Write Sins Not Tragedies",
+        "score": 0.769,
+        "why": [
+          "género: pop, pop punk, alternative rock",
+          "época: 2000s",
+          "parecido a Fall Out Boy"
+        ],
+        "parts": {
+          "semantica": 0.951,
+          "tags": 0.0,
+          "genero": 1.0,
+          "epoca": 1.0,
+          "busquedas": 0.667,
+          "popularidad": 0.841
+        },
+        "listeners": 2322369
+      },
+      {
         "artist": "Fall Out Boy",
         "title": "Dance, Dance",
-        "score": 0.762,
+        "score": 0.75,
         "why": [
-          "tags: pop punk, alternative rock, emo",
+          "género: pop, pop punk, alternative rock",
+          "época: 2000s",
           "artista de referencia"
         ],
         "parts": {
-          "semantica": 0.987,
-          "tags": 0.453,
+          "semantica": 0.895,
+          "tags": 0.0,
+          "genero": 1.0,
+          "epoca": 1.0,
           "busquedas": 0.667,
           "popularidad": 0.821
         },
         "listeners": 1926523
       },
       {
-        "artist": "Weezer",
-        "title": "Across the Sea",
-        "score": 0.708,
-        "why": [
-          "tags: alternative rock, emo"
-        ],
-        "parts": {
-          "semantica": 0.805,
-          "tags": 0.587,
-          "busquedas": 0.667,
-          "popularidad": 0.701
-        },
-        "listeners": 635505
-      },
-      {
         "artist": "Good Charlotte",
         "title": "The Anthem",
-        "score": 0.705,
+        "score": 0.74,
         "why": [
-          "tags: pop, pop punk, alternative rock",
+          "género: pop, pop punk, alternative rock",
+          "época: 2000s",
           "artista de referencia"
         ],
         "parts": {
-          "semantica": 0.988,
-          "tags": 0.28,
+          "semantica": 0.88,
+          "tags": 0.0,
+          "genero": 1.0,
+          "epoca": 1.0,
           "busquedas": 0.667,
           "popularidad": 0.764
         },
@@ -2106,14 +2323,17 @@
       {
         "artist": "Fall Out Boy",
         "title": "This Ain't a Scene, It's an Arms Race",
-        "score": 0.698,
+        "score": 0.734,
         "why": [
-          "tags: pop punk, alternative rock, emo",
+          "género: pop, pop punk, alternative rock",
+          "época: 2000s",
           "artista de referencia"
         ],
         "parts": {
-          "semantica": 0.934,
-          "tags": 0.333,
+          "semantica": 0.854,
+          "tags": 0.0,
+          "genero": 1.0,
+          "epoca": 1.0,
           "busquedas": 0.667,
           "popularidad": 0.774
         },
@@ -2122,123 +2342,381 @@
       {
         "artist": "The All-American Rejects",
         "title": "Dirty Little Secret",
-        "score": 0.691,
+        "score": 0.727,
         "why": [
-          "tags: pop punk, alternative rock, emo"
+          "género: pop, pop punk, alternative rock",
+          "época: 2000s"
         ],
         "parts": {
-          "semantica": 1.0,
-          "tags": 0.367,
+          "semantica": 0.988,
+          "tags": 0.0,
+          "genero": 1.0,
+          "epoca": 1.0,
           "busquedas": 0.333,
           "popularidad": 0.807
         },
         "listeners": 1695086
       },
       {
-        "artist": "Panic! at the Disco",
-        "title": "I Write Sins Not Tragedies",
-        "score": 0.688,
+        "artist": "Yellowcard",
+        "title": "Ocean Avenue",
+        "score": 0.711,
         "why": [
-          "tags: pop punk, alternative rock, emo",
-          "parecido a Fall Out Boy"
+          "género: pop, pop punk, alternative rock",
+          "época: 2000s",
+          "parecido a Good Charlotte"
         ],
         "parts": {
-          "semantica": 0.959,
-          "tags": 0.24,
+          "semantica": 0.948,
+          "tags": 0.0,
+          "genero": 1.0,
+          "epoca": 1.0,
+          "busquedas": 0.333,
+          "popularidad": 0.765
+        },
+        "listeners": 1145828
+      },
+      {
+        "artist": "Bowling for Soup",
+        "title": "1985",
+        "score": 0.695,
+        "why": [
+          "género: pop, pop punk",
+          "época: 2000s",
+          "parecido a Good Charlotte"
+        ],
+        "parts": {
+          "semantica": 0.734,
+          "tags": 0.0,
+          "genero": 1.0,
+          "epoca": 1.0,
+          "busquedas": 0.667,
+          "popularidad": 0.743
+        },
+        "listeners": 939694
+      },
+      {
+        "artist": "Avril Lavigne",
+        "title": "Complicated",
+        "score": 0.691,
+        "why": [
+          "género: pop, pop punk, alternative rock",
+          "época: 2000s",
+          "artista de referencia"
+        ],
+        "parts": {
+          "semantica": 0.689,
+          "tags": 0.0,
+          "genero": 1.0,
+          "epoca": 1.0,
           "busquedas": 0.667,
           "popularidad": 0.841
         },
-        "listeners": 2322369
+        "listeners": 2308282
       },
       {
-        "artist": "My Chemical Romance",
-        "title": "The Sharpest Lives",
-        "score": 0.685,
+        "artist": "Avril Lavigne",
+        "title": "Sk8er Boi",
+        "score": 0.651,
         "why": [
-          "tags: pop punk, alternative rock, emo",
+          "género: pop, pop punk, alternative rock",
+          "época: 2000s",
           "artista de referencia"
         ],
         "parts": {
-          "semantica": 0.708,
-          "tags": 0.467,
-          "busquedas": 1.0,
-          "popularidad": 0.759
+          "semantica": 0.733,
+          "tags": 0.0,
+          "genero": 1.0,
+          "epoca": 1.0,
+          "busquedas": 0.333,
+          "popularidad": 0.815
         },
-        "listeners": 1089680
+        "listeners": 1820167
       },
       {
-        "artist": "My Chemical Romance",
-        "title": "The Ghost of You",
-        "score": 0.661,
+        "artist": "Kelly Clarkson",
+        "title": "Since U Been Gone",
+        "score": 0.634,
         "why": [
-          "tags: alternative rock, emo",
+          "género: pop",
+          "época: 2000s",
           "artista de referencia"
         ],
         "parts": {
-          "semantica": 0.852,
-          "tags": 0.327,
+          "semantica": 0.674,
+          "tags": 0.0,
+          "genero": 1.0,
+          "epoca": 1.0,
+          "busquedas": 0.333,
+          "popularidad": 0.821
+        },
+        "listeners": 1927360
+      },
+      {
+        "artist": "t.A.T.u.",
+        "title": "All the Things She Said",
+        "score": 0.628,
+        "why": [
+          "género: pop",
+          "época: 2000s"
+        ],
+        "parts": {
+          "semantica": 0.491,
+          "tags": 0.0,
+          "genero": 1.0,
+          "epoca": 1.0,
           "busquedas": 0.667,
-          "popularidad": 0.793
+          "popularidad": 0.812
         },
-        "listeners": 1492751
+        "listeners": 1770827
+      },
+      {
+        "artist": "Justin Timberlake",
+        "title": "Rock Your Body",
+        "score": 0.624,
+        "why": [
+          "género: pop",
+          "época: 2000s"
+        ],
+        "parts": {
+          "semantica": 0.468,
+          "tags": 0.0,
+          "genero": 1.0,
+          "epoca": 1.0,
+          "busquedas": 0.667,
+          "popularidad": 0.833
+        },
+        "listeners": 2139398
+      },
+      {
+        "artist": "Kid Cudi",
+        "title": "Day 'n' Nite (Nightmare)",
+        "score": 0.607,
+        "why": [
+          "género: pop",
+          "época: 2000s"
+        ],
+        "parts": {
+          "semantica": 0.598,
+          "tags": 0.0,
+          "genero": 1.0,
+          "epoca": 1.0,
+          "busquedas": 0.333,
+          "popularidad": 0.777
+        },
+        "listeners": 1287152
+      },
+      {
+        "artist": "Britney Spears",
+        "title": "Toxic",
+        "score": 0.583,
+        "why": [
+          "género: pop",
+          "época: 2000s"
+        ],
+        "parts": {
+          "semantica": 0.318,
+          "tags": 0.0,
+          "genero": 1.0,
+          "epoca": 1.0,
+          "busquedas": 0.667,
+          "popularidad": 0.877
+        },
+        "listeners": 3210418
+      },
+      {
+        "artist": "Leona Lewis",
+        "title": "Bleeding Love",
+        "score": 0.571,
+        "why": [
+          "género: pop",
+          "época: 2000s",
+          "parecido a Kelly Clarkson"
+        ],
+        "parts": {
+          "semantica": 0.472,
+          "tags": 0.0,
+          "genero": 1.0,
+          "epoca": 1.0,
+          "busquedas": 0.333,
+          "popularidad": 0.791
+        },
+        "listeners": 1452168
+      },
+      {
+        "artist": "Kelly Clarkson",
+        "title": "Breakaway",
+        "score": 0.558,
+        "why": [
+          "género: pop",
+          "época: 2000s",
+          "artista de referencia"
+        ],
+        "parts": {
+          "semantica": 0.446,
+          "tags": 0.0,
+          "genero": 1.0,
+          "epoca": 1.0,
+          "busquedas": 0.333,
+          "popularidad": 0.746
+        },
+        "listeners": 960197
+      },
+      {
+        "artist": "Lil Wayne",
+        "title": "Lollipop",
+        "score": 0.534,
+        "why": [
+          "género: pop",
+          "época: 2000s"
+        ],
+        "parts": {
+          "semantica": 0.368,
+          "tags": 0.0,
+          "genero": 1.0,
+          "epoca": 1.0,
+          "busquedas": 0.333,
+          "popularidad": 0.733
+        },
+        "listeners": 852881
       },
       {
         "artist": "Paramore",
         "title": "Ignorance",
-        "score": 0.66,
+        "score": 0.186,
         "why": [
-          "tags: pop punk, alternative rock",
+          "género: pop, pop punk, alternative rock",
           "artista de referencia"
         ],
         "parts": {
-          "semantica": 0.609,
-          "tags": 0.523,
+          "semantica": 0.642,
+          "tags": 0.0,
+          "genero": 1.0,
+          "epoca": 0.0,
           "busquedas": 1.0,
           "popularidad": 0.79
         },
         "listeners": 1451682
       },
       {
-        "artist": "Gym Class Heroes",
-        "title": "Cupid's Chokehold / Breakfast in America",
-        "score": 0.638,
+        "artist": "My Chemical Romance",
+        "title": "The Ghost of You",
+        "score": 0.185,
         "why": [
-          "tags: pop, 2000s"
+          "género: pop, pop punk, alternative rock",
+          "artista de referencia"
         ],
         "parts": {
-          "semantica": 0.943,
-          "tags": 0.293,
-          "busquedas": 0.333,
-          "popularidad": 0.756
+          "semantica": 0.796,
+          "tags": 0.0,
+          "genero": 1.0,
+          "epoca": 0.0,
+          "busquedas": 0.667,
+          "popularidad": 0.793
         },
-        "listeners": 1052945
+        "listeners": 1492751
+      },
+      {
+        "artist": "My Chemical Romance",
+        "title": "Teenagers",
+        "score": 0.185,
+        "why": [
+          "género: pop, pop punk, alternative rock",
+          "artista de referencia"
+        ],
+        "parts": {
+          "semantica": 0.775,
+          "tags": 0.0,
+          "genero": 1.0,
+          "epoca": 0.0,
+          "busquedas": 0.667,
+          "popularidad": 0.846
+        },
+        "listeners": 2421547
       },
       {
         "artist": "Paramore",
         "title": "Misery Business",
-        "score": 0.627,
+        "score": 0.185,
         "why": [
-          "tags: pop punk, alternative rock, emo",
+          "género: pop, pop punk, alternative rock",
           "artista de referencia"
         ],
         "parts": {
-          "semantica": 0.744,
-          "tags": 0.353,
+          "semantica": 0.766,
+          "tags": 0.0,
+          "genero": 1.0,
+          "epoca": 0.0,
           "busquedas": 0.667,
           "popularidad": 0.863
         },
         "listeners": 2833580
       },
       {
-        "artist": "American Football",
-        "title": "Never Meant",
-        "score": 0.625,
+        "artist": "blink-182",
+        "title": "What's My Age Again?",
+        "score": 0.177,
         "why": [
-          "tags: emo"
+          "género: pop, pop punk, alternative rock",
+          "artista de referencia"
         ],
         "parts": {
-          "semantica": 0.891,
-          "tags": 0.333,
+          "semantica": 0.696,
+          "tags": 0.0,
+          "genero": 1.0,
+          "epoca": 0.0,
+          "busquedas": 0.667,
+          "popularidad": 0.811
+        },
+        "listeners": 1760785
+      },
+      {
+        "artist": "Weezer",
+        "title": "Across the Sea",
+        "score": 0.173,
+        "why": [
+          "género: pop, alternative rock, emo"
+        ],
+        "parts": {
+          "semantica": 0.692,
+          "tags": 0.0,
+          "genero": 1.0,
+          "epoca": 0.0,
+          "busquedas": 0.667,
+          "popularidad": 0.701
+        },
+        "listeners": 635505
+      },
+      {
+        "artist": "blink-182",
+        "title": "All the Small Things",
+        "score": 0.173,
+        "why": [
+          "género: pop, pop punk, alternative rock",
+          "artista de referencia"
+        ],
+        "parts": {
+          "semantica": 0.636,
+          "tags": 0.0,
+          "genero": 1.0,
+          "epoca": 0.0,
+          "busquedas": 0.667,
+          "popularidad": 0.844
+        },
+        "listeners": 2380550
+      },
+      {
+        "artist": "American Football",
+        "title": "Never Meant",
+        "score": 0.17,
+        "why": [
+          "género: emo"
+        ],
+        "parts": {
+          "semantica": 0.813,
+          "tags": 0.0,
+          "genero": 1.0,
+          "epoca": 0.0,
           "busquedas": 0.333,
           "popularidad": 0.74
         },
@@ -2247,719 +2725,582 @@
       {
         "artist": "All Time Low",
         "title": "Dear Maria, Count Me In",
-        "score": 0.619,
+        "score": 0.168,
         "why": [
-          "tags: pop punk, emo"
+          "género: pop, pop punk, emo"
         ],
         "parts": {
-          "semantica": 0.851,
-          "tags": 0.357,
+          "semantica": 0.768,
+          "tags": 0.0,
+          "genero": 1.0,
+          "epoca": 0.0,
           "busquedas": 0.333,
           "popularidad": 0.789
         },
         "listeners": 1428889
       },
       {
-        "artist": "Bowling for Soup",
-        "title": "1985",
-        "score": 0.618,
+        "artist": "Olivia Rodrigo",
+        "title": "brutal",
+        "score": 0.167,
         "why": [
-          "tags: pop, pop punk",
-          "parecido a Good Charlotte"
+          "género: pop, pop punk, alternative rock"
         ],
         "parts": {
-          "semantica": 0.751,
-          "tags": 0.353,
-          "busquedas": 0.667,
-          "popularidad": 0.743
-        },
-        "listeners": 939694
-      },
-      {
-        "artist": "blink-182",
-        "title": "What's My Age Again?",
-        "score": 0.612,
-        "why": [
-          "tags: pop, pop punk, alternative rock",
-          "artista de referencia"
-        ],
-        "parts": {
-          "semantica": 0.746,
-          "tags": 0.317,
-          "busquedas": 0.667,
-          "popularidad": 0.811
-        },
-        "listeners": 1760785
-      },
-      {
-        "artist": "Yellowcard",
-        "title": "Ocean Avenue",
-        "score": 0.603,
-        "why": [
-          "tags: pop punk, alternative rock, emo",
-          "parecido a Good Charlotte"
-        ],
-        "parts": {
-          "semantica": 0.91,
-          "tags": 0.223,
+          "semantica": 0.757,
+          "tags": 0.0,
+          "genero": 1.0,
+          "epoca": 0.0,
           "busquedas": 0.333,
-          "popularidad": 0.765
+          "popularidad": 0.787
         },
-        "listeners": 1145828
-      },
-      {
-        "artist": "Britney Spears",
-        "title": "Overprotected - Radio Edit",
-        "score": 0.591,
-        "why": [
-          "tags: pop, 2000s"
-        ],
-        "parts": {
-          "semantica": 0.785,
-          "tags": 0.43,
-          "busquedas": 0.333,
-          "popularidad": 0.583
-        },
-        "listeners": 214233
-      },
-      {
-        "artist": "Avril Lavigne",
-        "title": "Complicated",
-        "score": 0.587,
-        "why": [
-          "tags: pop, alternative rock",
-          "artista de referencia"
-        ],
-        "parts": {
-          "semantica": 0.781,
-          "tags": 0.34,
-          "busquedas": 0.333,
-          "popularidad": 0.841
-        },
-        "listeners": 2308282
-      },
-      {
-        "artist": "blink-182",
-        "title": "All the Small Things",
-        "score": 0.576,
-        "why": [
-          "tags: pop, pop punk, alternative rock",
-          "artista de referencia"
-        ],
-        "parts": {
-          "semantica": 0.7,
-          "tags": 0.257,
-          "busquedas": 0.667,
-          "popularidad": 0.844
-        },
-        "listeners": 2380550
-      },
-      {
-        "artist": "Avril Lavigne",
-        "title": "Girlfriend",
-        "score": 0.572,
-        "why": [
-          "tags: pop, pop punk",
-          "artista de referencia"
-        ],
-        "parts": {
-          "semantica": 0.739,
-          "tags": 0.36,
-          "busquedas": 0.333,
-          "popularidad": 0.82
-        },
-        "listeners": 1907392
-      },
-      {
-        "artist": "Radiohead",
-        "title": "Creep",
-        "score": 0.568,
-        "why": [
-          "tags: alternative rock"
-        ],
-        "parts": {
-          "semantica": 0.737,
-          "tags": 0.32,
-          "busquedas": 0.333,
-          "popularidad": 0.908
-        },
-        "listeners": 4277848
+        "listeners": 1405289
       },
       {
         "artist": "Radiohead",
         "title": "Let Down",
-        "score": 0.567,
+        "score": 0.165,
         "why": [
-          "tags: alternative rock"
+          "género: alternative rock"
         ],
         "parts": {
-          "semantica": 0.743,
-          "tags": 0.323,
+          "semantica": 0.709,
+          "tags": 0.0,
+          "genero": 1.0,
+          "epoca": 0.0,
           "busquedas": 0.333,
           "popularidad": 0.857
         },
         "listeners": 2684718
       },
       {
-        "artist": "Kelly Clarkson",
-        "title": "Since U Been Gone",
-        "score": 0.549,
-        "why": [
-          "tags: pop",
-          "artista de referencia"
-        ],
-        "parts": {
-          "semantica": 0.704,
-          "tags": 0.333,
-          "busquedas": 0.333,
-          "popularidad": 0.821
-        },
-        "listeners": 1927360
-      },
-      {
-        "artist": "Foo Fighters",
-        "title": "Everlong",
-        "score": 0.544,
-        "why": [
-          "tags: alternative rock"
-        ],
-        "parts": {
-          "semantica": 0.597,
-          "tags": 0.29,
-          "busquedas": 0.667,
-          "popularidad": 0.879
-        },
-        "listeners": 3274311
-      },
-      {
         "artist": "Panic! at the Disco",
         "title": "Lying Is the Most Fun a Girl Can Have Without Taking Her Clothes Off",
-        "score": 0.538,
+        "score": 0.164,
         "why": [
-          "tags: pop punk, alternative rock, emo",
+          "género: pop, pop punk, alternative rock",
           "parecido a Fall Out Boy"
         ],
         "parts": {
-          "semantica": 0.619,
-          "tags": 0.27,
+          "semantica": 0.564,
+          "tags": 0.0,
+          "genero": 1.0,
+          "epoca": 0.0,
           "busquedas": 0.667,
           "popularidad": 0.785
         },
         "listeners": 1382426
       },
       {
-        "artist": "The Neighbourhood",
-        "title": "Sweater Weather",
-        "score": 0.538,
+        "artist": "Radiohead",
+        "title": "Creep",
+        "score": 0.157,
         "why": [
-          "tags: chill, alternative rock"
+          "género: alternative rock"
         ],
         "parts": {
-          "semantica": 0.825,
-          "tags": 0.097,
+          "semantica": 0.604,
+          "tags": 0.0,
+          "genero": 1.0,
+          "epoca": 0.0,
           "busquedas": 0.333,
-          "popularidad": 0.875
+          "popularidad": 0.908
         },
-        "listeners": 3153473
-      },
-      {
-        "artist": "Britney Spears",
-        "title": "Toxic",
-        "score": 0.505,
-        "why": [
-          "tags: pop"
-        ],
-        "parts": {
-          "semantica": 0.594,
-          "tags": 0.333,
-          "busquedas": 0.333,
-          "popularidad": 0.877
-        },
-        "listeners": 3210418
-      },
-      {
-        "artist": "Gerard Way",
-        "title": "Baby You're a Haunted House",
-        "score": 0.494,
-        "why": [
-          "tags: pop, emo",
-          "parecido a My Chemical Romance"
-        ],
-        "parts": {
-          "semantica": 0.616,
-          "tags": 0.36,
-          "busquedas": 0.333,
-          "popularidad": 0.591
-        },
-        "listeners": 231474
-      },
-      {
-        "artist": "Leona Lewis",
-        "title": "Bleeding Love",
-        "score": 0.482,
-        "why": [
-          "tags: pop",
-          "parecido a Kelly Clarkson"
-        ],
-        "parts": {
-          "semantica": 0.561,
-          "tags": 0.333,
-          "busquedas": 0.333,
-          "popularidad": 0.791
-        },
-        "listeners": 1452168
-      },
-      {
-        "artist": "Hayley Williams",
-        "title": "Parachute",
-        "score": 0.474,
-        "why": [
-          "tags: pop, alternative rock",
-          "parecido a Paramore"
-        ],
-        "parts": {
-          "semantica": 0.697,
-          "tags": 0.16,
-          "busquedas": 0.333,
-          "popularidad": 0.627
-        },
-        "listeners": 320876
+        "listeners": 4277848
       }
     ],
     "previa_local": [
       {
-        "artist": "Far East Movement",
-        "title": "Like a G6",
-        "score": 0.736,
+        "artist": "Six Sex",
+        "title": "AREA 69",
+        "score": 0.656,
         "why": [
-          "tags: party, dance"
-        ],
-        "parts": {
-          "semantica": 0.873,
-          "tags": 0.543,
-          "busquedas": 0.667,
-          "popularidad": 0.799
-        },
-        "listeners": 1573489
-      },
-      {
-        "artist": "Flo Rida",
-        "title": "Good Feeling",
-        "score": 0.695,
-        "why": [
-          "tags: party, dance"
+          "género: rkt"
         ],
         "parts": {
           "semantica": 1.0,
-          "tags": 0.393,
-          "busquedas": 0.333,
-          "popularidad": 0.77
-        },
-        "listeners": 1206557
-      },
-      {
-        "artist": "Black Eyed Peas",
-        "title": "I Gotta Feeling",
-        "score": 0.657,
-        "why": [
-          "tags: party, dance"
-        ],
-        "parts": {
-          "semantica": 0.813,
-          "tags": 0.357,
-          "busquedas": 0.667,
-          "popularidad": 0.843
-        },
-        "listeners": 2354707
-      },
-      {
-        "artist": "Ariana Grande",
-        "title": "pov",
-        "score": 0.628,
-        "why": [
-          "tags: 2020s"
-        ],
-        "parts": {
-          "semantica": 0.898,
-          "tags": 0.333,
-          "busquedas": 0.333,
-          "popularidad": 0.739
-        },
-        "listeners": 905299
-      },
-      {
-        "artist": "Pitbull",
-        "title": "Time of Our Lives",
-        "score": 0.608,
-        "why": [
-          "tags: party"
-        ],
-        "parts": {
-          "semantica": 0.912,
-          "tags": 0.23,
-          "busquedas": 0.333,
-          "popularidad": 0.786
-        },
-        "listeners": 1393389
-      },
-      {
-        "artist": "Usher",
-        "title": "DJ Got Us Fallin' in Love (feat. Pitbull)",
-        "score": 0.604,
-        "why": [
-          "tags: party, dance"
-        ],
-        "parts": {
-          "semantica": 0.688,
-          "tags": 0.387,
-          "busquedas": 0.667,
-          "popularidad": 0.787
-        },
-        "listeners": 1402155
-      },
-      {
-        "artist": "Lady Gaga",
-        "title": "Poker Face",
-        "score": 0.597,
-        "why": [
-          "tags: party, dance"
-        ],
-        "parts": {
-          "semantica": 0.667,
-          "tags": 0.36,
-          "busquedas": 0.667,
-          "popularidad": 0.894
-        },
-        "listeners": 3775018
-      },
-      {
-        "artist": "Ariana Grande",
-        "title": "Stuck with U (with Justin Bieber)",
-        "score": 0.591,
-        "why": [
-          "tags: 2020s"
-        ],
-        "parts": {
-          "semantica": 0.819,
-          "tags": 0.333,
-          "busquedas": 0.333,
-          "popularidad": 0.725
-        },
-        "listeners": 794389
-      },
-      {
-        "artist": "Rihanna",
-        "title": "Only Girl (In the World)",
-        "score": 0.585,
-        "why": [
-          "tags: party, dance"
-        ],
-        "parts": {
-          "semantica": 0.776,
-          "tags": 0.337,
-          "busquedas": 0.333,
-          "popularidad": 0.851
-        },
-        "listeners": 2543203
-      },
-      {
-        "artist": "Lady Gaga",
-        "title": "Just Dance",
-        "score": 0.581,
-        "why": [
-          "tags: party, dance"
-        ],
-        "parts": {
-          "semantica": 0.756,
-          "tags": 0.347,
-          "busquedas": 0.333,
-          "popularidad": 0.868
-        },
-        "listeners": 2963724
-      },
-      {
-        "artist": "Rihanna",
-        "title": "Don't Stop the Music",
-        "score": 0.576,
-        "why": [
-          "tags: party, dance"
-        ],
-        "parts": {
-          "semantica": 0.745,
-          "tags": 0.35,
-          "busquedas": 0.333,
-          "popularidad": 0.86
-        },
-        "listeners": 2756171
-      },
-      {
-        "artist": "Katy Perry",
-        "title": "Last Friday Night (T.G.I.F.)",
-        "score": 0.568,
-        "why": [
-          "tags: party, dance"
-        ],
-        "parts": {
-          "semantica": 0.722,
-          "tags": 0.193,
-          "busquedas": 0.667,
-          "popularidad": 0.855
-        },
-        "listeners": 2642155
-      },
-      {
-        "artist": "Bruno Mars",
-        "title": "Runaway Baby",
-        "score": 0.557,
-        "why": [
-          "tags: energetic"
-        ],
-        "parts": {
-          "semantica": 0.893,
-          "tags": 0.097,
-          "busquedas": 0.333,
-          "popularidad": 0.765
-        },
-        "listeners": 1149531
-      },
-      {
-        "artist": "Miley Cyrus",
-        "title": "We Can't Stop",
-        "score": 0.548,
-        "why": [
-          "tags: party, dance"
-        ],
-        "parts": {
-          "semantica": 0.743,
-          "tags": 0.283,
-          "busquedas": 0.333,
-          "popularidad": 0.784
-        },
-        "listeners": 1370389
-      },
-      {
-        "artist": "Future",
-        "title": "Life Is Good (feat. Drake)",
-        "score": 0.538,
-        "why": [
-          "tags: 2020s"
-        ],
-        "parts": {
-          "semantica": 0.778,
-          "tags": 0.213,
-          "busquedas": 0.333,
-          "popularidad": 0.74
-        },
-        "listeners": 908576
-      },
-      {
-        "artist": "The 1975",
-        "title": "All I Need to Hear",
-        "score": 0.527,
-        "why": [
-          "tags: 2020s"
-        ],
-        "parts": {
-          "semantica": 0.698,
-          "tags": 0.333,
-          "busquedas": 0.333,
-          "popularidad": 0.63
-        },
-        "listeners": 330557
-      },
-      {
-        "artist": "Waka Flocka Flame",
-        "title": "No Hands (feat. Roscoe Dash & Wale)",
-        "score": 0.437,
-        "why": [
-          "tags: energetic"
-        ],
-        "parts": {
-          "semantica": 0.612,
-          "tags": 0.123,
-          "busquedas": 0.333,
-          "popularidad": 0.749
-        },
-        "listeners": 989757
-      },
-      {
-        "artist": "Jin",
-        "title": "Running Wild",
-        "score": 0.43,
-        "why": [
-          "tags: energetic"
-        ],
-        "parts": {
-          "semantica": 0.49,
-          "tags": 0.333,
-          "busquedas": 0.333,
-          "popularidad": 0.598
-        },
-        "listeners": 247032
-      },
-      {
-        "artist": "Bad Bunny",
-        "title": "PA' ROMPERLA",
-        "score": 0.416,
-        "why": [],
-        "parts": {
-          "semantica": 0.699,
           "tags": 0.0,
+          "genero": 1.0,
           "busquedas": 0.333,
-          "popularidad": 0.511
+          "popularidad": 0.404
         },
-        "listeners": 110162
+        "listeners": 41361
       },
       {
-        "artist": "Trueno",
-        "title": "DANCE CRIP",
-        "score": 0.405,
+        "artist": "Los Palmeras",
+        "title": "Cumbia sobre el mar",
+        "score": 0.636,
         "why": [
+          "género: cumbia",
           "artista de referencia"
         ],
         "parts": {
-          "semantica": 0.674,
+          "semantica": 0.986,
           "tags": 0.0,
+          "genero": 1.0,
           "busquedas": 0.333,
-          "popularidad": 0.52
+          "popularidad": 0.264
         },
-        "listeners": 120277
+        "listeners": 11325
+      },
+      {
+        "artist": "Los Palmeras",
+        "title": "Perra",
+        "score": 0.631,
+        "why": [
+          "género: cumbia",
+          "artista de referencia"
+        ],
+        "parts": {
+          "semantica": 0.968,
+          "tags": 0.0,
+          "genero": 1.0,
+          "busquedas": 0.333,
+          "popularidad": 0.28
+        },
+        "listeners": 13198
+      },
+      {
+        "artist": "La Joaqui",
+        "title": "Dos Besitos",
+        "score": 0.629,
+        "why": [
+          "género: rkt"
+        ],
+        "parts": {
+          "semantica": 0.924,
+          "tags": 0.0,
+          "genero": 1.0,
+          "busquedas": 0.333,
+          "popularidad": 0.394
+        },
+        "listeners": 37548
+      },
+      {
+        "artist": "Los Del Fuego",
+        "title": "jurabas tu",
+        "score": 0.625,
+        "why": [
+          "género: cumbia",
+          "parecido a Los Palmeras"
+        ],
+        "parts": {
+          "semantica": 0.924,
+          "tags": 0.0,
+          "genero": 1.0,
+          "busquedas": 0.333,
+          "popularidad": 0.356
+        },
+        "listeners": 26482
       },
       {
         "artist": "Los Pibes Chorros",
         "title": "Que Calor",
-        "score": 0.377,
-        "why": [],
+        "score": 0.623,
+        "why": [
+          "género: cumbia"
+        ],
         "parts": {
-          "semantica": 0.644,
+          "semantica": 0.912,
           "tags": 0.0,
+          "genero": 1.0,
           "busquedas": 0.333,
           "popularidad": 0.368
         },
         "listeners": 29559
       },
       {
-        "artist": "Rei",
-        "title": "Tu Turrito",
-        "score": 0.375,
-        "why": [],
+        "artist": "Los Ángeles Azules",
+        "title": "17 Años",
+        "score": 0.611,
+        "why": [
+          "género: cumbia"
+        ],
         "parts": {
-          "semantica": 0.523,
+          "semantica": 0.827,
           "tags": 0.0,
-          "busquedas": 0.667,
-          "popularidad": 0.394
+          "genero": 1.0,
+          "busquedas": 0.333,
+          "popularidad": 0.518
         },
-        "listeners": 37589
+        "listeners": 117538
+      },
+      {
+        "artist": "Mario Luis",
+        "title": "Loquito por ti",
+        "score": 0.61,
+        "why": [
+          "género: cumbia",
+          "parecido a La Delio Valdez"
+        ],
+        "parts": {
+          "semantica": 0.928,
+          "tags": 0.0,
+          "genero": 1.0,
+          "busquedas": 0.333,
+          "popularidad": 0.204
+        },
+        "listeners": 6530
+      },
+      {
+        "artist": "Los Del Fuego",
+        "title": "sabes",
+        "score": 0.608,
+        "why": [
+          "género: cumbia",
+          "parecido a Los Palmeras"
+        ],
+        "parts": {
+          "semantica": 0.901,
+          "tags": 0.0,
+          "genero": 1.0,
+          "busquedas": 0.333,
+          "popularidad": 0.27
+        },
+        "listeners": 12017
+      },
+      {
+        "artist": "La Joaqui",
+        "title": "Obsesión",
+        "score": 0.6,
+        "why": [
+          "género: rkt"
+        ],
+        "parts": {
+          "semantica": 0.966,
+          "tags": 0.0,
+          "genero": 1.0,
+          "busquedas": 0.333,
+          "popularidad": 0.0
+        },
+        "listeners": 615
+      },
+      {
+        "artist": "Mario Luis",
+        "title": "Voy a olvidarme de mí",
+        "score": 0.593,
+        "why": [
+          "género: cumbia",
+          "parecido a La Delio Valdez"
+        ],
+        "parts": {
+          "semantica": 0.833,
+          "tags": 0.0,
+          "genero": 1.0,
+          "busquedas": 0.333,
+          "popularidad": 0.34
+        },
+        "listeners": 22983
+      },
+      {
+        "artist": "La Sonora Dinamita",
+        "title": "Que Nadie Sepa mi Sufrir",
+        "score": 0.586,
+        "why": [
+          "género: cumbia"
+        ],
+        "parts": {
+          "semantica": 0.764,
+          "tags": 0.0,
+          "genero": 1.0,
+          "busquedas": 0.333,
+          "popularidad": 0.483
+        },
+        "listeners": 85273
       },
       {
         "artist": "Los Ángeles Azules",
         "title": "Cómo Te Voy A Olvidar",
-        "score": 0.363,
-        "why": [],
+        "score": 0.581,
+        "why": [
+          "género: cumbia"
+        ],
         "parts": {
-          "semantica": 0.565,
+          "semantica": 0.713,
           "tags": 0.0,
+          "genero": 1.0,
           "busquedas": 0.333,
           "popularidad": 0.589
         },
         "listeners": 227887
       },
       {
-        "artist": "El Roockie",
-        "title": "Sigue Bailando Mi Amor",
-        "score": 0.354,
-        "why": [],
+        "artist": "La Delio Valdez",
+        "title": "Inocente",
+        "score": 0.576,
+        "why": [
+          "género: cumbia",
+          "artista de referencia"
+        ],
         "parts": {
-          "semantica": 0.626,
+          "semantica": 0.778,
           "tags": 0.0,
+          "genero": 1.0,
           "busquedas": 0.333,
-          "popularidad": 0.221
+          "popularidad": 0.347
         },
-        "listeners": 7626
+        "listeners": 24529
+      },
+      {
+        "artist": "Gilda",
+        "title": "Fuiste",
+        "score": 0.574,
+        "why": [
+          "género: cumbia",
+          "parecido a La Delio Valdez"
+        ],
+        "parts": {
+          "semantica": 0.754,
+          "tags": 0.0,
+          "genero": 1.0,
+          "busquedas": 0.333,
+          "popularidad": 0.408
+        },
+        "listeners": 42713
+      },
+      {
+        "artist": "La Sonora Dinamita",
+        "title": "Mil Horas",
+        "score": 0.572,
+        "why": [
+          "género: cumbia"
+        ],
+        "parts": {
+          "semantica": 0.737,
+          "tags": 0.0,
+          "genero": 1.0,
+          "busquedas": 0.333,
+          "popularidad": 0.438
+        },
+        "listeners": 56447
+      },
+      {
+        "artist": "Gilda",
+        "title": "No Me Arrepiento De Este Amor",
+        "score": 0.568,
+        "why": [
+          "género: cumbia",
+          "parecido a La Delio Valdez"
+        ],
+        "parts": {
+          "semantica": 0.719,
+          "tags": 0.0,
+          "genero": 1.0,
+          "busquedas": 0.333,
+          "popularidad": 0.459
+        },
+        "listeners": 68392
+      },
+      {
+        "artist": "La Delio Valdez",
+        "title": "Negra, Ron y Velas",
+        "score": 0.567,
+        "why": [
+          "género: cumbia",
+          "artista de referencia"
+        ],
+        "parts": {
+          "semantica": 0.803,
+          "tags": 0.0,
+          "genero": 1.0,
+          "busquedas": 0.333,
+          "popularidad": 0.195
+        },
+        "listeners": 6046
+      },
+      {
+        "artist": "Leo Mattioli",
+        "title": "Tramposa y Mentirosa",
+        "score": 0.567,
+        "why": [
+          "género: cumbia",
+          "parecido a Los Palmeras"
+        ],
+        "parts": {
+          "semantica": 0.751,
+          "tags": 0.0,
+          "genero": 1.0,
+          "busquedas": 0.333,
+          "popularidad": 0.348
+        },
+        "listeners": 24687
+      },
+      {
+        "artist": "Rodrigo",
+        "title": "Amor clasificado",
+        "score": 0.544,
+        "why": [
+          "género: cuarteto"
+        ],
+        "parts": {
+          "semantica": 0.678,
+          "tags": 0.0,
+          "genero": 1.0,
+          "busquedas": 0.333,
+          "popularidad": 0.363
+        },
+        "listeners": 28254
+      },
+      {
+        "artist": "Leo Mattioli",
+        "title": "Después De Ti",
+        "score": 0.542,
+        "why": [
+          "género: cumbia",
+          "parecido a Los Palmeras"
+        ],
+        "parts": {
+          "semantica": 0.689,
+          "tags": 0.0,
+          "genero": 1.0,
+          "busquedas": 0.333,
+          "popularidad": 0.308
+        },
+        "listeners": 17107
+      },
+      {
+        "artist": "Chico Trujillo",
+        "title": "Loca",
+        "score": 0.539,
+        "why": [
+          "género: cumbia"
+        ],
+        "parts": {
+          "semantica": 0.632,
+          "tags": 0.0,
+          "genero": 1.0,
+          "busquedas": 0.333,
+          "popularidad": 0.459
+        },
+        "listeners": 68475
+      },
+      {
+        "artist": "Banda XXI",
+        "title": "Como Hago",
+        "score": 0.539,
+        "why": [
+          "género: cuarteto"
+        ],
+        "parts": {
+          "semantica": 0.771,
+          "tags": 0.0,
+          "genero": 1.0,
+          "busquedas": 0.333,
+          "popularidad": 0.039
+        },
+        "listeners": 1430
+      },
+      {
+        "artist": "La Barra",
+        "title": "Se Nos Fue el Amor",
+        "score": 0.539,
+        "why": [
+          "género: cuarteto"
+        ],
+        "parts": {
+          "semantica": 0.777,
+          "tags": 0.0,
+          "genero": 1.0,
+          "busquedas": 0.333,
+          "popularidad": 0.019
+        },
+        "listeners": 1189
+      },
+      {
+        "artist": "Selena",
+        "title": "La Carcacha",
+        "score": 0.538,
+        "why": [
+          "género: cumbia"
+        ],
+        "parts": {
+          "semantica": 0.611,
+          "tags": 0.0,
+          "genero": 1.0,
+          "busquedas": 0.333,
+          "popularidad": 0.51
+        },
+        "listeners": 109477
+      },
+      {
+        "artist": "Rodrigo",
+        "title": "El viaje",
+        "score": 0.532,
+        "why": [
+          "género: cuarteto"
+        ],
+        "parts": {
+          "semantica": 0.726,
+          "tags": 0.0,
+          "genero": 1.0,
+          "busquedas": 0.333,
+          "popularidad": 0.112
+        },
+        "listeners": 2807
+      },
+      {
+        "artist": "El Cuis",
+        "title": "Piñata",
+        "score": 0.471,
+        "why": [
+          "género: cuarteto"
+        ],
+        "parts": {
+          "semantica": 0.56,
+          "tags": 0.0,
+          "genero": 1.0,
+          "busquedas": 0.333,
+          "popularidad": 0.059
+        },
+        "listeners": 1715
       },
       {
         "artist": "Trueno",
-        "title": "REAL GANGSTA LOVE",
-        "score": 0.346,
+        "title": "DANCE CRIP",
+        "score": 0.11,
         "why": [
           "artista de referencia"
         ],
         "parts": {
-          "semantica": 0.535,
+          "semantica": 0.982,
           "tags": 0.0,
+          "genero": 0.0,
           "busquedas": 0.333,
-          "popularidad": 0.556
+          "popularidad": 0.52
         },
-        "listeners": 167274
+        "listeners": 120277
       },
       {
-        "artist": "Tini",
-        "title": "La Triple T",
-        "score": 0.336,
-        "why": [],
-        "parts": {
-          "semantica": 0.527,
-          "tags": 0.0,
-          "busquedas": 0.333,
-          "popularidad": 0.488
-        },
-        "listeners": 89401
-      },
-      {
-        "artist": "Alexandra Stan",
-        "title": "Mr. Saxobeat",
-        "score": 0.332,
-        "why": [],
-        "parts": {
-          "semantica": 0.372,
-          "tags": 0.0,
-          "busquedas": 0.667,
-          "popularidad": 0.65
-        },
-        "listeners": 396624
-      },
-      {
-        "artist": "La Arrolladora Banda El Limón",
-        "title": "Media Naranja",
-        "score": 0.33,
-        "why": [
-          "parecido a Banda MS"
-        ],
-        "parts": {
-          "semantica": 0.565,
-          "tags": 0.0,
-          "busquedas": 0.333,
-          "popularidad": 0.259
-        },
-        "listeners": 10844
-      },
-      {
-        "artist": "Pitbull",
-        "title": "Hey Baby (Drop It to the Floor)",
-        "score": 0.323,
-        "why": [],
-        "parts": {
-          "semantica": 0.377,
-          "tags": 0.0,
-          "busquedas": 0.667,
-          "popularidad": 0.532
-        },
-        "listeners": 133900
-      },
-      {
-        "artist": "Los Palmeras",
-        "title": "Soy Sabalero",
-        "score": 0.315,
+        "artist": "Trueno",
+        "title": "TRANKY FUNKY",
+        "score": 0.11,
         "why": [
           "artista de referencia"
         ],
         "parts": {
-          "semantica": 0.51,
+          "semantica": 0.997,
           "tags": 0.0,
+          "genero": 0.0,
           "busquedas": 0.333,
-          "popularidad": 0.351
+          "popularidad": 0.473
         },
-        "listeners": 25276
+        "listeners": 78244
+      },
+      {
+        "artist": "Duki",
+        "title": "Givenchy",
+        "score": 0.109,
+        "why": [
+          "parecido a Trueno"
+        ],
+        "parts": {
+          "semantica": 0.981,
+          "tags": 0.0,
+          "genero": 0.0,
+          "busquedas": 0.333,
+          "popularidad": 0.5
+        },
+        "listeners": 100182
       }
     ]
   }

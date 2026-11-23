@@ -158,7 +158,7 @@ def cmd_build(args, cfg) -> int:
     weights = scene.RankWeights(**b.get("weights", {}))
     max_per_artist = b.get("max_per_artist", 2)
     n = args.n or cfg["run"]["candidates_per_prompt"]
-    prompts = [p for p in cfg["prompts"] if not args.prompt or p["id"] == args.prompt]
+    prompts = [p for p in prompt_set(cfg, args.dev) if not args.prompt or p["id"] == args.prompt]
     if not prompts:
         print(f"No existe el prompt '{args.prompt}'.", file=sys.stderr)
         return 2
@@ -181,7 +181,9 @@ def cmd_build(args, cfg) -> int:
         try:
             interp = scene.interpret(http, p["text"], base_url, model, api_key, effort)
             print(f"  moods: {', '.join(interp.moods)} | géneros: {', '.join(interp.genres)}"
-                  + (f" | época: {interp.era}" if interp.era else ""), file=sys.stderr)
+                  + (f" | época: {interp.era}" if interp.era else "")
+                  + (f" (época '{interp.dropped_era}' descartada: la escena no la menciona)"
+                     if interp.dropped_era else ""), file=sys.stderr)
             artists, dropped = scene.verify_artists(lastfm, interp.artists)
             print(f"  artistas: {', '.join(artists) or '—'}"
                   + (f" (descartados por no existir: {', '.join(dropped)})" if dropped else ""), file=sys.stderr)
@@ -197,7 +199,7 @@ def cmd_build(args, cfg) -> int:
                 except Exception as e:  # sin embeddings, rankea igual con tags y popularidad
                     print(f"  AVISO: sin embeddings ({e}); rankeo sin similitud semántica", file=sys.stderr)
                     out["generator"]["errors"][f"{pid}:embeddings"] = str(e)[:300]
-            chosen = scene.select(scene.rank(tracks, interp, weights, sims), n, max_per_artist)
+            chosen = scene.select(scene.rank(tracks, interp, weights, sims), n, max_per_artist, interp.genres)
             out["interpretations"][pid] = {**interp.to_dict(), "artistas_verificados": artists,
                                            "artistas_descartados": dropped, "pool": len(pool),
                                            "con_tags": len(tracks), "embeddings": sims is not None}
@@ -217,10 +219,32 @@ def cmd_build(args, cfg) -> int:
     return 0 if any(out["prompts"].values()) else 1
 
 
+def prompt_set(cfg: dict, dev: bool) -> list[dict]:
+    """Escenas de evaluación ([[prompts]]) o de desarrollo ([[dev_prompts]], para ajustar)."""
+    return cfg.get("dev_prompts", []) if dev else cfg["prompts"]
+
+
+def cmd_relevance(args, cfg) -> int:
+    from . import relevance
+
+    expectations = {p["id"]: p for p in prompt_set(cfg, args.dev) if p.get("genres") or p.get("years")}
+    runs = [Path(r) for r in args.runs]
+    for r in runs:
+        if not (r / "results.jsonl").exists():
+            print(f"{r} no es una corrida de run (falta results.jsonl)", file=sys.stderr)
+            return 2
+    text = relevance.render(runs, expectations)
+    print(text)
+    if args.out:
+        Path(args.out).write_text(text)
+        print(f"Guardado en {args.out}", file=sys.stderr)
+    return 0
+
+
 def cmd_run(args, cfg) -> int:
     cand_path = Path(args.candidates)
     data = json.loads(cand_path.read_text())
-    prompts = {p["id"]: p["text"] for p in cfg["prompts"]}
+    prompts = {p["id"]: p["text"] for p in prompt_set(cfg, args.dev)}
     candidates = {pid: data["prompts"][pid] for pid in prompts if pid in data["prompts"]}
     if args.limit:
         candidates = {k: v[:args.limit] for k, v in candidates.items()}
@@ -372,6 +396,7 @@ def main(argv: list[str] | None = None) -> int:
     bd.add_argument("--out", required=True)
     bd.add_argument("--n", type=int)
     bd.add_argument("--prompt", help="solo este prompt (id)")
+    bd.add_argument("--dev", action="store_true", help="usar las escenas de desarrollo ([[dev_prompts]])")
 
     r = sub.add_parser("run", help="verifica candidatos y genera el reporte")
     r.add_argument("--candidates", required=True)
@@ -381,6 +406,12 @@ def main(argv: list[str] | None = None) -> int:
     r.add_argument("--no-spotify", action="store_true")
     r.add_argument("--no-cache", action="store_true")
     r.add_argument("--quiet", action="store_true")
+    r.add_argument("--dev", action="store_true", help="candidatos de las escenas de desarrollo")
+
+    rv = sub.add_parser("relevance", help="mide si las canciones son del género/época que pide cada escena")
+    rv.add_argument("runs", nargs="+", help="carpetas de corridas de run")
+    rv.add_argument("--dev", action="store_true", help="usar lo esperado de [[dev_prompts]]")
+    rv.add_argument("--out", help="guardar la tabla en un .md")
 
     e = sub.add_parser("export", help="crea una playlist privada en tu cuenta de Spotify")
     e.add_argument("--candidates", required=True)
@@ -399,7 +430,7 @@ def main(argv: list[str] | None = None) -> int:
 
     args = ap.parse_args(argv)
     cfg = load_config(Path(args.config))
-    cmds = {"check": cmd_check, "generate": cmd_generate, "build": cmd_build, "run": cmd_run,
+    cmds = {"check": cmd_check, "generate": cmd_generate, "build": cmd_build, "run": cmd_run, "relevance": cmd_relevance,
             "export": cmd_export, "compare": cmd_compare}
     return cmds[args.cmd](args, cfg)
 

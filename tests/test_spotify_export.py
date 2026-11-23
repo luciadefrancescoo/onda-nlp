@@ -205,3 +205,21 @@ def test_export_rejects_weird_account_names(tmp_path, monkeypatch):
     assert cli.main(["--config", cfg, "export", "--candidates", str(cands), "--prompt", "preboliche",
                      "--account", "../x"]) == 2
     assert not paths
+
+
+def test_spotify_lookup_stops_after_long_rate_limit():
+    from onda_poc.sources.spotify import Spotify
+    from tests.fakes import FakeHttp
+    calls = []
+
+    def search(p, b):
+        calls.append(1)
+        return Response(429, {"retry_after": 75571.0})
+
+    http = FakeHttp([("POST", "accounts.spotify.com", lambda p, b: Response(200, {"access_token": "t", "expires_in": 3600})),
+                     ("GET", "api.spotify.com", search)])
+    sp = Spotify(http, "id", "secret")
+    r1 = sp.lookup("Daddy Yankee", "Gasolina")
+    r2 = sp.lookup("Bad Bunny", "Tití Me Preguntó")
+    assert not r1.found and "21.0 h" in r1.error
+    assert r2.error == r1.error and len(calls) == 1  # la segunda ni consulta

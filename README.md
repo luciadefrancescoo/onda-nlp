@@ -150,6 +150,24 @@ python -m onda_poc run --candidates data/candidates/onda-gemma4-12b.json
 
 La salida tiene el mismo formato que `generate`, así que `run`, `export` y `compare` funcionan igual. Además guarda, por escena, la interpretación del LLM, los artistas descartados por no existir y, por canción, el puntaje desglosado y su explicación.
 
+### Medir relevancia y ajustar sin hacer trampa
+
+`run` mide si las canciones existen; `relevance` mide si son de lo que pide la escena (el género o la época que `config.toml` espera para cada prompt, escritos a mano antes de ajustar):
+
+```bash
+python -m onda_poc relevance results/<corrida-1> results/<corrida-2> --out results/relevancia.md
+```
+
+Para ajustar el ranking usen **solo** las escenas de desarrollo (`[[dev_prompts]]`), y corran las de evaluación una vez al final:
+
+```bash
+python -m onda_poc build --dev --out /tmp/dev.json
+python -m onda_poc run --dev --no-spotify --candidates /tmp/dev.json --out /tmp/run-dev
+python -m onda_poc relevance --dev /tmp/run-dev
+```
+
+`--no-spotify` en las corridas de desarrollo: en modo desarrollo Spotify bloquea la app por horas si se hacen muchas búsquedas (nos pasó: 21 h).
+
 Los pesos del ranking y los tamaños de búsqueda están en `config.toml`, sección `[build]`. Si el modelo de embeddings no está, `build` rankea igual con tags, búsquedas y popularidad, y lo avisa.
 
 ## Candidatos

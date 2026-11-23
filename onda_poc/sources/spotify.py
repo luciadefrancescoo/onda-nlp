@@ -62,10 +62,17 @@ class Spotify:
         )
 
     def lookup(self, artist: str, title: str) -> SpotifyResult:
+        if self.auth_error:  # sin token o bloqueados: no seguimos consultando en esta corrida
+            return SpotifyResult(False, error=self.auth_error)
         main = primary_artist(artist)
         for q in (f'track:"{title}" artist:"{main}"', f"{title} {main}"):
             r = self._search(q)
             if r is None:
+                return SpotifyResult(False, error=self.auth_error)
+            if r.status == 429:
+                wait = (r.data or {}).get("retry_after") or 0
+                self.auth_error = (f"Spotify limitó la app por exceso de búsquedas: "
+                                   f"pide esperar {wait / 3600:.1f} h")
                 return SpotifyResult(False, error=self.auth_error)
             if not r.ok or not r.data:
                 return SpotifyResult(False, error=f"search http {r.status}")

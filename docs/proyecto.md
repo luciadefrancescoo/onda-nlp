@@ -9,8 +9,8 @@
 El principio de diseño es este: **el LLM interpreta la escena, el catálogo pone las canciones y Spotify solo exporta.**
 
 - **Interpretar.** Un LLM chico y local traduce la escena a moods, géneros, artistas de referencia y época. No nombra canciones.
-- **Buscar.** Las canciones salen de Last.fm: las más escuchadas para cada tag, para cada artista y para artistas similares. Como vienen del catálogo, son reales.
-- **Rankear y explicar.** Cada canción se puntúa según qué tan bien sus tags encajan con la escena (embeddings + coincidencia de tags + popularidad), y la playlist dice por qué eligió cada una.
+- **Buscar.** Las canciones salen de Last.fm: las más escuchadas para cada género pedido, para cada artista y para artistas similares. Como vienen del catálogo, son reales.
+- **Rankear y explicar.** El género pedido es un requisito y el mood una preferencia. Cada canción se puntúa según sus tags y los de su artista (embeddings + géneros + moods + época + popularidad), y la playlist dice por qué eligió cada una.
 - **Exportar.** Spotify solo busca la canción y crea la playlist. La cláusula 14 de su Developer Policy prohíbe usar su contenido en modelos de IA, así que ningún dato de Spotify entra al ranking ni al LLM.
 
 **Por qué este enfoque.** El plan original era que el LLM propusiera las canciones directamente. Con un modelo grande (Claude Opus 5.5) funciona, pero con uno chico local (`gemma4:12b`) 1 de cada 3 canciones no existe. Ver [Evaluación](#evaluación).
@@ -38,12 +38,12 @@ flowchart LR
 ```
 
 1. **Interpretación** (`build`). El LLM devuelve JSON con 3–6 moods, 2–5 géneros, 5–8 artistas y la época. Se le apaga el razonamiento (`reasoning_effort=none`), porque si no gasta todos los tokens pensando.
-2. **Verificación de artistas.** Cada artista se busca en Last.fm y se descartan los que no existen. En la corrida del 23/11 descartó uno inventado en 4 de las 6 escenas (por ejemplo "Alice Phoebe ==" y "Marconiutas").
-3. **Pool.** Junta las 50 más escuchadas por tag, las 10 de cada artista y las 5 de 3 artistas similares por artista. Saca versiones en vivo, remixes y karaoke.
-4. **Tags de canción.** A 90 canciones del pool se les piden oyentes y tags. Primero van las que aparecieron en varias búsquedas; después, por turnos, la mejor de cada búsqueda, para que ningún tag tape a los artistas.
-5. **Ranking.** Puntaje = 0,45 × similitud de embeddings (escena vs. tags de la canción, `embeddinggemma`) + 0,30 × tags pedidos que tiene + 0,15 × en cuántas búsquedas apareció + 0,10 × popularidad. Los pesos están en `config.toml` (`[build]`).
-6. **Selección.** Las 30 mejores, con un máximo de 2 por artista. Cada canción guarda su puntaje desglosado y su explicación ("tags: party, dance; artista de referencia").
-7. **Verificación y export.** `run` mide existencia, reconocibilidad, tags y Spotify; `export` crea la playlist.
+2. **Chequeos contra la escena y el catálogo.** Los artistas se buscan en Last.fm y se descartan los que no existen (en la evaluación, uno inventado en 4 de las 6 escenas). La época solo se usa si la escena la nombra: el modelo agregaba "1980s" a un asado o "2020s" a una previa.
+3. **Pool.** Los **géneros** y la época traen canciones: las 50 más escuchadas por tag ("80s", no "1980s", que es el tag que se usa). Se suman las 10 de cada artista y las 5 de 3 similares por artista. Los moods no traen canciones: un top de "party" trae hits globales de cualquier género. Se sacan versiones en vivo, remixes y karaoke.
+4. **Tags.** A 120 canciones del pool se les piden oyentes, tags de canción y **tags del artista** (en música local, las canciones casi no tienen tags pero el artista sí). Primero van las que aparecieron en varias búsquedas; después, por turnos, la mejor de cada búsqueda.
+5. **Ranking.** Promedio ponderado de: similitud de embeddings escena vs. tags (0,30), tiene un género pedido (0,20), moods pedidos (0,15), en cuántas búsquedas apareció (0,15), época (0,10) y popularidad (0,10). **Sin ningún género pedido, el puntaje se multiplica por 0,25**; sin la época pedida, por 0,30. Pesos en `config.toml` (`[build]`).
+6. **Selección.** Las 30 mejores, sin repetidas, con un máximo de 2 por artista y lugares reservados para cada género pedido (si no, en "cumbia y reggaetón" el reggaetón ocupa todo). Cada canción guarda su puntaje desglosado y su explicación ("género: cumbia; artista de referencia").
+7. **Verificación y export.** `run` mide existencia, reconocibilidad, tags y Spotify; `relevance` mide si son del género o la época pedidos; `export` crea la playlist.
 
 ## Datos y modelos
 
@@ -64,61 +64,73 @@ flowchart LR
 
 ## Evaluación
 
-Comparamos tres sistemas con los mismos 6 prompts y 30 canciones por prompt. Los detalles están en [`results/comparacion.md`](../results/comparacion.md).
+Comparamos cuatro sistemas con los mismos 6 prompts y 30 canciones por prompt: el LLM grande generando, el chico generando, y dos versiones de onda. Detalle en [`results/comparacion.md`](../results/comparacion.md) y [`results/relevancia.md`](../results/relevancia.md).
 
-| Métrica | Umbral | Opus genera | gemma4 genera | **onda.** (gemma4 interpreta) |
-| --- | --- | --- | --- | --- |
-| Existe en MusicBrainz | ≥ 80% | 97% | 57% | **94%** |
-| No encontrada en ninguna fuente | — | 1% | 33% | **0%** |
-| Se encuentra en Spotify | ≥ 70% | sin medir | 62% | **99%** |
-| Reconocible | ≥ 60% | 92% | 57% | **99%** |
-| ≥ 3 tags a nivel canción | ≥ 50% | 70% | 53% | **91%** |
-| Con tag de mood (canción) | — | 22% | 17% | 36% |
-| Artistas distintos / canciones | — | 82% | 86% | 63% |
-| Veredicto | | (incompleto) | NO-GO | **GO** |
+**Cómo se ajustó sin hacer trampa.** Lo que espera cada escena (géneros o época) se escribió a mano en `config.toml` antes de tocar el ranking. Los ajustes de onda. v2 se hicieron mirando solo 6 **escenas de desarrollo** distintas (`[[dev_prompts]]`: asado, ruta de noche, cena, limpieza, fiesta de 15, lectura). Las 6 de evaluación se corrieron una sola vez al final.
+
+### ¿Existen las canciones?
+
+| Métrica | Umbral | Opus genera | gemma4 genera | onda. v1 | **onda. v2** |
+| --- | --- | --- | --- | --- | --- |
+| Existe en MusicBrainz | ≥ 80% | 97% | 57% | 94% | **98%** |
+| No encontrada en ninguna fuente | — | 1% | 33% | 0% | **0%** |
+| Reconocible | ≥ 60% | 92% | 57% | 99% | **91%** |
+| ≥ 3 tags a nivel canción | ≥ 50% | 70% | 53% | 91% | **78%** |
+| Se encuentra en Spotify | ≥ 70% | sin medir | 62% | 99% | sin medir* |
+| Artistas distintos / canciones | — | 82% | 86% | 63% | 66% |
+
+\* Spotify bloqueó la app por ~21 h el 23/11 por exceso de búsquedas en modo desarrollo. Se mide cuando se libere.
+
+### ¿Encajan con la escena? (relevancia)
+
+| Escena | Qué se mide | Opus genera | gemma4 genera | onda. v1 | **onda. v2** |
+| --- | --- | --- | --- | --- | --- |
+| preboliche | género reggaetón / latino | 100% | 44% | 63% | **87%** |
+| lluvia | género folk, jazz, ambient… | 87% | 47% | 87% | **100%** |
+| estudio | género ambient, clásica, lo-fi… | 97% | 57% | 83% | **100%** |
+| entrenamiento | género metal, hip hop, electrónica… | 100% | 60% | 93% | **100%** |
+| nostalgia | lanzada 2000–2009 | 93% | 88% | 66% | **77%** |
+| previa_local | género cumbia, cuarteto, RKT | 67% | 0% | 7% | **50%** |
+| **Promedio** | | **91%** | **49%** | **66%** | **86%** |
 
 **Lo que muestra:**
 
-- Un LLM chico no sirve para nombrar canciones: inventa 1 de cada 3 y en música local no acierta ninguna.
-- Usado para interpretar la escena, el mismo modelo pasa todos los umbrales. Las canciones salen del catálogo, así que no hay inventadas.
-- **Estas métricas miden si las canciones existen, no si encajan con la escena.** onda. pasa los umbrales porque elige canciones populares y con muchos tags, y eso no garantiza que sean las adecuadas.
-
-**Problema encontrado: los tags genéricos tapan al género pedido.** El ranking pesa igual todos los tags. En `previa_local` el modelo interpretó bien la escena (cumbia, cuarteto, RKT; La Delio Valdez, L-Flow, Trueno), pero "party" y "dance" trajeron hits globales con más oyentes: la playlist arranca con "Like a G6" y ninguna de las 30 canciones tiene el género pedido. En `estudio` aparecen "Sweater Weather" y Mac DeMarco por el tag "chill". Hace falta:
-
-1. una medida de relevancia (evaluación humana), y
-2. que el ranking trate el género como requisito y no como un tag más.
+- **El mismo modelo chico pasa de 49% a 86% de relevancia y de 33% a 0% de canciones inventadas** cuando interpreta la escena en vez de nombrar canciones. Queda a 5 puntos del modelo grande, corriendo local y gratis.
+- En lluvia, estudio y entrenamiento onda. v2 iguala o supera a Opus.
+- **La medida subestima la música local.** En `previa_local`, 11 de las 15 canciones que cuentan como fallo son cumbia o cuarteto (Los Palmeras, La Delio Valdez, La Joaqui, La Barra, Banda XXI) que no tienen ningún tag en las fuentes de verificación. Los fallos reales son 4 (Trueno ×2, Duki, Six Sex: trap y neoperreo). Revisado a mano, serían ~87%. No se corrigió la medida después de ver el resultado; le pasa lo mismo a Opus.
+- **La medida de época también tiene ruido:** MusicBrainz a veces devuelve el año de una reedición ("Blue Monday" figura de 1993, es de 1983). Es una cota inferior para todos.
+- **Nada de esto reemplaza la evaluación humana**: los tags dicen el género, no si la canción encaja con un "preboliche".
 
 ## Estado actual y próximos pasos
 
-El enfoque nuevo resuelve que las canciones existan. Lo que falta es que encajen con la escena y poder medirlo.
+onda. v2 funciona con el modelo chico: 98% de canciones que existen, 0% inventadas y 86% de relevancia medida (Opus: 91%).
 
-**Hecho:** CLI con `check`, `generate`, `build`, `run`, `export` y `compare`; 58 tests con HTTP falso; corrida de los tres sistemas; export real a Spotify; modo equipo con QR para el AI Fest.
+**Hecho:** CLI con `check`, `generate`, `build`, `run`, `relevance`, `export` y `compare`; 65 tests con HTTP falso; evaluación de cuatro sistemas con escenas de desarrollo separadas; export real a Spotify; modo equipo con QR.
 
-### 1. Relevancia: que la playlist encaje con la escena
+### 1. Evaluación humana (lo más importante ahora)
 
-- [ ] Que el ranking trate los géneros pedidos como requisito (filtro o penalización fuerte si la canción no tiene ninguno), y los moods como preferencia.
-- [ ] Darles más peso a las canciones de los artistas de referencia y sus similares.
-- [ ] Mejorar el texto que se embebe por canción (hoy son solo sus tags).
-- [ ] **Importante:** para ajustar el ranking, usar escenas distintas de las 6 de evaluación. Si no, el sistema se ajusta a esas 6 y los números dejan de valer.
+- [ ] Que personas puntúen del 1 al 5 qué tanto encaja cada playlist con su escena, sin saber qué sistema la armó. Comparar Opus genera / onda. v2.
+- [ ] Revisar a mano las canciones de `previa_local` que la medida automática no puede juzgar.
 
-### 2. Evaluación
+### 2. Mejoras conocidas del ranking (ajustar solo con `--dev`)
 
-- [ ] Evaluación humana: que personas puntúen del 1 al 5 qué tanto encaja cada playlist con su escena. Comparar Opus genera / onda. / onda. con ranking mejorado.
-- [ ] Métrica automática de apoyo: porcentaje de canciones que tienen al menos un género pedido.
-- [ ] Revisar a mano las canciones no encontradas en MusicBrainz (6% en onda.): ¿falsos negativos del matching?
+- [ ] El modelo propone artistas que no encajan aunque existan (Trueno y Duki son trap; Banda MS es banda mexicana). Filtrar artistas de referencia por género.
+- [ ] Géneros genéricos como "urbano" o "urban" dejan pasar demasiado.
+- [ ] Más variedad de artistas: 66% contra 82% con Opus.
+- [ ] Año de lanzamiento confiable: consultar la obra en MusicBrainz, no la grabación.
 
-### 3. Pendientes de la factibilidad
+### 3. Pendientes
 
-- [x] Generar candidatos con el modelo chico y compararlos con Opus (`gemma4:12b`: NO-GO como generador).
-- [x] Cargar las credenciales de Spotify y medir el criterio de Spotify (99% en onda.).
-- [ ] Mandar el mail a partners@last.fm para pedir permiso de uso académico. **Ahora es más urgente: Last.fm pasó a ser el catálogo.**
+- [x] Probar el modelo chico (`gemma4:12b`): NO-GO como generador, GO como intérprete.
+- [ ] Medir Spotify en onda. v2 cuando se levante el bloqueo (~24/11, 19 h) con `run` sobre `data/candidates/onda-gemma4-12b.json`.
+- [ ] **Urgente:** mail a partners@last.fm por uso académico. Last.fm es el catálogo.
 
 ### 4. Riesgos
 
 - **Dependencia de Last.fm:** es el catálogo y la fuente de tags. Si no dan permiso académico, hay que buscar otra fuente (por ejemplo, ListenBrainz).
 - **Música local:** los tags de cumbia, cuarteto y RKT son escasos en Last.fm.
 - **Menos variedad de artistas:** 63% de artistas distintos contra 82% con Opus. Se podría bajar el máximo por artista.
-- **Spotify en modo desarrollo:** máximo 5 usuarios. Para la demo usamos la cuenta del equipo + QR.
+- **Spotify en modo desarrollo:** máximo 5 usuarios y límites de búsqueda bajos. El 23/11 bloqueó la app ~21 h por exceso de búsquedas, y eso también frena `export`. Antes de la demo: no correr `run` con Spotify, y exportar las playlists con tiempo.
 
 ### Preguntas abiertas
 

@@ -49,3 +49,13 @@ def test_cache_tag_separates_entries(tmp_path):
     http = HttpClient(cache_path=tmp_path / "c.sqlite", session=sess, sleep=lambda s: None)
     assert http.get("https://example.org/a").data == {"v": 1}
     assert http.get("https://example.org/a", cache_tag="token").data == {"v": 2}
+
+
+def test_long_retry_after_fails_fast_without_sleeping(tmp_path):
+    # Spotify llegó a responder Retry-After: 75571 (21 h): no hay que quedarse esperando.
+    sess = FakeSession([FakeResp(429, {"error": "rate"}, {"Retry-After": "75571"})])
+    sleeps = []
+    http = HttpClient(cache_path=None, session=sess, sleep=sleeps.append)
+    r = http.get("https://api.spotify.com/v1/search")
+    assert r.status == 429 and r.data == {"retry_after": 75571.0}
+    assert sess.calls == 1 and sleeps == []

@@ -83,6 +83,16 @@ class Lastfm:
         r = self._call("artist.getTopTracks", artist=artist, limit=limit, autocorrect=1)
         return _tracks(r, "toptracks")
 
+    def artist_tags(self, artist: str, min_count: int = 5) -> list[str]:
+        """Tags del artista, de más a menos usados (Last.fm normaliza counts a 0-100)."""
+        r = self._call("artist.getTopTags", artist=artist, autocorrect=1)
+        if not r.ok or not r.data or "toptags" not in r.data:
+            return []
+        tags = r.data["toptags"].get("tag", []) or []
+        if isinstance(tags, dict):
+            tags = [tags]
+        return [x.get("name", "") for x in tags if (_int(x.get("count")) or 0) >= min_count and x.get("name")]
+
     def similar_artists(self, artist: str, limit: int = 5) -> list[str]:
         r = self._call("artist.getSimilar", artist=artist, limit=limit, autocorrect=1)
         if not r.ok or not r.data or "error" in r.data:
