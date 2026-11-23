@@ -108,27 +108,30 @@ v2 = género como requisito; v3 = v2 + afinidad con los artistas de referencia. 
 
 onda. v3 funciona con el modelo chico: 98% de canciones que existen, 0% inventadas y 86% de relevancia medida (Opus: 91%). Acepta escenas libres ("volviendo del trabajo, algo cantable tipo Carlos Vives") y arma playlists razonables.
 
-**Hecho:** CLI con `check`, `generate`, `build` (también con escena libre: `--scene`), `run`, `relevance`, `export` y `compare`; 67 tests con HTTP falso; evaluación de cuatro sistemas con escenas de desarrollo separadas; export real a Spotify; modo equipo con QR.
+**Objetivo: demo en vivo en el AI Fest, 12 de diciembre de 2026.** No hay informe escrito.
 
-### 1. Evaluación humana (lo más importante ahora)
+**Hecho:** CLI con `check`, `generate`, `build` (también con escena libre: `--scene`), `run`, `relevance`, `export` y `compare`; 67 tests con HTTP falso; evaluación de cinco sistemas con escenas de desarrollo separadas; export real a Spotify; modo equipo con QR; atribución a Last.fm; mail a partners@last.fm (23/11) pidiendo permiso para uso académico y para la demo.
 
-- [ ] Que personas puntúen del 1 al 5 qué tanto encaja cada playlist con su escena, sin saber qué sistema la armó. Comparar Opus genera / onda. v2.
-- [ ] Revisar a mano las canciones de `previa_local` que la medida automática no puede juzgar.
+### Plan hasta el 12/12
 
-### 2. Mejoras conocidas del ranking (ajustar solo con `--dev`)
+**Semana 1 (24–30/11): que se pueda mostrar**
 
-- [ ] El modelo propone artistas que no encajan aunque existan (Trueno y Duki son trap; Banda MS es banda mexicana). Filtrar artistas de referencia por género.
-- [x] Géneros genéricos ("tropical", "pop") dejaban pasar pop global: resuelto con la afinidad del artista (v3).
-- [ ] El tono: en "algo divertido" se cuelan temas tristes del género correcto ("Muere una Flor"). El mood pesa poco frente al género.
-- [ ] Velocidad: una escena nueva tarda ~2 min (≈300 consultas a Last.fm); repetida, segundos. Para la demo en vivo hay que bajarlo o precargar escenas.
-- [ ] Más variedad de artistas: 66% contra 82% con Opus.
-- [ ] Año de lanzamiento confiable: consultar la obra en MusicBrainz, no la grabación.
+- [ ] Página web local para la demo: el visitante escribe la escena, ve cómo la interpreta el modelo, la playlist con el porqué de cada canción y un QR. Con "Powered by AudioScrobbler" a la vista.
+- [ ] Velocidad: hoy una escena nueva tarda ~2 min (≈300 consultas a Last.fm, a 4 por segundo). Objetivo: < 30 s. Ideas: menos canciones a enriquecer, precargar la caché con muchas escenas y artistas antes del evento.
+- [ ] 24/11 desde ~19 h: medir Spotify en onda. v3 y probar `export` con la cuenta del equipo.
 
-### 3. Pendientes
+**Semana 2 (1–7/12): que no se rompa**
 
-- [x] Probar el modelo chico (`gemma4:12b`): NO-GO como generador, GO como intérprete.
-- [ ] Medir Spotify en onda. v2 cuando se levante el bloqueo (~24/11, 19 h) con `run` sobre `data/candidates/onda-gemma4-12b.json`.
-- [ ] **Urgente:** mail a partners@last.fm por uso académico. Last.fm es el catálogo.
+- [ ] Spotify a escala: el 23/11 bloqueó la app ~21 h después de ~500 búsquedas. En el evento, cada playlist exportada son ~30 búsquedas. Exportar solo si el visitante lo pide (botón), y decidir si guardamos localmente el URI de cada canción ya encontrada.
+- [ ] Sin internet o con internet lento: la caché alcanza para las escenas precargadas; el modelo corre local.
+- [ ] Probar con 10–15 personas que no conocen el proyecto: anotar escenas que fallen y tiempos.
+- [ ] Mejoras de ranking que aparezcan en esas pruebas (tono "divertido" vs. temas tristes; artistas de referencia que no encajan).
+
+**Semana 3 (8–11/12): ensayo**
+
+- [ ] Ensayo general en la compu de la demo, con la red del lugar si se puede.
+- [ ] Plan B: escenas de ejemplo ya armadas por si algo falla.
+- [ ] Checklist del día: Ollama abierto, modelos bajados, caché copiada, cuenta del equipo logueada, cargador.
 
 ### 4. Riesgos
 

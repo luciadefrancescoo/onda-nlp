@@ -36,6 +36,9 @@ from .sources.spotify import Spotify
 
 ROOT = Path(__file__).resolve().parent.parent
 
+# Atribución que piden los términos de la API de Last.fm (cláusula 2.7) donde se muestren sus datos.
+LASTFM_CREDIT = "Powered by AudioScrobbler · https://www.last.fm"
+
 
 def load_dotenv(path: Path) -> None:
     if not path.exists():
@@ -221,6 +224,7 @@ def cmd_build(args, cfg) -> int:
     Path(args.out).parent.mkdir(parents=True, exist_ok=True)
     Path(args.out).write_text(json.dumps(out, ensure_ascii=False, indent=2))
     print(f"\nGuardado en {args.out}")
+    print(LASTFM_CREDIT)
     print(f"HTTP: {http.stats}", file=sys.stderr)
     return 0 if any(out["prompts"].values()) else 1
 
@@ -355,7 +359,7 @@ def cmd_export(args, cfg) -> int:
         print("Modo --dry-run: no se creó ninguna playlist.")
     elif uris:
         name = args.name or f"onda. PoC · {args.prompt}"
-        desc = f"{prompts.get(args.prompt, args.prompt)} (prueba de exportación onda.)"
+        desc = f"{prompts.get(args.prompt, args.prompt)} · onda. · {LASTFM_CREDIT}"
         pid, url = exp.create_playlist(name, desc, public=args.public)
         summary["add_endpoint"] = exp.add_items(pid, uris)
         summary["playlist_url"] = url

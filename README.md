@@ -124,6 +124,8 @@ Los candidatos incluidos los generó un modelo grande. Para saber si el proyecto
 
 ## Enfoque de onda.: `build`
 
+> **Atribución a Last.fm.** Las canciones salen de Last.fm. Sus términos (cláusula 2.7) piden mostrar "Powered by AudioScrobbler" con link a last.fm donde se usen sus datos: `build` lo imprime y `export` lo pone en la descripción de la playlist. La demo tiene que mostrarlo en pantalla. Pedimos permiso para uso académico y para la demo a partners@last.fm el 23/11.
+
 Con `gemma4:12b`, `generate` da NO-GO: 1 de cada 3 canciones no existe (ver `results/comparacion.md`). Por eso el enfoque de onda. cambia el rol del LLM: **interpreta la escena, no nombra canciones.**
 
 ```
